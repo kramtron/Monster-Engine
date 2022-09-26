@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Application.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="glmath.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCamera3D.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRenderer3D.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_demo.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_draw.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_impl_sdl.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_tables.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External_Libraries\ImGui\imgui_widgets.cpp">
+      <Filter>Libraries\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleDummy.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Module.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCamera3D.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRenderer3D.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="glmath.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imconfig.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imgui.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imgui_impl_opengl3.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imgui_impl_opengl3_loader.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imgui_impl_sdl.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imgui_internal.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imstb_rectpack.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imstb_textedit.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\ImGui\imstb_truetype.h">
+      <Filter>Libraries\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\Glew\include\eglew.h">
+      <Filter>Libraries\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\Glew\include\glew.h">
+      <Filter>Libraries\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\Glew\include\glxew.h">
+      <Filter>Libraries\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\Glew\include\wglew.h">
+      <Filter>Libraries\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleDummy.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{20d97d2b-15ab-48e8-90ab-76a92e774fe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{0e663890-19b2-4b6e-a30c-ff784909f5f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{4291afe4-2af7-44bd-b765-4d5c51b8cb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{b124ad26-1602-4d47-9b8b-f46da722b6ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Imgui">
+      <UniqueIdentifier>{96b09c14-82d5-4d91-924f-656a1d6c9b59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Glew">
+      <UniqueIdentifier>{2d5abae7-b934-492c-8235-71d40148b9e3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
