@@ -18,6 +18,7 @@ PrimitiveTypes Primitive::GetType() const
 // ------------------------------------------------------------
 void Primitive::Render() const
 {
+
 	glPushMatrix();
 	glMultMatrixf(transform.M);
 

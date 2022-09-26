@@ -1,8 +1,12 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleDummy.h"
+
+#include "glew.h"
 
 #include "SDL_opengl.h"
+#include "Primitive.h"
 
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -22,9 +26,34 @@ ModuleRenderer3D::~ModuleRenderer3D()
 // Called before render is available
 bool ModuleRenderer3D::Init()
 {
+	
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
-	
+
+
+	//Create context
+	SDL_GLContext context = SDL_GL_CreateContext(App->window->window);
+	if (context == NULL)
+	{
+		//LOG(LogType::L_ERROR, "OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+
+		LOG("Shit. Open gl doesn't work well :(");
+		ret = false;
+	}
+
+	GLenum err = glewInit();
+	if (GLEW_OK != err) {
+		/* Problem: glewInit failed, something is seriously wrong. */
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+		LOG("Error: %a\n", glewGetErrorString(err));
+		LOG("HARD ERROR");
+	}
+	else {
+		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
+	}
+
+
+
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
 	if(context == NULL)
@@ -167,6 +196,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	clear_color = App->dummy->back_window_color;
 	//
 	//ImGui
 	//

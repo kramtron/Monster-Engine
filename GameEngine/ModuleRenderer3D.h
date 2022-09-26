@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "Primitive.h"
 #include "glmath.h"
 #include "Light.h"
 

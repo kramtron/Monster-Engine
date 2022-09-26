@@ -69,7 +69,7 @@ update_status ModuleDummy::Update(float dt)
 	{
 		ImGui::Text("Yes bby\n shit happens \"My Love\"");
 		ImGui::SameLine();
-		ImGui::TextColored({0.9f,0.0f,0.0f,0.9f },"NOPPP");
+		ImGui::TextColored(clear_color,"NOPPP");
 		ImGui::BulletText("YASSS\n \"The Y\" for the frineds");
 		ImGui::Separator();
 		ImGui::TextWrapped("YEY");
@@ -80,6 +80,15 @@ update_status ModuleDummy::Update(float dt)
 
 	if (ImGui::CollapsingHeader("Info", false))
 		ImGui::ShowUserGuide();
+
+	if (ImGui::CollapsingHeader("ColorChanger", false)) {
+		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+		ImGui::TextColored(clear_color, "ColorTester");
+	}
+	if (ImGui::CollapsingHeader("windowsColorChanger", false)) {
+		ImGui::ColorEdit3("clear color", (float*)&back_window_color); // Edit 3 floats representing a color
+		//ImGui::SetNextWindowBgAlpha(0);
+	}
 
 	//ImGui::CollapsingHeader("HEY", false);
 
