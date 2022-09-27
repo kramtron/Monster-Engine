@@ -1,6 +1,12 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleDummy.h"
+#include "glew.h"
+
+#include "SDL_opengl.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
 
 ModuleDummy::ModuleDummy(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -17,6 +23,7 @@ bool ModuleDummy::Start()
 	LOG("Testing");
 	bool ret = true;
 
+	
 	return ret;
 }
 
@@ -30,6 +37,20 @@ bool ModuleDummy::CleanUp()
 update_status ModuleDummy::PreUpdate(float dt)
 {
 
+	float vertices[] = {
+	-0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f,  0.5f, 0.0f
+	};
+
+	unsigned int VBO;
+	//Todo lo puesto a constinuacion ns si va aquí o en update
+		//Va aquí o en moduleRender?
+	glGenBuffers(1, &VBO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
 	return UPDATE_CONTINUE;
 }
 
@@ -38,7 +59,7 @@ update_status ModuleDummy::Update(float dt)
 	static int counter = 0;
 
 	ImGui::Begin("HE");
-
+	//GL_POSITION = vec4(aPos.x, aPos.y, aPos.z, 1.0);
 	if (ImGui::CollapsingHeader("Button", false))
 	{
 		//ImGui::Button("Count");
