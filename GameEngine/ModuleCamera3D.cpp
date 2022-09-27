@@ -1,6 +1,17 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleCamera3D.h"
+#include "imgui.h"
+
+
+//#include "MathGeoLib.h"//Need here? If this activated error in float3.h
+
+//Need more includes for sure
+
+#include "ModuleRenderer3D.h"
+
+#include "SDL_opengl.h"
+
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -146,6 +157,29 @@ void ModuleCamera3D::Move(const vec3 &Movement)
 float* ModuleCamera3D::GetViewMatrix()
 {
 	return &ViewMatrix;
+}
+
+void ModuleCamera3D::Draw()
+{
+
+	//Start gl things
+	//Disable by default so we have to enable first
+		//OpenGl automatically stores things
+			//https://learnopengl.com/Advanced-OpenGL/Depth-testing#:~:text=glEnable%20(GL_DEPTH_TEST)%3B,failed%20the%20depth%20test%20accordingly.
+
+	glEnable(GL_DEPTH_TEST);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(GetViewMatrix());
+	//clear so no update depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	
+}
+
+void ModuleCamera3D::StopDraw()
+{
+	glDisable(GL_DEPTH_TEST);
 }
 
 // -----------------------------------------------------------------

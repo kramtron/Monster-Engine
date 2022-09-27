@@ -18,6 +18,11 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	//Funcionts to draw
+	void Draw();
+	void StopDraw();
+
+
 private:
 
 	void CalculateViewMatrix();
