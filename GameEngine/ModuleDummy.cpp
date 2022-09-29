@@ -58,7 +58,8 @@ update_status ModuleDummy::Update(float dt)
 {
 	static int counter = 0;
 
-	ImGui::Begin("HE");
+	ImGui::Begin("Tests");
+
 	//GL_POSITION = vec4(aPos.x, aPos.y, aPos.z, 1.0);
 	if (ImGui::CollapsingHeader("Button", false))
 	{
@@ -110,6 +111,10 @@ update_status ModuleDummy::Update(float dt)
 		ImGui::ColorEdit3("clear color", (float*)&back_window_color); // Edit 3 floats representing a color
 		//ImGui::SetNextWindowBgAlpha(0);
 	}
+	if (ImGui::CollapsingHeader("windowsColorChanger", false)) {
+		ImGui::ShowMetricsWindow();
+	}
+
 
 	//ImGui::CollapsingHeader("HEY", false);
 
@@ -124,7 +129,11 @@ update_status ModuleDummy::Update(float dt)
 	//ImGui::PushID();
 
 	ImGui::End();
-
+	ImGui::Begin("Hardware");
+	if (ImGui::CollapsingHeader("HardwareInfo", false)) {
+		
+	}
+	ImGui::End();
 
 	ImGui::BeginGroup();
 
