@@ -18,7 +18,7 @@ public:
 
 
 	ImVec4 clear_color = ImVec4(0.9f, 0.0f, 0.0f, 0.9f);
-	ImVec4 back_window_color = ImVec4(0.9f, 0.0f, 0.0f, 0.9f);
+	ImVec4 back_window_color = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
 	
 	vec3 aPos;

@@ -206,7 +206,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	ImGui::Render();
 	glViewport(0, 0, (int)io->DisplaySize.x, (int)io->DisplaySize.y);
 	glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
-	glClear(GL_COLOR_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT);
+
+
+
+
+	//Always last
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	// Update and Render additional Platform Windows

@@ -137,6 +137,13 @@ update_status ModuleDummy::Update(float dt)
 
 update_status ModuleDummy::PostUpdate(float dt)
 {
+	Plane p(0, 1, 0, 0);
+	p.axis = true;
+	p.Render();
+
+	Cube c(1, 1, 1);
+	c.Render();
+	
 
 	return UPDATE_CONTINUE;
 }
