@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -48,15 +48,15 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)External_Libraries\ImGui;$(SolutionDir)External_Libraries\SDL\include;$(SolutionDir)External_Libraries\Glew\include;$(SolutionDir)External_Libraries\MathGeoLib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External_Libraries\ImGui;$(SolutionDir)External_Libraries\SDL\include;$(SolutionDir)External_Libraries\Glew\include;$(SolutionDir)External_Libraries\Assimp\include;$(SolutionDir)External_Libraries\MathGeoLib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\Assimp\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,13 +77,46 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\Assimp\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\ai_assert.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\anim.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\camera.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\cexport.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\cfileio.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\cimport.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\color4.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\config.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\DefaultLogger.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\defs.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\Exporter.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\Importer.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\importerdesc.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\IOStream.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\IOSystem.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\light.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\Logger.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\LogStream.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\material.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\matrix3x3.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\matrix4x4.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\mesh.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\metadata.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\NullLogger.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\postprocess.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\ProgressHandler.hpp" />
+    <ClInclude Include="External_Libraries\Assimp\include\quaternion.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\scene.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\texture.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\types.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\vector2.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\vector3.h" />
+    <ClInclude Include="External_Libraries\Assimp\include\version.h" />
     <ClInclude Include="External_Libraries\Glew\include\eglew.h" />
     <ClInclude Include="External_Libraries\Glew\include\glew.h" />
     <ClInclude Include="External_Libraries\Glew\include\glxew.h" />
@@ -133,6 +166,15 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="External_Libraries\Assimp\include\color4.inl" />
+    <None Include="External_Libraries\Assimp\include\material.inl" />
+    <None Include="External_Libraries\Assimp\include\matrix3x3.inl" />
+    <None Include="External_Libraries\Assimp\include\matrix4x4.inl" />
+    <None Include="External_Libraries\Assimp\include\quaternion.inl" />
+    <None Include="External_Libraries\Assimp\include\vector2.inl" />
+    <None Include="External_Libraries\Assimp\include\vector3.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

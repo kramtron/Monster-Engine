@@ -3,6 +3,12 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleDummy.h"
 
+
+//Assimp
+#include "cimport.h"
+#include "scene.h"
+#include "postprocess.h"
+
 #include "glew.h"
 
 #include "SDL_opengl.h"
@@ -95,6 +101,13 @@ bool ModuleRenderer3D::Init()
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glClearDepth(1.0f);
 		
+
+		//Assimp debug
+		struct aiLogStream stream;
+		stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
+		aiAttachLogStream(&stream);
+
+
 		//Initialize clear color
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 
@@ -235,6 +248,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
+
+
+	//Clean logs assimp
+	aiDetachAllLogStreams();
+
 
 	//
 	//ImGui

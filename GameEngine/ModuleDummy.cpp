@@ -56,6 +56,7 @@ update_status ModuleDummy::PreUpdate(float dt)
 
 update_status ModuleDummy::Update(float dt)
 {
+
 	static int counter = 0;
 
 	ImGui::Begin("Tests");
@@ -107,11 +108,11 @@ update_status ModuleDummy::Update(float dt)
 		ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 		ImGui::TextColored(clear_color, "ColorTester");
 	}
-	if (ImGui::CollapsingHeader("windowsColorChanger", false)) {
-		ImGui::ColorEdit3("clear color", (float*)&back_window_color); // Edit 3 floats representing a color
+	if (ImGui::CollapsingHeader("CubeColorChanger", false)) {
+		ImGui::ColorEdit3("clear color", (float*)&color); // Edit 3 floats representing a color
 		//ImGui::SetNextWindowBgAlpha(0);
 	}
-	if (ImGui::CollapsingHeader("windowsColorChanger", false)) {
+	if (ImGui::CollapsingHeader("Debug Info", false)) {
 		ImGui::ShowMetricsWindow();
 	}
 
@@ -127,16 +128,20 @@ update_status ModuleDummy::Update(float dt)
 	}
 	
 	//ImGui::PushID();
+	ImGui::End();
 
-	ImGui::End();
+
 	ImGui::Begin("Hardware");
-	if (ImGui::CollapsingHeader("HardwareInfo", false)) {
-		
-	}
+	//Colocar info del hardware aquí
+	ImGui::Text("Vendor: %s", glGetString(GL_VENDOR));
+	ImGui::Text("Renderer: %s", glGetString(GL_RENDERER));
+	ImGui::Text("OpenGL version supported %s", glGetString(GL_VERSION));
+	ImGui::Text("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 	ImGui::End();
+
+
 
 	ImGui::BeginGroup();
-
 
 	ImGui::EndGroup();
 
@@ -151,6 +156,8 @@ update_status ModuleDummy::PostUpdate(float dt)
 	p.Render();
 
 	Cube c(1, 1, 1);
+	c.SetPos(0, 0.5, 0);
+	c.color = color;
 	c.Render();
 	
 
