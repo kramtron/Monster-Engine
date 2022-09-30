@@ -176,6 +176,34 @@ bool ModuleRenderer3D::Init()
 	const char* glsl_version = "#version 130";
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
+	file_path = ("D:/3o Carrera/IA/IA_Park_Project/IA_Park_Project_GR/Assets/GameObjects/base.fbx");
+
+	//Index in VRAM
+	uint id_index = 0;
+	uint num_index = 0;
+	uint* index = nullptr;
+
+
+	uint id_vertex = 0;
+	uint num_vertex = 0;
+	float* vertex = nullptr;
+
+	const aiScene* scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
+
+	if (scene != nullptr && scene->HasMeshes()) {
+		aiReleaseImport(scene);
+	}
+	else {
+		LOG("Error loading scene %s", file_path);
+	}
+
+	
+
+	aiMesh mesh;
+	
+	mesh.mNumVertices;
+
+	
 	return ret;
 }
 
@@ -184,6 +212,9 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 
 	App->camera->Draw();
+
+
+	
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glLoadIdentity(); In camera draw
 
