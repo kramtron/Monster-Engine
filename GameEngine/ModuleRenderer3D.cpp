@@ -198,11 +198,17 @@ bool ModuleRenderer3D::Init()
 	}
 
 	
-
 	aiMesh mesh;
-	
-	mesh.mNumVertices;
+	aiMesh ourMesh;
 
+	mesh = (aiMesh&)scene->mMeshes[0];// scene->mNumMeshes];
+
+	ourMesh.mNumVertices=mesh.mNumVertices;
+	ourMesh.mVertices = new aiVector3D[ourMesh.mNumVertices * 3];
+
+	memcpy(ourMesh.mVertices, mesh.mVertices, sizeof(float)* ourMesh.mNumVertices * 3);
+	LOG("New mesh with %vertices", ourMesh.mNumVertices);
+	
 	
 	return ret;
 }
