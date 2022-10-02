@@ -16,12 +16,14 @@ public:
 
 	static void StartDebugMode();
 	static void StopDebugMode();
+	
+	static void LoadMesh(aiMesh* importedMesh);
+
 private:
 
 	
 
 
-	void LoadMesh(aiMesh* importedMesh);
 };
 
 

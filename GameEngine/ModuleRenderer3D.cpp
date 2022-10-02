@@ -3,11 +3,9 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleDummy.h"
 
-#include "R_Mesh.h"
-#include "T_MeshLoader.h"
 
-#include "R_Mesh.h"
-#include "T_MeshLoader.h"
+
+
 
 //Assimp
 #include "cimport.h"
@@ -177,7 +175,7 @@ bool ModuleRenderer3D::Init()
 	const char* glsl_version = "#version 130";
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
-	file_path = ("D:/3o Carrera/IA/IA_Park_Project/IA_Park_Project_GR/Assets/GameObjects/base.fbx");
+	file_path = ("Assets/columna.fbx");
 
 	//Index in VRAM
 	uint id_index = 0;
@@ -189,7 +187,7 @@ bool ModuleRenderer3D::Init()
 	uint num_vertex = 0;
 	float* vertex = nullptr;
 
-	const aiScene* scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
+	 scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 		aiReleaseImport(scene);
@@ -198,17 +196,12 @@ bool ModuleRenderer3D::Init()
 		LOG("Error loading scene %s", file_path);
 	}
 
+	if (scene->HasMeshes()) {
+		for (uint i = 0; i < scene->mNumMeshes; i++) {
+			 MeshLoader::LoadMesh(scene->mMeshes[i]);
+		}
+	}
 	
-	/*aiMesh mesh;
-	aiMesh ourMesh;
-
-	mesh = (aiMesh&)scene->mMeshes[0];// scene->mNumMeshes];
-
-	ourMesh.mNumVertices=mesh.mNumVertices;
-	ourMesh.mVertices = new aiVector3D[ourMesh.mNumVertices * 3];
-
-	memcpy(ourMesh.mVertices, mesh.mVertices, sizeof(float)* ourMesh.mNumVertices * 3);
-	LOG("New mesh with %vertices", ourMesh.mNumVertices);*/
 	
 	
 	return ret;
@@ -260,7 +253,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//glClear(GL_COLOR_BUFFER_BIT);
 
 
-
+	//M_Mesh::meshRenderer();
 
 	//Always last
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -316,4 +309,11 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::renderMesh()
+{
+
+	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
+
 }

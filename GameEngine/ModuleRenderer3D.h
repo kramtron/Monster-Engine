@@ -5,6 +5,8 @@
 #include "glmath.h"
 #include "Light.h"
 
+#include "R_Mesh.h"
+#include "T_MeshLoader.h"
 //IMGUI
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
@@ -25,6 +27,8 @@ public:
 
 	void OnResize(int width, int height);
 
+	void renderMesh();
+
 public:
 
 	Light lights[MAX_LIGHTS];
@@ -35,6 +39,10 @@ public:
 	//ImGui
 	ImGuiIO* io;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+	M_Mesh testMesh;
+
+	const aiScene* scene;
 
 	const char* file_path;
 };
