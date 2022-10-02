@@ -8,22 +8,22 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="glmath.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="log.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Primitive.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCamera3D.cpp">
       <Filter>Modules</Filter>
@@ -61,6 +61,12 @@
     <ClCompile Include="ModuleDummy.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="R_Mesh.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="T_MeshLoader.cpp">
+      <Filter>Sources\Tools\MeshLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -85,28 +91,28 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="glmath.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="p2DynArray.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="p2List.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="p2Point.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Primitive.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Tools</Filter>
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="External_Libraries\ImGui\imconfig.h">
       <Filter>Libraries\Imgui</Filter>
@@ -249,6 +255,12 @@
     <ClInclude Include="External_Libraries\Assimp\include\version.h">
       <Filter>Libraries\Assimp</Filter>
     </ClInclude>
+    <ClInclude Include="R_Mesh.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="T_MeshLoader.h">
+      <Filter>Sources\Tools\MeshLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -256,9 +268,6 @@
     </Filter>
     <Filter Include="Main">
       <UniqueIdentifier>{0e663890-19b2-4b6e-a30c-ff784909f5f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tools">
-      <UniqueIdentifier>{4291afe4-2af7-44bd-b765-4d5c51b8cb05}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{b124ad26-1602-4d47-9b8b-f46da722b6ad}</UniqueIdentifier>
@@ -271,6 +280,18 @@
     </Filter>
     <Filter Include="Libraries\Assimp">
       <UniqueIdentifier>{6372a590-ed71-4c9a-b0d1-d0740cdeea24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{022f6d58-f385-42dc-95be-ca257c88e24b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools">
+      <UniqueIdentifier>{4291afe4-2af7-44bd-b765-4d5c51b8cb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources">
+      <UniqueIdentifier>{e7cdcfb6-bd46-4df7-9ebf-2c42a97e60d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\MeshLoader">
+      <UniqueIdentifier>{5e67f12b-e611-4d1f-bec4-5ac218de2797}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

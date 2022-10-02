@@ -3,6 +3,11 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleDummy.h"
 
+#include "R_Mesh.h"
+#include "T_MeshLoader.h"
+
+#include "R_Mesh.h"
+#include "T_MeshLoader.h"
 
 //Assimp
 #include "cimport.h"
@@ -58,7 +63,9 @@ bool ModuleRenderer3D::Init()
 		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 	}
 
-
+	
+	
+	MeshLoader::StartDebugMode();
 
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
@@ -101,12 +108,6 @@ bool ModuleRenderer3D::Init()
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 		glClearDepth(1.0f);
 		
-
-		//Assimp debug
-		struct aiLogStream stream;
-		stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
-		aiAttachLogStream(&stream);
-
 
 		//Initialize clear color
 		glClearColor(0.f, 0.f, 0.f, 1.f);
@@ -198,7 +199,7 @@ bool ModuleRenderer3D::Init()
 	}
 
 	
-	aiMesh mesh;
+	/*aiMesh mesh;
 	aiMesh ourMesh;
 
 	mesh = (aiMesh&)scene->mMeshes[0];// scene->mNumMeshes];
@@ -207,7 +208,7 @@ bool ModuleRenderer3D::Init()
 	ourMesh.mVertices = new aiVector3D[ourMesh.mNumVertices * 3];
 
 	memcpy(ourMesh.mVertices, mesh.mVertices, sizeof(float)* ourMesh.mNumVertices * 3);
-	LOG("New mesh with %vertices", ourMesh.mNumVertices);
+	LOG("New mesh with %vertices", ourMesh.mNumVertices);*/
 	
 	
 	return ret;
@@ -287,9 +288,8 @@ bool ModuleRenderer3D::CleanUp()
 	LOG("Destroying 3D Renderer");
 
 
-	//Clean logs assimp
-	aiDetachAllLogStreams();
-
+	
+	MeshLoader::StopDebugMode();
 
 	//
 	//ImGui
