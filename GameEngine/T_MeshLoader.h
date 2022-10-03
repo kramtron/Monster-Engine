@@ -17,7 +17,7 @@ public:
 	static void StartDebugMode();
 	static void StopDebugMode();
 	
-	static void LoadMesh(aiMesh* importedMesh);
+	static M_Mesh* LoadMesh(aiMesh* importedMesh);
 
 private:
 

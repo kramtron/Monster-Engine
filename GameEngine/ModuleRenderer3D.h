@@ -27,7 +27,7 @@ public:
 
 	void OnResize(int width, int height);
 
-	void renderMesh();
+	void renderMesh(M_Mesh* meshToRender);
 
 public:
 
@@ -40,8 +40,9 @@ public:
 	ImGuiIO* io;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-	M_Mesh testMesh;
+	M_Mesh* testMesh;
 
+	M_Mesh* arrayMesh[1];
 	const aiScene* scene;
 
 	const char* file_path;

@@ -177,15 +177,16 @@ bool ModuleRenderer3D::Init()
 
 	file_path = ("Assets/columna.fbx");
 
-	//Index in VRAM
+	/*//Index in VRAM
 	uint id_index = 0;
 	uint num_index = 0;
 	uint* index = nullptr;
 
 
+
 	uint id_vertex = 0;
 	uint num_vertex = 0;
-	float* vertex = nullptr;
+	float* vertex = nullptr;*/
 
 	 scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
@@ -195,10 +196,10 @@ bool ModuleRenderer3D::Init()
 	else {
 		LOG("Error loading scene %s", file_path);
 	}
-
+	
 	if (scene->HasMeshes()) {
 		for (uint i = 0; i < scene->mNumMeshes; i++) {
-			 MeshLoader::LoadMesh(scene->mMeshes[i]);
+			arrayMesh[i] = MeshLoader::LoadMesh(scene->mMeshes[i]);
 		}
 	}
 	
@@ -211,8 +212,8 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 
-	App->camera->Draw();
 
+	App->camera->Draw();
 
 	
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -242,6 +243,14 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+
+
+
+	/*for (uint i = 0; i < scene->mNumMeshes; i++) {
+		renderMesh(arrayMesh[i]);
+	}*/
+	renderMesh(arrayMesh[0]);
+
 	clear_color = App->dummy->back_window_color;
 	//
 	//ImGui
@@ -269,7 +278,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		ImGui::RenderPlatformWindowsDefault();
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
-	
+
 	SDL_GL_SwapWindow(App->window->window);
 	
 	return UPDATE_CONTINUE;
@@ -311,9 +320,15 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::renderMesh()
+void ModuleRenderer3D::renderMesh(M_Mesh* meshToRender)
 {
+	uint my_indices = 0;
 
-	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, my_indices);
+	
 
+	glDrawElements(GL_TRIANGLES, meshToRender->num_indices, GL_UNSIGNED_INT, NULL);
+
+	/*//clear so no update depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);*/
 }

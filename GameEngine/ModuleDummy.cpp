@@ -155,10 +155,10 @@ update_status ModuleDummy::PostUpdate(float dt)
 	p.axis = true;
 	p.Render();
 
-	Cube c(1, 1, 1);
+	/*Cube c(1, 1, 1);
 	c.SetPos(0, 0.5, 0);
 	c.color = color;
-	c.Render();
+	c.Render();*/
 	
 
 	return UPDATE_CONTINUE;
