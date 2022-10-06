@@ -63,7 +63,6 @@ bool ModuleRenderer3D::Init()
 
 	
 	
-	MeshLoader::StartDebugMode();
 
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
@@ -175,33 +174,12 @@ bool ModuleRenderer3D::Init()
 	const char* glsl_version = "#version 130";
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
-	file_path = ("Assets/columna.fbx");
-
-	/*//Index in VRAM
-	uint id_index = 0;
-	uint num_index = 0;
-	uint* index = nullptr;
-
-
-
-	uint id_vertex = 0;
-	uint num_vertex = 0;
-	float* vertex = nullptr;*/
-
-	 scene = aiImportFile(file_path, aiProcessPreset_TargetRealtime_MaxQuality);
-
-	if (scene != nullptr && scene->HasMeshes()) {
-		aiReleaseImport(scene);
-	}
-	else {
-		LOG("Error loading scene %s", file_path);
-	}
 	
-	if (scene->HasMeshes()) {
-		for (uint i = 0; i < scene->mNumMeshes; i++) {
-			arrayMesh[i] = MeshLoader::LoadMesh(scene->mMeshes[i]);
-		}
-	}
+
+	MeshLoader::StartDebugMode();
+
+
+	 
 	
 	
 	
@@ -246,10 +224,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 
 
-	/*for (uint i = 0; i < scene->mNumMeshes; i++) {
-		renderMesh(arrayMesh[i]);
-	}*/
-	renderMesh(arrayMesh[0]);
+	
+	MeshLoader::Renderer();
 
 	clear_color = App->dummy->back_window_color;
 	//
@@ -290,8 +266,8 @@ bool ModuleRenderer3D::CleanUp()
 	LOG("Destroying 3D Renderer");
 
 
-	
 	MeshLoader::StopDebugMode();
+	MeshLoader::CleanUp();
 
 	//
 	//ImGui
@@ -320,15 +296,4 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::renderMesh(M_Mesh* meshToRender)
-{
-	uint my_indices = 0;
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, my_indices);
-	
-
-	glDrawElements(GL_TRIANGLES, meshToRender->num_indices, GL_UNSIGNED_INT, NULL);
-
-	/*//clear so no update depth buffer
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);*/
-}

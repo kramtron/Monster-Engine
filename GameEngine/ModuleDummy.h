@@ -3,6 +3,10 @@
 #include "Globals.h"
 #include "glmath.h"
 
+
+#include "R_Mesh.h"
+#include "T_MeshLoader.h"
+
 class ModuleDummy : public Module
 {
 public:
@@ -23,6 +27,8 @@ public:
 	Color color;
 
 	vec3 aPos;
+
+	bool wireFrame = true;
 private:
 
 	

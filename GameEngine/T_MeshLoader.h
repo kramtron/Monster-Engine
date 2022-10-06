@@ -1,14 +1,14 @@
 #pragma once
-#include "R_Mesh.h"
 
+#include "R_Mesh.h"
 
 #include "cimport.h"
 #include "scene.h"
 #include "postprocess.h"
 
+using namespace std;
 
-class MeshLoader : public M_Mesh
-{
+class MeshLoader : public M_Mesh {
 public:
 	MeshLoader();
 	~MeshLoader();
@@ -18,6 +18,10 @@ public:
 	static void StopDebugMode();
 	
 	static M_Mesh* LoadMesh(aiMesh* importedMesh);
+	static M_Mesh* LoadFile(string file_path);
+
+	static void Renderer();
+	static void CleanUp();
 
 private:
 

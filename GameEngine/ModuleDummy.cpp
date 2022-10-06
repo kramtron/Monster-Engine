@@ -23,7 +23,7 @@ bool ModuleDummy::Start()
 	LOG("Testing");
 	bool ret = true;
 
-	
+	MeshLoader::LoadFile("Assets/columna.fbx");
 	return ret;
 }
 
@@ -160,6 +160,10 @@ update_status ModuleDummy::PostUpdate(float dt)
 	c.color = color;
 	c.Render();*/
 	
+	if (wireFrame)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	return UPDATE_CONTINUE;
 }
