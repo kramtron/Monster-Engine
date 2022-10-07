@@ -59,13 +59,28 @@ update_status ModuleDummy::Update(float dt)
 
 	static int counter = 0;
 
+	
+
+	ImGui::Begin("Scene");
+	ImGui::BeginChild("", ImVec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+
+	ImVec2 wsize = ImGui::GetWindowSize();
+
+	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(0, 1), ImVec2(1, 0));
+
+	ImGui::EndChild();
+	ImGui::End();
+
+	
+	
+
 	ImGui::Begin("Tests");
 
 	//GL_POSITION = vec4(aPos.x, aPos.y, aPos.z, 1.0);
 	if (ImGui::CollapsingHeader("Button", false))
 	{
 		//ImGui::Button("Count");
-		if (ImGui::Button("Count"))
+		/*if (ImGui::Button("Count"))
 		{
 			counter++;
 		}
@@ -79,13 +94,13 @@ update_status ModuleDummy::Update(float dt)
 		{
 			counter++;
 		}
-		ImGui::SameLine();
-		if (ImGui::RadioButton("Radio", true)) //the true or false its to light up the button
+		ImGui::SameLine();*/
+		if (ImGui::RadioButton("WireFrame", true)) //the true or false its to light up the button
 		{
-			counter++;
+			wireFrame = !wireFrame;
 		}
 
-		ImGui::Text("counter = %d", counter);
+		//ImGui::Text("counter = %d", counter);
 	}
 
 	if (ImGui::CollapsingHeader("Text", false))
@@ -131,6 +146,7 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::End();
 
 
+
 	ImGui::Begin("Hardware");
 	//Colocar info del hardware aquí
 	ImGui::Text("Vendor: %s", glGetString(GL_VENDOR));
@@ -138,13 +154,19 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::Text("OpenGL version supported %s", glGetString(GL_VERSION));
 	ImGui::Text("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 	ImGui::End();
-
-
+	
+	
 
 	ImGui::BeginGroup();
+	
+	
 
 	ImGui::EndGroup();
 
+	bool test = true;
+	ImGui::Begin("Test", &test);
+	
+	ImGui::End();
 	return UPDATE_CONTINUE;
 
 }
