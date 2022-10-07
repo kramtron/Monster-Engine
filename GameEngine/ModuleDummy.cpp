@@ -163,18 +163,11 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::End();
 	
 	
-	
+	//Al crear una window nueva en caso de no poder mover con el mouse la window ir a imgui.ini y colocar al final DockId=0x8B93E3BD,1 (mientras tenga un dock debería poderse mover)
 
 	
 
-	ImGui::BeginGroup();
 	
-	
-
-	
-	
-	
-	ImGui::EndGroup();
 
 	
 	return UPDATE_CONTINUE;
