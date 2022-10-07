@@ -229,6 +229,11 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+
+	//FrameBuffer
+	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	//
 	//ImGui
 	//
@@ -238,10 +243,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	ImGui::NewFrame();
 	//ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
-	//FrameBuffer
-	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	
 
 	return UPDATE_CONTINUE;
 }

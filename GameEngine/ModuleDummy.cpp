@@ -61,16 +61,10 @@ update_status ModuleDummy::Update(float dt)
 
 	
 
-	ImGui::Begin("Scene");
-	ImGui::BeginChild("", ImVec2(SCREEN_WIDTH, SCREEN_HEIGHT));
 
-	ImVec2 wsize = ImGui::GetWindowSize();
+	ImGui::Begin("Console");
 
-	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(0, 1), ImVec2(1, 0));
-
-	ImGui::EndChild();
 	ImGui::End();
-
 	
 	
 
@@ -116,6 +110,8 @@ update_status ModuleDummy::Update(float dt)
 
 	}
 
+
+
 	if (ImGui::CollapsingHeader("Info", false))
 		ImGui::ShowUserGuide();
 
@@ -146,6 +142,17 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::End();
 
 
+	ImGui::Begin("SceneTest");
+	ImGui::BeginChild("", ImVec2(SCREEN_WIDTH, SCREEN_HEIGHT));
+
+	ImVec2 wsize = ImGui::GetWindowSize();
+
+
+	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(0, 1), ImVec2(1, 0));
+
+	ImGui::EndChild();
+	ImGui::End();
+
 
 	ImGui::Begin("Hardware");
 	//Colocar info del hardware aquí
@@ -156,17 +163,20 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::End();
 	
 	
+	
+
+	
 
 	ImGui::BeginGroup();
 	
 	
 
+	
+	
+	
 	ImGui::EndGroup();
 
-	bool test = true;
-	ImGui::Begin("Test", &test);
 	
-	ImGui::End();
 	return UPDATE_CONTINUE;
 
 }
