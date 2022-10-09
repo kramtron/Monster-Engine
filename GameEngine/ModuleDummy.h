@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "R_Console.h"
 
 
 #include "R_Mesh.h"

@@ -67,6 +67,10 @@
     <ClCompile Include="T_MeshLoader.cpp">
       <Filter>Sources\Tools\MeshLoader</Filter>
     </ClCompile>
+    <ClCompile Include="R_Console.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -260,6 +264,9 @@
     </ClInclude>
     <ClInclude Include="T_MeshLoader.h">
       <Filter>Sources\Tools\MeshLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Console.h">
+      <Filter>Sources\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

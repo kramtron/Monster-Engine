@@ -29,7 +29,9 @@ bool ModuleDummy::Start()
 
 bool ModuleDummy::CleanUp()
 {
-	LOG("Cleaning test");
+
+	LOGT(ConsoleType::SYSTEM, "cleaning test");
+
 
 	return true;
 }
@@ -62,9 +64,7 @@ update_status ModuleDummy::Update(float dt)
 	
 
 
-	ImGui::Begin("Console");
-
-	ImGui::End();
+	
 	
 	
 
@@ -148,6 +148,7 @@ update_status ModuleDummy::Update(float dt)
 	ImVec2 wsize = ImGui::GetWindowSize();
 
 
+
 	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(0, 1), ImVec2(1, 0));
 
 	ImGui::EndChild();
@@ -185,6 +186,8 @@ update_status ModuleDummy::PostUpdate(float dt)
 	c.color = color;
 	c.Render();*/
 	
+
+	Console::PrintDebug();
 	if (wireFrame)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else
