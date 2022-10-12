@@ -6,8 +6,8 @@ M_Mesh::M_Mesh()
 
 M_Mesh::~M_Mesh()
 {
-	delete[num_vertices] vertices;
-	delete[num_indices] indices;
+	delete[] vertices;
+	delete[] indices;
 }
 
 void M_Mesh::meshRenderer()

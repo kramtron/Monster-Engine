@@ -106,16 +106,13 @@ void MeshLoader::Renderer()
 	for (int i = 0; i < meshes.size(); i++) {
 		meshes[i]->meshRenderer();
 	}
-
-
-
 }
 
 void MeshLoader::CleanUp()
 {
 	for (int i = 0; i < meshes.size(); i++) {
-		meshes[i]->~M_Mesh();
-		//delete meshes[i]; //Algo aquí hace que salte error en delete[num_vertices]
+		delete meshes[i]; //Algo aquí hace que salte error en delete[num_vertices] // 12/10 parece que ya no pero igual es problema a futuro
+		meshes[i] = nullptr;
 	}
 	meshes.clear();
 

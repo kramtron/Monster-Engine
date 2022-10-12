@@ -111,7 +111,7 @@ bool Application::CleanUp()
 {
 	bool ret = true;
 	p2List_item<Module*>* item = list_modules.getLast();
-
+	//MemoryLeak here?
 	while(item != NULL && ret == true)
 	{
 		ret = item->data->CleanUp();
