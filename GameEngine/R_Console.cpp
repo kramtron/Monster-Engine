@@ -30,7 +30,7 @@ void Console::PrintDebug()
 
 		/*Set the color of the but*/
 		ImGui::PushID(1);
-		ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.25f, 0.8f, 0.8f));
+		ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7.0f, 0.7f, 0.7f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(7.0f, 0.8f, 0.8f));
 		if (ImGui::Button("Clear"))
@@ -48,7 +48,7 @@ void Console::PrintDebug()
 		ImGui::Separator();
 		ImGui::Separator();
 
-		if (ImGui::RadioButton("Collapse", isCollapsed))
+		/*if (ImGui::RadioButton("Collapse", isCollapsed))
 		{
 			if (!isCollapsed)
 				CollapseDebug();
@@ -56,7 +56,7 @@ void Console::PrintDebug()
 				UnCollapseDebug();
 
 			isCollapsed = !isCollapsed;
-		}
+		}*/
 
 		ImGui::Separator();
 
@@ -64,8 +64,10 @@ void Console::PrintDebug()
 		ImGui::SameLine();
 		ImGui::Separator();
 
-		if (ImGui::RadioButton("File", showPath))
-			showPath = !showPath;
+		/*if (ImGui::RadioButton("File", showPath))
+			showPath = !showPath;*/
+
+		showPath = true;
 
 		ImGui::Separator();
 
@@ -197,11 +199,11 @@ void Console::ButtonsType()
 		/*Warning button*/
 		ImGui::PushID(2);
 		if (warnignDebug)
-			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 9.3f, 0.55f));
+			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 		else if (!warnignDebug)
 			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
 
-		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.0f, 9.0f, 4.0f));
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7.0f, 0.7f, 0.7f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.0f, 9.4f, 4.6f));
 		ImGui::Text("%d", countWarn); ImGui::SameLine();
 		if (ImGui::Button("Warning", ImVec2(60, 20)))
@@ -216,11 +218,11 @@ void Console::ButtonsType()
 		/*System button*/
 		ImGui::PushID(3);
 		if (systemDebug)
-			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.165f, 0.80f, 0.8f));
+			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 		else if (!systemDebug)
 			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
 
-		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.165f, 9.0f, 4.0f));
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7.0f, 0.7f, 0.7f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.165f, 9.4f, 4.6f));
 		ImGui::Text("%d", countSyst); ImGui::SameLine();
 		if (ImGui::Button("System", ImVec2(60, 20)))
@@ -235,11 +237,11 @@ void Console::ButtonsType()
 		/*Logs button*/
 		ImGui::PushID(4);
 		if (msgDebug)
-			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.65f, 9.3f, 0.55f));
+			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 		else if (!msgDebug)
 			ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
 
-		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.65f, 9.0f, 4.0f));
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(7.0f, 0.7f, 0.7f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.65f, 9.4f, 4.6f));
 		ImGui::Text("%d", countDebug); ImGui::SameLine();
 		if (ImGui::Button("Logs", ImVec2(60, 20)))
@@ -259,10 +261,8 @@ void Console::ButtonsType()
 
 			/*Warning button*/
 			ImGui::PushID(2);
-			if (warnignDebug)
-				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 9.3f, 0.55f));
-			else if (!warnignDebug)
-				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
+
+				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 
 			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.0f, 9.0f, 4.0f));
 			ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.0f, 9.4f, 4.6f));
@@ -274,10 +274,11 @@ void Console::ButtonsType()
 			ImGui::PopID();
 
 
+
 			/*System button*/
 			ImGui::PushID(3);
 			if (systemDebug)
-				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.165f, 0.80f, 0.8f));
+				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 			else if (!systemDebug)
 				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
 
@@ -294,7 +295,7 @@ void Console::ButtonsType()
 			/*Logs button*/
 			ImGui::PushID(4);
 			if (msgDebug)
-				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.65f, 9.3f, 0.55f));
+				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.15f, 0.20f));
 			else if (!msgDebug)
 				ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.0f, 0.0f, 0.15f));
 

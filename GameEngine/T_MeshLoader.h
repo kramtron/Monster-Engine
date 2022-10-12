@@ -23,6 +23,9 @@ public:
 	static void Renderer();
 	static void CleanUp();
 
+
+
+
 private:
 
 	

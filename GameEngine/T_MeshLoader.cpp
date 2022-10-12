@@ -2,8 +2,10 @@
 #include "Globals.h"
 #include "Application.h"
 
+const aiScene* scene;
 
 vector<M_Mesh*> M_Mesh::meshes;
+
 MeshLoader::MeshLoader()
 {
 }
@@ -29,7 +31,7 @@ void MeshLoader::StopDebugMode()
 
 M_Mesh* MeshLoader::LoadFile(string file_path)
 {
-	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
+	 scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
@@ -117,6 +119,10 @@ void MeshLoader::CleanUp()
 		//delete meshes[i]; //Algo aquí hace que salte error en delete[num_vertices]
 	}
 	meshes.clear();
+
+	//delete(scene);
+	//delete(meshes);
+
 }
 
 
