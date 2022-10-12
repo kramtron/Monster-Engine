@@ -37,5 +37,6 @@ public:
 
 		static vector<M_Mesh*> meshes;
 
-
+		uint id_vertices = 0;
+		uint id_indices = 0;
 };

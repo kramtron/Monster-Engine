@@ -64,9 +64,6 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	uint my_indices = 0;
 	
 
-
-
-
 	M_Mesh* our_mesh = new M_Mesh();
 	
 	our_mesh->num_vertices = importedMesh->mNumVertices;
@@ -74,9 +71,7 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 	memcpy(our_mesh->vertices, importedMesh->mVertices, sizeof(float) * our_mesh->num_vertices * 3);
 	LOG("new mesh with %d vertices", our_mesh->num_vertices);
-	/*glGenBuffers(1, (GLuint*)&(my_id));
-	glBindBuffer(GL_ARRAY_BUFFER, my_id); // << THIS IS ACTUALLY NOT NECESSARY
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * our_mesh->num_vertices * 3, our_mesh->vertices, GL_STATIC_DRAW);*/
+	
 
 
 	if (importedMesh->HasFaces()) {
@@ -93,13 +88,14 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 			{
 				memcpy(&our_mesh->indices[i * 3], importedMesh->mFaces[i].mIndices, 3 * sizeof(uint));
 				
-				/*glGenBuffers(1, (GLuint*)&(my_indices));
-				glBindBuffer(GL_ARRAY_BUFFER, my_indices);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * our_mesh->num_indices, our_mesh->indices, GL_STATIC_DRAW);*/
+				
 			}
 		}
 
 	}
+
+	glGenBuffers(1, (GLuint*)&(our_mesh->id_vertices));
+	glGenBuffers(1, (GLuint*)&(our_mesh->id_indices));
 
 	return our_mesh;
 
@@ -110,6 +106,9 @@ void MeshLoader::Renderer()
 	for (int i = 0; i < meshes.size(); i++) {
 		meshes[i]->meshRenderer();
 	}
+
+
+
 }
 
 void MeshLoader::CleanUp()
