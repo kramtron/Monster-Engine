@@ -147,6 +147,7 @@
     <ClInclude Include="R_Mesh.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="T_MeshLoader.h" />
+    <ClInclude Include="T_TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="R_Mesh.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="T_MeshLoader.cpp" />
+    <ClCompile Include="T_TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="External_Libraries\Assimp\include\color4.inl" />

@@ -70,6 +70,9 @@
     <ClCompile Include="R_Console.cpp">
       <Filter>Sources\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="T_TextureLoader.cpp">
+      <Filter>Sources\Tools\TextureLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -267,6 +270,9 @@
     <ClInclude Include="R_Console.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="T_TextureLoader.h">
+      <Filter>Sources\Tools\TextureLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -298,6 +304,9 @@
     </Filter>
     <Filter Include="Sources\Tools\MeshLoader">
       <UniqueIdentifier>{5e67f12b-e611-4d1f-bec4-5ac218de2797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\TextureLoader">
+      <UniqueIdentifier>{9944659e-6ff3-4560-9490-3690d3cd39dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
