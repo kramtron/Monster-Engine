@@ -5,6 +5,9 @@
 #include "Primitive.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+
+#include "ilu.h"
+#include "il.h"
 typedef unsigned int uint;
 
 
