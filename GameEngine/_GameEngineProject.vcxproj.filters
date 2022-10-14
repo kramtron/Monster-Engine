@@ -73,6 +73,12 @@
     <ClCompile Include="T_TextureLoader.cpp">
       <Filter>Sources\Tools\TextureLoader</Filter>
     </ClCompile>
+    <ClCompile Include="S_Component.cpp">
+      <Filter>Sources\GO_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="S_GameObject.cpp">
+      <Filter>Sources\GO_Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -273,6 +279,12 @@
     <ClInclude Include="T_TextureLoader.h">
       <Filter>Sources\Tools\TextureLoader</Filter>
     </ClInclude>
+    <ClInclude Include="S_Component.h">
+      <Filter>Sources\GO_Main</Filter>
+    </ClInclude>
+    <ClInclude Include="S_GameObject.h">
+      <Filter>Sources\GO_Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -307,6 +319,12 @@
     </Filter>
     <Filter Include="Sources\Tools\TextureLoader">
       <UniqueIdentifier>{9944659e-6ff3-4560-9490-3690d3cd39dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\GO_Main">
+      <UniqueIdentifier>{a578bfa1-229e-4a09-a44d-9a99dc73b347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\GO_Components">
+      <UniqueIdentifier>{6a787833-16d7-4252-9860-154592f9cb75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

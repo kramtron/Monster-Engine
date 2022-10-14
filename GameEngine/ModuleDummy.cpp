@@ -89,10 +89,7 @@ update_status ModuleDummy::Update(float dt)
 			counter++;
 		}
 		ImGui::SameLine();*/
-		if (ImGui::RadioButton("WireFrame", true)) //the true or false its to light up the button
-		{
-			wireFrame = !wireFrame;
-		}
+		
 
 		//ImGui::Text("counter = %d", counter);
 	}
@@ -142,7 +139,25 @@ update_status ModuleDummy::Update(float dt)
 	ImGui::End();
 
 
-	ImGui::Begin("SceneTest");
+	ImGui::Begin("SceneTest",0,ImGuiWindowFlags_MenuBar);
+
+
+	ImGui::BeginMenuBar();
+	//ImGui::SameLine(0, -50);
+
+	if (ImGui::Button("Play")) {
+		//Play mode
+	}
+	//ImGui::SameLine(ImGui::GetWindowWidth() - 95.0f);
+	ImGui::Separator();
+	
+	if (ImGui::Button("WireFrame")) {
+		wireFrame = !wireFrame;
+
+	}
+
+
+	ImGui::EndMenuBar();
 	ImGui::BeginChild("", ImVec2(SCREEN_WIDTH, SCREEN_HEIGHT));
 
 	ImVec2 wsize = ImGui::GetWindowSize();

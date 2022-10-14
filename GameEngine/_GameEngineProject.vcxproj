@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -56,7 +56,7 @@
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\Assimp\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Debug;$(SolutionDir)External_Libraries\DevIL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;DeVL.dll;ILU.dll;ILUT.dll;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;DevIL.dll;ILU.dll;ILUT.dll;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,7 +78,7 @@
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalLibraryDirectories>$(SolutionDir)External_Libraries\SDL\libx86;$(SolutionDir)External_Libraries\Glew\libx86;$(SolutionDir)External_Libraries\Assimp\libx86;$(SolutionDir)External_Libraries\DevIL\libx86;$(SolutionDir)External_Libraries\MathGeoLib\libx86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;DeVL.dll;ILU.dll;ILUT.dll;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;glew32s.lib;MathGeoLib.lib;assimp.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -145,6 +145,8 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="R_Console.h" />
     <ClInclude Include="R_Mesh.h" />
+    <ClInclude Include="S_Component.h" />
+    <ClInclude Include="S_GameObject.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="T_MeshLoader.h" />
     <ClInclude Include="T_TextureLoader.h" />
@@ -171,6 +173,8 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="R_Console.cpp" />
     <ClCompile Include="R_Mesh.cpp" />
+    <ClCompile Include="S_Component.cpp" />
+    <ClCompile Include="S_GameObject.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="T_MeshLoader.cpp" />
     <ClCompile Include="T_TextureLoader.cpp" />
