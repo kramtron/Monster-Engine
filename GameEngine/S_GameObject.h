@@ -30,6 +30,8 @@ public:
 	vector<GameObject*> children;
 	vector<Component*> components;
 
+	std::string name;
+
 	bool active = false;
 
 
