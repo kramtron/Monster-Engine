@@ -214,6 +214,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	ImGuiSamples::Render();
 
+
 	
 
 	SDL_GL_SwapWindow(App->window->window);
