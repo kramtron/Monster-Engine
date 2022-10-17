@@ -36,9 +36,7 @@ public:
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 
-	//ImGui
-	ImGuiIO* io;
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	
 
 	uint framebuffer;
 	uint textureColorbuffer;

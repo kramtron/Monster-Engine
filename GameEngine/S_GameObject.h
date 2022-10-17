@@ -15,7 +15,7 @@ class GameObject
 
 public:
 
-	GameObject();
+	GameObject(const char* name, GameObject* parent);
 	~GameObject();
 
 
@@ -24,6 +24,8 @@ public:
 
 	void Enable();
 	void Disable();
+
+	bool isActive();
 
 public:
 	

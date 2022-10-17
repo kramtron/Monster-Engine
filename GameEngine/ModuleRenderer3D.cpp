@@ -3,7 +3,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleDummy.h"
 
-
+#include "ImGuiSamples.h"
 
 
 
@@ -106,8 +106,7 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 
-		//Initialize clear color
-		glClearColor(0.f, 0.f, 0.f, 1.f);
+		
 
 		//Check for error
 		error = glGetError();
@@ -143,42 +142,11 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-	//
-	//ImGui
-	//
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-
-	io = &ImGui::GetIO(); (void)io;
-	io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-	io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-	io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
-	//io.ConfigViewportsNoAutoMerge = true;
-	//io.ConfigViewportsNoTaskBarIcon = true;
-
-	ImGui::StyleColorsDark();
-	//ImGui::StyleColorsLight();
-
-	ImGuiStyle& style = ImGui::GetStyle();
-	if (io->ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		style.WindowRounding = 0.0f;
-		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-	}
-
-	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, context);
-
-	//WRONG¿?
-	const char* glsl_version = "#version 130";
-	ImGui_ImplOpenGL3_Init(glsl_version);
-
 	
 
 	MeshLoader::StartDebugMode();
 
-
+	//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
@@ -205,44 +173,32 @@ bool ModuleRenderer3D::Init()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
 	
-	
+	ImGuiSamples::App = this->App;
+	ImGuiSamples::Init();
+
 	return ret;
 }
 
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-
-
 	App->camera->Draw();
 
-	
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glLoadIdentity(); In camera draw
-
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadMatrixf(App->camera->GetViewMatrix());
 
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
-	for(uint i = 0; i < MAX_LIGHTS; ++i)
+	for(uint i = 0; i < MAX_LIGHTS; ++i)   
 		lights[i].Render();
 
 
 	//FrameBuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-	//
-	//ImGui
-	//
-	// Start the Dear ImGui frame
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplSDL2_NewFrame();
-	ImGui::NewFrame();
-	//ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
+	
 
+
+	ImGuiSamples::NewFrame();
 	
 
 	return UPDATE_CONTINUE;
@@ -252,38 +208,13 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 
-
-
-	
 	MeshLoader::Renderer();
 
-	clear_color = App->dummy->back_window_color;
-	//
-	//ImGui
-	//
-	// Rendering
-	ImGui::Render();
-	glViewport(0, 0, (int)io->DisplaySize.x, (int)io->DisplaySize.y);
-	glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
-	//glClear(GL_COLOR_BUFFER_BIT);
+	//clear_color = App->dummy->back_window_color;
 
+	ImGuiSamples::Render();
 
-	//M_Mesh::meshRenderer();
-
-	//Always last
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	// Update and Render additional Platform Windows
-	// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
-	//  For this specific demo app we could also call SDL_GL_MakeCurrent(window, gl_context) directly)
-	if (io->ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
-		SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
-		ImGui::UpdatePlatformWindows();
-		ImGui::RenderPlatformWindowsDefault();
-		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
-	}
+	
 
 	SDL_GL_SwapWindow(App->window->window);
 	
@@ -299,13 +230,8 @@ bool ModuleRenderer3D::CleanUp()
 	MeshLoader::StopDebugMode();
 	MeshLoader::CleanUp();
 
-	//
-	//ImGui
-	//
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
 
+	ImGuiSamples::CleanUp();
 
 	glDeleteFramebuffers(1, &framebuffer);
 

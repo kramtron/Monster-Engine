@@ -1,7 +1,11 @@
 #include "S_GameObject.h"
 
-GameObject::GameObject()
+GameObject::GameObject(const char* name, GameObject* parent)
 {
+	if (parent != nullptr) {
+		parent->children.push_back(this);
+	}
+
 }
 
 GameObject::~GameObject()
@@ -57,4 +61,9 @@ void GameObject::Enable()
 void GameObject::Disable()
 {
 	active = false;
+}
+
+bool GameObject::isActive()
+{
+	return active;
 }

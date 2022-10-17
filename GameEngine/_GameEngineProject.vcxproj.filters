@@ -79,6 +79,14 @@
     <ClCompile Include="S_GameObject.cpp">
       <Filter>Sources\GO_Main</Filter>
     </ClCompile>
+    <ClCompile Include="C_Transform.cpp">
+      <Filter>Sources\GO_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ImMainWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiSamples.cpp" />
+    <ClCompile Include="ImMainMenuBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -285,6 +293,14 @@
     <ClInclude Include="S_GameObject.h">
       <Filter>Sources\GO_Main</Filter>
     </ClInclude>
+    <ClInclude Include="C_Transform.h">
+      <Filter>Sources\GO_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ImMainWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiSamples.h" />
+    <ClInclude Include="ImMainMenuBar.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -325,6 +341,9 @@
     </Filter>
     <Filter Include="Sources\GO_Components">
       <UniqueIdentifier>{6a787833-16d7-4252-9860-154592f9cb75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources\ImguiWindows">
+      <UniqueIdentifier>{fd722a28-1c15-4a85-a50e-f6642eaada4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="C_Transform.h" />
     <ClInclude Include="External_Libraries\Assimp\include\ai_assert.h" />
     <ClInclude Include="External_Libraries\Assimp\include\anim.h" />
     <ClInclude Include="External_Libraries\Assimp\include\camera.h" />
@@ -132,6 +133,9 @@
     <ClInclude Include="External_Libraries\ImGui\imstb_truetype.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ImGuiSamples.h" />
+    <ClInclude Include="ImMainMenuBar.h" />
+    <ClInclude Include="ImMainWindow.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleDummy.h" />
@@ -154,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="C_Transform.cpp" />
     <ClCompile Include="External_Libraries\ImGui\imgui.cpp" />
     <ClCompile Include="External_Libraries\ImGui\imgui_demo.cpp" />
     <ClCompile Include="External_Libraries\ImGui\imgui_draw.cpp" />
@@ -162,6 +167,9 @@
     <ClCompile Include="External_Libraries\ImGui\imgui_tables.cpp" />
     <ClCompile Include="External_Libraries\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="ImGuiSamples.cpp" />
+    <ClCompile Include="ImMainMenuBar.cpp" />
+    <ClCompile Include="ImMainWindow.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
