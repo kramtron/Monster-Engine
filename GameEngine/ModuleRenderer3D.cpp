@@ -141,7 +141,8 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-
+	ImGuiSamples::App = this->App;
+	ImGuiSamples::Init();
 		// Setup Platform/Renderer backends
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 
@@ -151,8 +152,7 @@ bool ModuleRenderer3D::Init()
 
 	MeshLoader::StartDebugMode();
 
-	ImGuiSamples::App = this->App;
-	ImGuiSamples::Init();
+	
 
 	//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);

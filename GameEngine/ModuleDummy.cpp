@@ -63,7 +63,7 @@ update_status ModuleDummy::Update(float dt)
 
 	
 
-	ImGui::Begin("Tests");
+	/*ImGui::Begin("Tests");
 
 	//GL_POSITION = vec4(aPos.x, aPos.y, aPos.z, 1.0);
 	if (ImGui::CollapsingHeader("Button", false))
@@ -83,7 +83,7 @@ update_status ModuleDummy::Update(float dt)
 		{
 			counter++;
 		}
-		ImGui::SameLine();*/
+		ImGui::SameLine();
 		
 
 		//ImGui::Text("counter = %d", counter);
@@ -131,20 +131,20 @@ update_status ModuleDummy::Update(float dt)
 	}
 	
 	//ImGui::PushID();
-	ImGui::End();
+	ImGui::End();*/
 
 
 	
 
 
-	ImGui::Begin("Hardware");
+	/*ImGui::Begin("Hardware");
 	//Colocar info del hardware aquí
 	ImGui::Text("Vendor: %s", glGetString(GL_VENDOR));
 	ImGui::Text("Renderer: %s", glGetString(GL_RENDERER));
 	ImGui::Text("OpenGL version supported %s", glGetString(GL_VERSION));
 	ImGui::Text("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 	ImGui::End();
-	
+	*/
 	
 	//Al crear una window nueva en caso de no poder mover con el mouse la window ir a imgui.ini y colocar al final DockId=0x8B93E3BD,1 (mientras tenga un dock debería poderse mover)
 
@@ -169,7 +169,6 @@ update_status ModuleDummy::PostUpdate(float dt)
 	c.Render();*/
 	
 
-	Console::PrintDebug();
 	if (wireFrame)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else

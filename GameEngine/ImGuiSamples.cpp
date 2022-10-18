@@ -4,6 +4,7 @@
 Application* ImGuiSamples::App = nullptr;
 ImGuiIO* ImGuiSamples::id = nullptr;
 
+static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
 
 void ImGuiSamples::Init()
 {
@@ -23,16 +24,11 @@ void ImGuiSamples::Init()
 	id->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
+	//ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 	ImGui::StyleColorsDark();
 	//ImGui::StyleColorsLight();
 
-	ImGuiStyle& style = ImGui::GetStyle();
-	if (id->ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		style.WindowRounding = 0.0f;
-		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-	}
+	
 	
 
 }
@@ -42,12 +38,12 @@ void ImGuiSamples::NewFrame()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
-
+	//ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
 	ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
 		ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus |
-		ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_MenuBar;
+		ImGuiWindowFlags_NoBackground;
 
 
 	ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -62,15 +58,16 @@ void ImGuiSamples::NewFrame()
 	ImGui::Begin("InvisibleWindow", nullptr, windowFlags);
 
 
-	//HMenu::PrintMenu();
+	
 
 	ImGui::PopStyleVar(3);
 
-	ImGuiID dockSpaceId = ImGui::GetID("InvisibleWindowDockSpace");
+	ImGuiID dockSpaceId = ImGui::GetID("InvisibleWindow");
 
 	ImGui::DockSpace(dockSpaceId, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
 	ImGui::End();
+
 
 	ImGui::Begin("SceneTest", 0, ImGuiWindowFlags_MenuBar);
 
@@ -101,6 +98,7 @@ void ImGuiSamples::NewFrame()
 
 	ImGui::EndChild();
 	ImGui::End();
+	Console::PrintDebug();
 
 }
 
