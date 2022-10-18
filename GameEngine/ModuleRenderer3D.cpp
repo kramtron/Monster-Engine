@@ -142,9 +142,17 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
-	
+		// Setup Platform/Renderer backends
+	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
+
+	//WRONG¿?
+	const char* glsl_version = "#version 130";
+	ImGui_ImplOpenGL3_Init(glsl_version);
 
 	MeshLoader::StartDebugMode();
+
+	ImGuiSamples::App = this->App;
+	ImGuiSamples::Init();
 
 	//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
@@ -172,9 +180,9 @@ bool ModuleRenderer3D::Init()
 		//App->menus->my_log.AddLog("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
+
 	
-	ImGuiSamples::App = this->App;
-	ImGuiSamples::Init();
+
 
 	return ret;
 }
