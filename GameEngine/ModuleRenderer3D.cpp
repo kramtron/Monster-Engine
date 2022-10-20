@@ -257,6 +257,8 @@ bool ModuleRenderer3D::CleanUp()
 	ImGuiSamples::CleanUp();
 
 	glDeleteFramebuffers(1, &framebuffer);
+	glDeleteTextures(1, &textureColorbuffer);
+	glDeleteRenderbuffers(1, &rbo);
 
 	//
 	SDL_GL_DeleteContext(context);
