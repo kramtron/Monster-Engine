@@ -8,6 +8,10 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_sdl.h"
 
+
+#include "ImInspectorWindow.h"
+#include "ImHierarchyWindow.h"
+
 class ImGuiSamples
 {
 
@@ -25,5 +29,9 @@ public:
 	
 	static Application* App;
 	static ImGuiIO* id;
+
+
+	
+	
 };
 

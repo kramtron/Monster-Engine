@@ -40,6 +40,10 @@ bool ModuleRenderer3D::Init()
 	bool ret = true;
 
 
+
+
+
+
 	//Create context
 	SDL_GLContext context = SDL_GL_CreateContext(App->window->window);
 	if (context == NULL)
@@ -51,6 +55,9 @@ bool ModuleRenderer3D::Init()
 	}
 
 	GLenum err = glewInit();
+
+	SDL_GL_MakeCurrent(App->window->window, context);
+
 	if (GLEW_OK != err) {
 		/* Problem: glewInit failed, something is seriously wrong. */
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
@@ -106,7 +113,8 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 
-		
+		//Initialize clear color
+		glClearColor(0.f, 0.f, 0.f, 1.f);
 
 		//Check for error
 		error = glGetError();
@@ -136,6 +144,11 @@ bool ModuleRenderer3D::Init()
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
+		glEnable(GL_TEXTURE_2D);
+
+		// Enable opacity
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	// Projection matrix for
@@ -144,11 +157,11 @@ bool ModuleRenderer3D::Init()
 	ImGuiSamples::App = this->App;
 	ImGuiSamples::Init();
 		// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
+	/*ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 
 	//WRONG¿?
 	const char* glsl_version = "#version 130";
-	ImGui_ImplOpenGL3_Init(glsl_version);
+	ImGui_ImplOpenGL3_Init(glsl_version);*/
 
 	MeshLoader::StartDebugMode();
 
@@ -178,10 +191,12 @@ bool ModuleRenderer3D::Init()
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		//App->menus->my_log.AddLog("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
+		LOG("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	
 
 	
+	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 	return ret;
@@ -199,15 +214,9 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)   
 		lights[i].Render();
 
-
 	//FrameBuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-
-
-	ImGuiSamples::NewFrame();
-	
 
 	return UPDATE_CONTINUE;
 }
@@ -220,10 +229,15 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	//clear_color = App->dummy->back_window_color;
 
-	ImGuiSamples::Render();
 
 
-	
+	//FrameBuffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+	ImGuiSamples::NewFrame();
+
 
 	SDL_GL_SwapWindow(App->window->window);
 	

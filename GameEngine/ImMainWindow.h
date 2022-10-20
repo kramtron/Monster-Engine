@@ -12,11 +12,11 @@ public:
 
 	virtual ~ImMainWindow() {};
 
-	virtual bool Update() = 0;
-
-	bool isEnable = true;
+	void Update() {};
 
 	string windowName = "DefaultWindow";
+
+	//bool isEnable = true;
 
 
 };

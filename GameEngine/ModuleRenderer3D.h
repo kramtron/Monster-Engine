@@ -38,7 +38,7 @@ public:
 
 	
 
-	uint framebuffer;
+	uint framebuffer=0;
 	uint textureColorbuffer;
 	uint rbo;
 	

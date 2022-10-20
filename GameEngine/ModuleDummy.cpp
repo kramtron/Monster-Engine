@@ -39,7 +39,7 @@ bool ModuleDummy::CleanUp()
 update_status ModuleDummy::PreUpdate(float dt)
 {
 
-	float vertices[] = {
+	/*float vertices[] = {
 	-0.5f, -0.5f, 0.0f,
 	 0.5f, -0.5f, 0.0f,
 	 0.0f,  0.5f, 0.0f
@@ -51,7 +51,7 @@ update_status ModuleDummy::PreUpdate(float dt)
 	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);*/
 
 	return UPDATE_CONTINUE;
 }
@@ -163,10 +163,7 @@ update_status ModuleDummy::PostUpdate(float dt)
 	p.axis = true;
 	p.Render();
 
-	/*Cube c(1, 1, 1);
-	c.SetPos(0, 0.5, 0);
-	c.color = color;
-	c.Render();*/
+	
 	
 
 	if (wireFrame)

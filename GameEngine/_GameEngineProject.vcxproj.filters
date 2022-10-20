@@ -67,9 +67,6 @@
     <ClCompile Include="T_MeshLoader.cpp">
       <Filter>Sources\Tools\MeshLoader</Filter>
     </ClCompile>
-    <ClCompile Include="R_Console.cpp">
-      <Filter>Sources\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="T_TextureLoader.cpp">
       <Filter>Sources\Tools\TextureLoader</Filter>
     </ClCompile>
@@ -85,8 +82,17 @@
     <ClCompile Include="ImMainWindow.cpp">
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiSamples.cpp" />
-    <ClCompile Include="ImMainMenuBar.cpp" />
+    <ClCompile Include="ImMainMenuBar.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiSamples.cpp">
+      <Filter>Sources\Resources\ImGuiSamples</Filter>
+    </ClCompile>
+    <ClCompile Include="R_Console.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImInspectorWindow.cpp" />
+    <ClCompile Include="ImHierarchyWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -281,9 +287,6 @@
     <ClInclude Include="T_MeshLoader.h">
       <Filter>Sources\Tools\MeshLoader</Filter>
     </ClInclude>
-    <ClInclude Include="R_Console.h">
-      <Filter>Sources\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="T_TextureLoader.h">
       <Filter>Sources\Tools\TextureLoader</Filter>
     </ClInclude>
@@ -299,8 +302,17 @@
     <ClInclude Include="ImMainWindow.h">
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiSamples.h" />
-    <ClInclude Include="ImMainMenuBar.h" />
+    <ClInclude Include="ImMainMenuBar.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiSamples.h">
+      <Filter>Sources\Resources\ImGuiSamples</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Console.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImInspectorWindow.h" />
+    <ClInclude Include="ImHierarchyWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -344,6 +356,9 @@
     </Filter>
     <Filter Include="Sources\Resources\ImguiWindows">
       <UniqueIdentifier>{fd722a28-1c15-4a85-a50e-f6642eaada4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources\ImGuiSamples">
+      <UniqueIdentifier>{61c4bde7-56c6-48b9-9f6d-1d2a6bbb0d8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

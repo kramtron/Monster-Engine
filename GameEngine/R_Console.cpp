@@ -64,9 +64,6 @@ void Console::PrintDebug()
 		ImGui::SameLine();
 		ImGui::Separator();
 
-		/*if (ImGui::RadioButton("File", showPath))
-			showPath = !showPath;*/
-
 		showPath = true;
 
 		ImGui::Separator();
