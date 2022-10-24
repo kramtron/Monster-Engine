@@ -26,14 +26,16 @@ public:
 
 	static bool isEnable;
 
-	void DrawGameObject(GameObject* gameObject);
+	uint DrawGameObject(GameObject* gO);
 
 
 
-	//Colocar lo de aqui en un modulo aparte
-
+	//Colocar lo de aqui en un modulo aparte GameObjectTree module or class?
 
 	uint AddGameObject(GameObject* gameObject);
+
+	void StartGameObject(GameObject* gO, int interations);
+
 public:
 
 	map<uint, GameObject*> gameObjects;
@@ -42,11 +44,20 @@ public:
 
 	uint IDCounter = 1;
 
+	void SetGameObjectSelected(GameObject* gO);
+	GameObject* GetGameObjectSeldcted() { return gameObjectSelected; }
+
+	GameObject* gameObjectSelected = nullptr;
+
 public:
 
 	bool popedUp = false;
 
+	ImGuiTreeNodeFlags baseFlags;
 
 
+private:
+	GameObject* gameObjectDragging = nullptr;
+	GameObject* gameObjectRightClick = nullptr;
 };
 
