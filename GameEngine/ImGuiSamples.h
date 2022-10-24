@@ -11,6 +11,7 @@
 
 #include "ImInspectorWindow.h"
 #include "ImHierarchyWindow.h"
+#include "ImSceneWindow.h"
 
 class ImGuiSamples
 {

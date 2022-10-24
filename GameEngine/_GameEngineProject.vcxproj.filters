@@ -91,8 +91,18 @@
     <ClCompile Include="R_Console.cpp">
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClCompile>
-    <ClCompile Include="ImInspectorWindow.cpp" />
-    <ClCompile Include="ImHierarchyWindow.cpp" />
+    <ClCompile Include="ImHierarchyWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImInspectorWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImSceneWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ImConfigWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -311,8 +321,18 @@
     <ClInclude Include="R_Console.h">
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClInclude>
-    <ClInclude Include="ImInspectorWindow.h" />
-    <ClInclude Include="ImHierarchyWindow.h" />
+    <ClInclude Include="ImSceneWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImHierarchyWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImInspectorWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ImConfigWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">

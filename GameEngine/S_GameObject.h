@@ -25,7 +25,9 @@ public:
 	void Enable();
 	void Disable();
 
-	bool isActive();
+	bool IsActive();
+
+	bool IsSelected();
 
 public:
 	
@@ -34,9 +36,9 @@ public:
 
 	std::string name;
 
-	bool active = false;
+	bool active = true;
 
-
+	bool selected = false;
 
 };
 

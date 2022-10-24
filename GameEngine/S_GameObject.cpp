@@ -63,7 +63,12 @@ void GameObject::Disable()
 	active = false;
 }
 
-bool GameObject::isActive()
+bool GameObject::IsActive()
 {
 	return active;
+}
+
+bool GameObject::IsSelected()
+{
+	return selected;
 }
