@@ -33,19 +33,19 @@ void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = Primiti
 	}
 	case PrimitiveType::PLANE:
 	{
-		GameObject* cube2 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+		GameObject* cube2 = new GameObject("Plane", p, "first", MeshLoader::LoadFile("Assets/plane.fbx"));
 
 		break;
 	}
 	case PrimitiveType::SPHERE:
 	{
-		GameObject* cube3 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+		GameObject* cube3 = new GameObject("Sphere", p, "first", MeshLoader::LoadFile("Assets/sphere.fbx"));
 
 		break;
 	}
 	case PrimitiveType::CYLINDER:
 	{
-		GameObject* cube4 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+		GameObject* cube4 = new GameObject("Cylinder", p, "first", MeshLoader::LoadFile("Assets/cylinder.fbx"));
 
 		break;
 	}

@@ -31,7 +31,7 @@
 #include <OgreMatrix3.h>
 #endif
 
-#ifdef MATH_BULLET_INTEROP
+#ifndef MATH_BULLET_INTEROP
 #include "../../../Bullet/include/LinearMath/btMatrix3x3.h"
 #endif
 
@@ -671,7 +671,7 @@ public:
 	operator Ogre::Matrix3() { return Ogre::Matrix3(v[0][0], v[0][1], v[0][2], v[1][0], v[1][1], v[1][2], v[2][0], v[2][1], v[2][2]); }
 #endif
 
-#ifdef MATH_BULLET_INTEROP
+#ifndef MATH_BULLET_INTEROP
 	float3x3(const btMatrix3x3 &m) { Set(m[0][0], m[0][1], m[0][2], m[1][0], m[1][1], m[1][2], m[2][0], m[2][1], m[2][2]); }
 	operator btMatrix3x3() const { return btMatrix3x3(v[0][0], v[0][1], v[0][2], v[1][0], v[1][1], v[1][2], v[2][0], v[2][1], v[2][2]); }
 #endif

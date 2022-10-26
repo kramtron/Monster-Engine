@@ -1,5 +1,5 @@
 #pragma once
-//#include "MathGeoLib.h"
+#include "MathGeoLib.h"
 
 
 class C_Transform
@@ -17,12 +17,13 @@ public:
 
 
 	/*float4x4 localTransform;
-	float4x4 globalTransform;
+	float4x4 globalTransform;*/
 
 
 	float3 position;
 	float3 scale;
-	Quat rotation;*/
+	Quat rotation;
+
 
 
 };
