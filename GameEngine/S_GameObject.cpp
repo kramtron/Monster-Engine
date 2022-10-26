@@ -1,11 +1,19 @@
 #include "S_GameObject.h"
+#include "ImHierarchyWindow.h"
 
-GameObject::GameObject(const char* name, GameObject* parent)
+Application* GameObject::App = nullptr;
+
+
+GameObject::GameObject(std::string name = "default", GameObject* parent = nullptr, std::string tag = "default", M_Mesh* our_mesh = nullptr) : name(name), tag(tag)
 {
+
+	App->dummy->AddGameObject(this);
+
 	if (parent != nullptr) {
 		parent->children.push_back(this);
 	}
 
+	mesh = our_mesh;
 }
 
 GameObject::~GameObject()
@@ -71,4 +79,45 @@ bool GameObject::IsActive()
 bool GameObject::IsSelected()
 {
 	return selected;
+}
+
+bool GameObject::SetParent(GameObject* p)
+{
+	return p->AddChild(this);
+}
+
+bool GameObject::AddChild(GameObject* c)
+{
+	if (!c)
+		return false;
+
+	if (c->parent == this) 
+		return false;
+
+	GameObject* p = parent;
+
+	while (p) {
+		if (p == c)return false;
+		p = p->parent;
+	}
+
+	children.push_back(c);
+
+	if (c->parent)c->parent->RemoveChild(c);
+
+	c->parent = this;
+	
+	//Need c.transform
+
+}
+
+void GameObject::RemoveChild(GameObject* c)
+{
+	if (!c)
+		return;
+	for (int i = 0; i < children.size(); ++i) {
+		if (children[i] == c)
+			children.erase(children.begin() + 1);
+	}
+	c->parent = nullptr;
 }

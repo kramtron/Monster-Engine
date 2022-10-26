@@ -3,6 +3,9 @@
 #include "glmath.h"
 #include "Color.h"
 
+
+class GameObject;
+
 enum PrimitiveTypes
 {
 	Primitive_Point,
@@ -11,6 +14,14 @@ enum PrimitiveTypes
 	Primitive_Cube,
 	Primitive_Sphere,
 	Primitive_Cylinder
+};
+
+enum class PrimitiveType
+{
+	PLANE,
+	CUBE,
+	SPHERE,
+	CYLINDER,
 };
 
 class Primitive
@@ -25,6 +36,9 @@ public:
 	void			SetRotation(float angle, const vec3 &u);
 	void			Scale(float x, float y, float z);
 	PrimitiveTypes	GetType() const;
+
+
+	void CreatePrimitive(GameObject* p, PrimitiveType t);
 
 public:
 	

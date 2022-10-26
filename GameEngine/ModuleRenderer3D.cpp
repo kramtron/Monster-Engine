@@ -4,8 +4,8 @@
 #include "ModuleDummy.h"
 
 #include "ImGuiSamples.h"
-
-
+#include "S_GameObject.h"
+#include "ImHierarchyWindow.h"
 
 //Assimp
 #include "cimport.h"
@@ -154,8 +154,13 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+
+	ImHierarchyWindow::App = this->App;
+	GameObject::App = this->App;
 	ImGuiSamples::App = this->App;
 	ImGuiSamples::Init();
+
+
 		// Setup Platform/Renderer backends
 	/*ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 

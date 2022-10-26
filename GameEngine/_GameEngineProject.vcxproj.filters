@@ -303,9 +303,6 @@
     <ClInclude Include="S_Component.h">
       <Filter>Sources\GO_Main</Filter>
     </ClInclude>
-    <ClInclude Include="S_GameObject.h">
-      <Filter>Sources\GO_Main</Filter>
-    </ClInclude>
     <ClInclude Include="C_Transform.h">
       <Filter>Sources\GO_Components</Filter>
     </ClInclude>
@@ -332,6 +329,9 @@
     </ClInclude>
     <ClInclude Include="ImConfigWindow.h">
       <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="S_GameObject.h">
+      <Filter>Sources\GO_Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

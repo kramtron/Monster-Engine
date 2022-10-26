@@ -6,6 +6,8 @@ const aiScene* scene;
 
 vector<M_Mesh*> M_Mesh::meshes;
 
+GameObject* MeshLoader::gameObjectReturned = nullptr;
+
 MeshLoader::MeshLoader()
 {
 }
@@ -38,7 +40,11 @@ M_Mesh* MeshLoader::LoadFile(string file_path)
 
 		if (scene->HasMeshes()) {
 			for (uint i = 0; i < scene->mNumMeshes; i++) {
-				meshes.push_back(MeshLoader::LoadMesh(scene->mMeshes[i]));
+
+				M_Mesh* our_mesh = new M_Mesh();
+				our_mesh = MeshLoader::LoadMesh(scene->mMeshes[i]);
+				meshes.push_back(our_mesh);
+				return our_mesh;
 
 			}
 		}
@@ -65,6 +71,8 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	
 
 	M_Mesh* our_mesh = new M_Mesh();
+
+	//GameObject* our_mesh = new GameObject();
 	
 	our_mesh->num_vertices = importedMesh->mNumVertices;
 	our_mesh->vertices = new float[our_mesh->num_vertices * 3];

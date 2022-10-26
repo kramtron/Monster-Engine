@@ -2,6 +2,7 @@
 
 #include "Globals.h"
 #include "Application.h"
+#include "R_Mesh.h"
 
 #include<vector>
 #include<string>
@@ -10,12 +11,14 @@
 
 using namespace std;
 
+class M_Mesh;
+
 class GameObject
 {
 
 public:
 
-	GameObject(const char* name, GameObject* parent);
+	GameObject(std::string name, GameObject* parent, string tag, M_Mesh* our_mesh);
 	~GameObject();
 
 
@@ -29,16 +32,32 @@ public:
 
 	bool IsSelected();
 
+	bool SetParent(GameObject* p);
+
+	bool AddChild(GameObject* c);
+
+	void RemoveChild(GameObject* c);
+
+
+
+
 public:
 	
 	vector<GameObject*> children;
 	vector<Component*> components;
 
 	std::string name;
+	std::string tag;
 
 	bool active = true;
 
 	bool selected = false;
+	GameObject* parent = nullptr;
+
+	static Application* App;
+
+	M_Mesh* mesh;
+
 
 };
 

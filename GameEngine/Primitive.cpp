@@ -4,6 +4,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Primitive.h"
+#include "ImHierarchyWindow.h"
 
 // ------------------------------------------------------------
 Primitive::Primitive() : transform(IdentityMatrix), color(White), wire(false), axis(false), type(PrimitiveTypes::Primitive_Point)
@@ -13,6 +14,44 @@ Primitive::Primitive() : transform(IdentityMatrix), color(White), wire(false), a
 PrimitiveTypes Primitive::GetType() const
 {
 	return type;
+}
+
+void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = PrimitiveType::CUBE)
+{
+	ImHierarchyWindow* ImH = new ImHierarchyWindow;
+
+	if (p == nullptr) p = ImH->rootGameObject;
+
+	switch (t)
+	{
+	case PrimitiveType::CUBE:
+	{
+
+		GameObject* cube = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+		break;
+		
+	}
+	case PrimitiveType::PLANE:
+	{
+		GameObject* cube2 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+
+		break;
+	}
+	case PrimitiveType::SPHERE:
+	{
+		GameObject* cube3 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+
+		break;
+	}
+	case PrimitiveType::CYLINDER:
+	{
+		GameObject* cube4 = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+
+		break;
+	}
+	}
+
+
 }
 
 // ------------------------------------------------------------

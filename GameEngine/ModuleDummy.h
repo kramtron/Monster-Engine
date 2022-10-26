@@ -1,4 +1,6 @@
 #pragma once
+#include "S_GameObject.h"
+
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
@@ -7,6 +9,12 @@
 
 #include "R_Mesh.h"
 #include "T_MeshLoader.h"
+
+#include <map>
+
+class GameObject;
+
+using namespace std;
 
 class ModuleDummy : public Module
 {
@@ -22,6 +30,12 @@ public:
 	bool CleanUp();
 
 
+	int AddGameObject(GameObject* gO);
+
+	map<uint, GameObject*> gameObjects;
+
+	
+
 	ImVec4 clear_color = ImVec4(0.9f, 0.0f, 0.0f, 0.9f);
 	ImVec4 back_window_color = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -29,7 +43,11 @@ public:
 
 	vec3 aPos;
 
-	bool wireFrame = true;
+	bool wireFrame = false;
+
+	int IDCounter = 0;
+
+
 private:
 
 	

@@ -8,6 +8,8 @@
 
 using namespace std;
 
+class GameObject;
+
 class MeshLoader : public M_Mesh {
 public:
 	MeshLoader();
@@ -24,7 +26,7 @@ public:
 	static void CleanUp();
 
 
-
+	static GameObject* gameObjectReturned;
 
 private:
 

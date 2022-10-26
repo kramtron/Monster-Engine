@@ -22,9 +22,9 @@ public:
 
 	~ImHierarchyWindow();
 
-	static void Update();
+	static void Update(ImHierarchyWindow* ImH);
 
-	static bool isEnable;
+	bool isEnable;
 
 	uint DrawGameObject(GameObject* gO);
 
@@ -32,19 +32,21 @@ public:
 
 	//Colocar lo de aqui en un modulo aparte GameObjectTree module or class?
 
-	uint AddGameObject(GameObject* gameObject);
 
 	void StartGameObject(GameObject* gO, int interations);
 
 public:
 
-	map<uint, GameObject*> gameObjects;
+	//map<uint, GameObject*> gameObjects;//Llevar esto a una clase Tree Controller
 
 	GameObject* rootGO = nullptr;
 
 	uint IDCounter = 1;
 
 	void SetGameObjectSelected(GameObject* gO);
+
+	void DrawGameObjectsChilds(GameObject* gO, bool childOnly = false);
+
 	GameObject* GetGameObjectSeldcted() { return gameObjectSelected; }
 
 	GameObject* gameObjectSelected = nullptr;
@@ -53,11 +55,18 @@ public:
 
 	bool popedUp = false;
 
-	ImGuiTreeNodeFlags baseFlags;
+	GameObject* rootGameObject = nullptr;
+
+	static Application* App;
+
 
 
 private:
 	GameObject* gameObjectDragging = nullptr;
 	GameObject* gameObjectRightClick = nullptr;
+	ImGuiTreeNodeFlags baseFlags;
+
+	map<uint, GameObject*>* referenceGameObject;
+
 };
 

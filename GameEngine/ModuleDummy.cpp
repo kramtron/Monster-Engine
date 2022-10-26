@@ -23,7 +23,9 @@ bool ModuleDummy::Start()
 	LOG("Testing");
 	bool ret = true;
 
-	MeshLoader::LoadFile("Assets/columna.fbx");
+	//MeshLoader::LoadFile("Assets/columna.fbx");
+	GameObject* cube = new GameObject("Cube", nullptr, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+
 	return ret;
 }
 
@@ -155,6 +157,15 @@ update_status ModuleDummy::Update(float dt)
 	
 	return UPDATE_CONTINUE;
 
+}
+
+int ModuleDummy::AddGameObject(GameObject* gO)
+{
+
+	//Add in GameObject Tree
+	gameObjects[IDCounter] = gO;
+
+	return IDCounter++;
 }
 
 update_status ModuleDummy::PostUpdate(float dt)

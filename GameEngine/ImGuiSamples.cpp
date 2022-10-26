@@ -3,6 +3,8 @@
 Application* ImGuiSamples::App = nullptr;
 ImGuiIO* ImGuiSamples::id = nullptr;
 
+ImHierarchyWindow* ImGuiSamples::ImH = nullptr;
+
 static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
 
 void ImGuiSamples::Init()
@@ -43,6 +45,8 @@ void ImGuiSamples::Init()
 	//WRONG¿?
 	const char* glsl_version = "#version 130";
 	ImGui_ImplOpenGL3_Init(glsl_version);
+
+	ImH = new ImHierarchyWindow();
 }
 
 void ImGuiSamples::NewFrame()
@@ -53,36 +57,7 @@ void ImGuiSamples::NewFrame()
 	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 
 
-	if (ImGui::BeginMainMenuBar()){
-
-		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.05f, 0.05f, 0.05f, 1));
-
-		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0.95f, 0.95f, 0.95f, 1));
-
-		if (ImGui::BeginMenu("Application"))
-		{
-			if (ImGui::MenuItem("Close Appplication"))
-			{
-				// TODO: Exit application
-			}
-
-			ImGui::EndMenu();
-		}
-
-		if (ImGui::BeginMenu("Windows"))
-		{
-			/*for (int i = 0; i < (uint)ImWindowID::MAX; i++)
-			{
-				if (ImGui::MenuItem(imWindows[i]->windowName.c_str())) imWindows[i]->isEnabled = true;
-			}*/
-			ImGui::EndMenu();
-		}
-
-		ImGui::PopStyleColor(2);
-
-		ImGui::EndMainMenuBar();
-
-	}
+	
 
 
 	
@@ -90,10 +65,11 @@ void ImGuiSamples::NewFrame()
 
 
 	//Pasar esto a una lista??
+	ImMainMenuBar::Update(App);
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
 	ImInspectorWindow::Update();
-	ImHierarchyWindow::Update();
+	ImHierarchyWindow::Update(ImH);
 
 
 

@@ -12,6 +12,7 @@
 #include "ImInspectorWindow.h"
 #include "ImHierarchyWindow.h"
 #include "ImSceneWindow.h"
+#include "ImMainMenuBar.h"
 
 class ImGuiSamples
 {
@@ -32,7 +33,8 @@ public:
 	static ImGuiIO* id;
 
 
-	
+	static ImHierarchyWindow* ImH;
+
 	
 };
 
