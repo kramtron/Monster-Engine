@@ -33,7 +33,7 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 	if (ImGui::Begin("Hierarchy")) {
 
 		for (int i = 1; i < ImH->referenceGameObject->size(); i++) {
-			ImH->DrawGameObjectsChilds(ImH->referenceGameObject->at(1));
+			ImH->DrawGameObjectsChilds(ImH->referenceGameObject->at(i));
 		}
 		
 		/*if ((ImGui::IsMouseDown(ImGuiMouseButton_::ImGuiMouseButton_Right && ImGui::IsWindowHovered()) || ImH->popedUp)) {
