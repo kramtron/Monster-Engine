@@ -1,7 +1,6 @@
 #include "ImInspectorWindow.h"
 
 
-
 bool ImInspectorWindow::isEnable = true;
 
 ImInspectorWindow::ImInspectorWindow()

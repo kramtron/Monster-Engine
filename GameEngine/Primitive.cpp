@@ -1,9 +1,11 @@
 
 #include "Globals.h"
+
+#include "Primitive.h"
+
 #include <glew.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "Primitive.h"
 #include "ImHierarchyWindow.h"
 
 // ------------------------------------------------------------
@@ -16,10 +18,11 @@ PrimitiveTypes Primitive::GetType() const
 	return type;
 }
 
+
 void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = PrimitiveType::CUBE)
 {
 	ImHierarchyWindow* ImH = new ImHierarchyWindow;
-
+	
 	if (p == nullptr) p = ImH->rootGameObject;
 
 	switch (t)

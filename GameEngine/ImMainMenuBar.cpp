@@ -6,9 +6,9 @@ ImMainMenuBar::~ImMainMenuBar()
 {
 }
 
-void ImMainMenuBar::Update(Application* App)
+void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 {
-
+	GameObject* root = imH->rootGameObject;
 	if (ImGui::BeginMainMenuBar()) {
 
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.05f, 1.05f, 1.05f, 1));
@@ -34,7 +34,7 @@ void ImMainMenuBar::Update(Application* App)
 			{
 				
 				Primitive p;
-				p.CreatePrimitive(nullptr,PrimitiveType::PLANE);
+				p.CreatePrimitive(root,PrimitiveType::PLANE);
 
 			}
 
@@ -42,7 +42,7 @@ void ImMainMenuBar::Update(Application* App)
 			{
 
 				Primitive p;
-				p.CreatePrimitive(nullptr, PrimitiveType::CUBE);
+				p.CreatePrimitive(root, PrimitiveType::CUBE);
 
 			}
 
@@ -50,7 +50,7 @@ void ImMainMenuBar::Update(Application* App)
 			{
 
 				Primitive p;
-				p.CreatePrimitive(nullptr, PrimitiveType::SPHERE);
+				p.CreatePrimitive(root, PrimitiveType::SPHERE);
 
 			}
 
@@ -58,7 +58,7 @@ void ImMainMenuBar::Update(Application* App)
 			{
 
 				Primitive p;
-				p.CreatePrimitive(nullptr, PrimitiveType::CYLINDER);
+				p.CreatePrimitive(root, PrimitiveType::CYLINDER);
 
 			}
 

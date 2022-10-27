@@ -1,5 +1,7 @@
 
 #pragma once
+
+
 #include "glmath.h"
 #include "Color.h"
 
@@ -42,6 +44,7 @@ public:
 
 public:
 	
+
 	Color color;
 	mat4x4 transform;
 	bool axis,wire;

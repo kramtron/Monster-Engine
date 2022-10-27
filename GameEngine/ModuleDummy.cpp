@@ -27,6 +27,7 @@ bool ModuleDummy::Start()
 	GameObject* cube = new GameObject("Cube", nullptr, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
 
 	return ret;
+
 }
 
 bool ModuleDummy::CleanUp()

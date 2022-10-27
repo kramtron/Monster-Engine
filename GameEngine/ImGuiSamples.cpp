@@ -51,6 +51,8 @@ void ImGuiSamples::Init()
 
 	ImH = new ImHierarchyWindow();
 	ImI = new ImInspectorWindow();
+
+	//Primitive::ImH = ImH;
 }
 
 void ImGuiSamples::NewFrame()
@@ -69,7 +71,7 @@ void ImGuiSamples::NewFrame()
 
 
 	//Pasar esto a una lista??
-	ImMainMenuBar::Update(App);
+	ImMainMenuBar::Update(App,ImH);
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
 	ImInspectorWindow::Update(ImH,ImI);

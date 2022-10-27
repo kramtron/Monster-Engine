@@ -14,6 +14,9 @@
 
 #include <map>
 
+
+class GameObject;
+
 class ImHierarchyWindow : public ImMainWindow
 {
 

@@ -9,6 +9,7 @@
 using namespace std;
 
 class GameObject;
+//class M_Mesh;
 
 class MeshLoader : public M_Mesh {
 public:

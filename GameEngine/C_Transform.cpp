@@ -20,6 +20,16 @@ void C_Transform::InspectorW() {
 
 		}
 
+		ImGui::Text("Rotation: ");
+		ImGui::SameLine();
+		if (ImGui::DragFloat3("Rot", &rotation[0], 0.1f)) {
+
+		}
+		ImGui::Text("Scale:    ");
+		ImGui::SameLine();
+		if (ImGui::DragFloat3("Scale", &scale[0], 0.1f)) {
+
+		}
 
 	}
 
