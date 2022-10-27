@@ -1,20 +1,39 @@
 #include "T_TextureLoader.h"
 
-uint TextureLoader::LoadToMemory(char* buffer, int size, int* width, int* height)
+
+
+
+
+
+void TextureLoader::ImportTexture(std::string& filePath, uint size, char* buffer)
 {
+	uint textureId = 0;
 
-	/*glBindTexture(GL_TEXTURE_2D, glID);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	ilGenImages(1, &textureId);
+	ilBindImage(textureId);
 
+	uint textureSize;
+	ILubyte* data;
 
-	ilDeleteImages(1, &imageID);
-	glBindTexture(GL_TEXTURE_2D, 0);*/
+	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+	textureSize = ilSaveL(IL_DDS, nullptr, 0);
 
 
+	//Check si hay error cargando la textura
+	if (!ilLoadL(IL_TYPE_UNKNOWN, buffer, size)) {
+		LOG("Error loading the texture: %s \n", iluGetString(ilGetError()));
+	}
+
+	if (textureSize > 0) {
+		data = new ILubyte[textureSize];
+		ilSaveL(IL_DDS, data, textureSize);
+		RELEASE_ARRAY(data);
+	}
+
+
+}
+
+uint TextureLoader::LoadTexture(std::string&& filePath, uint size, uint* w, uint* h)
+{
 	return uint();
 }
