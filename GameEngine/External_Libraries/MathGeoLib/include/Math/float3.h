@@ -37,10 +37,8 @@
 #include <OgreVector3.h>
 #endif
 
-
-#ifndef MATH_BULLET_INTEROP
+#ifdef MATH_BULLET_INTEROP
 #include "../../../Bullet/include/LinearMath/btVector3.h"
-
 #endif
 
 MATH_BEGIN_NAMESPACE
@@ -157,6 +155,10 @@ public:
 	/// Divides this vector by a scalar, in-place. [similarOverload: operator+=] [hideIndex]
 	/** @return A reference to this. */
 	float3 &operator /=(float scalar);
+
+	bool operator ==(const float3& v);
+
+	bool operator !=(const float3& v);
 
 #ifdef MATH_ENABLE_UNCOMMON_OPERATIONS
 	float3 operator *(const float3 &vector) const { return this->Mul(vector); }
@@ -690,7 +692,7 @@ public:
 	static float3 FromQVector3D(const QVector3D &v) { return (float3)v; }
 	static float3 FromString(const QString &str) { return FromString(str.toStdString()); }
 #endif
-#ifndef MATH_BULLET_INTEROP
+#ifdef MATH_BULLET_INTEROP
 	float3(const btVector3 &other) { x = other.x(); y = other.y(); z = other.z(); }
 	operator btVector3() const { return btVector3(x, y, z); }
 #endif
