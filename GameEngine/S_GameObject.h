@@ -8,6 +8,7 @@
 #include<string>
 
 #include "S_Component.h"
+#include "C_Transform.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ public:
 
 	Component* AddComponent(Component::Type type);
 	Component* GetComponent(Component::Type type);
+
+	std::vector<Component*>GetComponents() { return components; }
 
 	void Enable();
 	void Disable();
@@ -58,6 +61,7 @@ public:
 
 	M_Mesh* mesh;
 
+	C_Transform* transform = nullptr;
 
 };
 

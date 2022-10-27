@@ -8,7 +8,7 @@ GameObject::GameObject(std::string name = "default", GameObject* parent = nullpt
 {
 
 	App->dummy->AddGameObject(this);
-
+	transform = (C_Transform*)AddComponent(Component::Type::Transform);
 	if (parent != nullptr) {
 		parent->children.push_back(this);
 	}
@@ -35,9 +35,14 @@ GameObject::~GameObject()
 
 Component* GameObject::AddComponent(Component::Type type)
 {
+	LOG("Can't create a NONE component", ConsoleType::SYSTEM);
+	Component* comp = nullptr;
 	switch (type)
 	{
 	case Component::Type::Transform:
+		if (transform == nullptr) {
+			comp = new C_Transform(this);
+		}
 		break;
 	case Component::Type::Material:
 		break;
@@ -46,6 +51,12 @@ Component* GameObject::AddComponent(Component::Type type)
 	case Component::Type::Light:
 		break;
 	}
+
+	if (comp != nullptr) {
+		comp->type = type;
+		components.push_back(comp);
+	}
+	return comp;
 
 	return nullptr;
 }

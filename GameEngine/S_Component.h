@@ -23,18 +23,19 @@ public:
 	void Enable();
 	void Disable();
 
-	void Update(float dt);
+	bool isEnable() { return active; };
+
+	void Update(float dt) {};
 
 
+	virtual void InspectorW() {};
 
-
-	Type type;
+	Type type = Type::None;
 
 
 protected:
 
 	bool active = false;
-	const char* name;
 
 
 

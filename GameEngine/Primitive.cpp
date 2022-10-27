@@ -27,25 +27,25 @@ void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = Primiti
 	case PrimitiveType::CUBE:
 	{
 
-		GameObject* cube = new GameObject("Cube", p, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+		GameObject* cube = new GameObject("Cube", p, "cube", MeshLoader::LoadFile("Assets/cube.fbx"));
 		break;
-		
+
 	}
 	case PrimitiveType::PLANE:
 	{
-		GameObject* cube2 = new GameObject("Plane", p, "first", MeshLoader::LoadFile("Assets/plane.fbx"));
+		GameObject* cube2 = new GameObject("Plane", p, "plane", MeshLoader::LoadFile("Assets/plane.fbx"));
 
 		break;
 	}
 	case PrimitiveType::SPHERE:
 	{
-		GameObject* cube3 = new GameObject("Sphere", p, "first", MeshLoader::LoadFile("Assets/sphere.fbx"));
+		GameObject* cube3 = new GameObject("Sphere", p, "sphere", MeshLoader::LoadFile("Assets/sphere.fbx"));
 
 		break;
 	}
 	case PrimitiveType::CYLINDER:
 	{
-		GameObject* cube4 = new GameObject("Cylinder", p, "first", MeshLoader::LoadFile("Assets/cylinder.fbx"));
+		GameObject* cube4 = new GameObject("Cylinder", p, "cylinder", MeshLoader::LoadFile("Assets/cylinder.fbx"));
 
 		break;
 	}
@@ -138,178 +138,15 @@ void Primitive::Scale(float x, float y, float z)
 }
 
 // CUBE ============================================
-Cube::Cube() : Primitive(), size(1.0f, 1.0f, 1.0f)
-{
-	type = PrimitiveTypes::Primitive_Cube;
-}
 
-Cube::Cube(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ)
-{
-	type = PrimitiveTypes::Primitive_Cube;
-}
-
-void Cube::InnerRender() const
-{	
-	float sx = size.x * 0.5f;
-	float sy = size.y * 0.5f;
-	float sz = size.z * 0.5f;
-
-	glBegin(GL_QUADS);
-
-	glNormal3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-sx, -sy, sz);
-	glVertex3f( sx, -sy, sz);
-	glVertex3f( sx,  sy, sz);
-	glVertex3f(-sx,  sy, sz);
-
-	glNormal3f(0.0f, 0.0f, -1.0f);
-	glVertex3f( sx, -sy, -sz);
-	glVertex3f(-sx, -sy, -sz);
-	glVertex3f(-sx,  sy, -sz);
-	glVertex3f( sx,  sy, -sz);
-
-	glNormal3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(sx, -sy,  sz);
-	glVertex3f(sx, -sy, -sz);
-	glVertex3f(sx,  sy, -sz);
-	glVertex3f(sx,  sy,  sz);
-
-	glNormal3f(-1.0f, 0.0f, 0.0f);
-	glVertex3f(-sx, -sy, -sz);
-	glVertex3f(-sx, -sy,  sz);
-	glVertex3f(-sx,  sy,  sz);
-	glVertex3f(-sx,  sy, -sz);
-
-	glNormal3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-sx, sy,  sz);
-	glVertex3f( sx, sy,  sz);
-	glVertex3f( sx, sy, -sz);
-	glVertex3f(-sx, sy, -sz);
-
-	glNormal3f(0.0f, -1.0f, 0.0f);
-	glVertex3f(-sx, -sy, -sz);
-	glVertex3f( sx, -sy, -sz);
-	glVertex3f( sx, -sy,  sz);
-	glVertex3f(-sx, -sy,  sz);
-
-	glEnd();
-}
 
 // SPHERE ============================================
-Sphere::Sphere() : Primitive(), radius(1.0f)
-{
-	type = PrimitiveTypes::Primitive_Sphere;
-}
 
-Sphere::Sphere(float radius) : Primitive(), radius(radius)
-{
-	type = PrimitiveTypes::Primitive_Sphere;
-}
-
-void Sphere::InnerRender() const
-{
-	//glutSolidSphere(radius, 25, 25);
-}
 
 
 // CYLINDER ============================================
-Cylinder::Cylinder() : Primitive(), radius(1.0f), height(1.0f)
-{
-	type = PrimitiveTypes::Primitive_Cylinder;
-}
 
-Cylinder::Cylinder(float radius, float height) : Primitive(), radius(radius), height(height)
-{
-	type = PrimitiveTypes::Primitive_Cylinder;
-}
 
-void Cylinder::InnerRender() const
-{
-	int n = 30;
 
-	// Cylinder Bottom
-	glBegin(GL_POLYGON);
-	
-	for(int i = 360; i >= 0; i -= (360 / n))
-	{
-		float a = i * M_PI / 180; // degrees to radians
-		glVertex3f(-height*0.5f, radius * cos(a), radius * sin(a));
-	}
-	glEnd();
-
-	// Cylinder Top
-	glBegin(GL_POLYGON);
-	glNormal3f(0.0f, 0.0f, 1.0f);
-	for(int i = 0; i <= 360; i += (360 / n))
-	{
-		float a = i * M_PI / 180; // degrees to radians
-		glVertex3f(height * 0.5f, radius * cos(a), radius * sin(a));
-	}
-	glEnd();
-
-	// Cylinder "Cover"
-	glBegin(GL_QUAD_STRIP);
-	for(int i = 0; i < 480; i += (360 / n))
-	{
-		float a = i * M_PI / 180; // degrees to radians
-
-		glVertex3f(height*0.5f,  radius * cos(a), radius * sin(a) );
-		glVertex3f(-height*0.5f, radius * cos(a), radius * sin(a) );
-	}
-	glEnd();
-}
 
 // LINE ==================================================
-Line::Line() : Primitive(), origin(0, 0, 0), destination(1, 1, 1)
-{
-	type = PrimitiveTypes::Primitive_Line;
-}
-
-Line::Line(float x, float y, float z) : Primitive(), origin(0, 0, 0), destination(x, y, z)
-{
-	type = PrimitiveTypes::Primitive_Line;
-}
-
-void Line::InnerRender() const
-{
-	glLineWidth(2.0f);
-
-	glBegin(GL_LINES);
-
-	glVertex3f(origin.x, origin.y, origin.z);
-	glVertex3f(destination.x, destination.y, destination.z);
-
-	glEnd();
-
-	glLineWidth(1.0f);
-}
-
-// PLANE ==================================================
-Plane::Plane() : Primitive(), normal(0, 1, 0), constant(1)
-{
-	type = PrimitiveTypes::Primitive_Plane;
-}
-
-Plane::Plane(float x, float y, float z, float d) : Primitive(), normal(x, y, z), constant(d)
-{
-	type = PrimitiveTypes::Primitive_Plane;
-}
-
-void Plane::InnerRender() const
-{
-	glLineWidth(1.0f);
-
-	glBegin(GL_LINES);
-
-	float d = 200.0f;
-
-	for(float i = -d; i <= d; i += 1.0f)
-	{
-		glVertex3f(i, 0.0f, -d);
-		glVertex3f(i, 0.0f, d);
-		glVertex3f(-d, 0.0f, i);
-		glVertex3f(d, 0.0f, i);
-	}
-
-	glEnd();
-}

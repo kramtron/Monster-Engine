@@ -34,6 +34,7 @@ public:
 
 
 	static ImHierarchyWindow* ImH;
+	static ImInspectorWindow* ImI;
 
 	
 };

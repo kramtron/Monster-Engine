@@ -5,6 +5,9 @@ ImGuiIO* ImGuiSamples::id = nullptr;
 
 ImHierarchyWindow* ImGuiSamples::ImH = nullptr;
 
+
+ImInspectorWindow* ImGuiSamples::ImI = nullptr;
+
 static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
 
 void ImGuiSamples::Init()
@@ -47,6 +50,7 @@ void ImGuiSamples::Init()
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
 	ImH = new ImHierarchyWindow();
+	ImI = new ImInspectorWindow();
 }
 
 void ImGuiSamples::NewFrame()
@@ -68,7 +72,7 @@ void ImGuiSamples::NewFrame()
 	ImMainMenuBar::Update(App);
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
-	ImInspectorWindow::Update();
+	ImInspectorWindow::Update(ImH,ImI);
 	ImHierarchyWindow::Update(ImH);
 
 

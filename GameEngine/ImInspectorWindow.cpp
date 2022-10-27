@@ -1,25 +1,38 @@
 #include "ImInspectorWindow.h"
 
+
+
 bool ImInspectorWindow::isEnable = true;
 
 ImInspectorWindow::ImInspectorWindow()
 {
+	isEnable = true;
 }
 
 ImInspectorWindow::~ImInspectorWindow()
 {
 }
 
-void ImInspectorWindow::Update()
+void ImInspectorWindow::Update(ImHierarchyWindow* ImH, ImInspectorWindow* ImI)
 {
 
-	if (ImGui::Begin("Inspector"), isEnable) {
+	ImI->gameObjectSelected = ImH->GetGameObjectSeldcted();
 
+	if (ImGui::Begin("Inspector"), &isEnable) {
 
+		if (ImI->gameObjectSelected) {
+			ImGui::InputText("Name", (char*)&ImI->gameObjectSelected->name, 0);
+
+			std::vector<Component*> components = ImI->gameObjectSelected->GetComponents();
+
+			for (auto* component : components) {
+				component->InspectorW();
+			}
+		}
 
 	}
 
 	ImGui::End();
-
-
 }
+
+
