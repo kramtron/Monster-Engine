@@ -33,10 +33,11 @@ public:
 
 	const float* GetGlobalT() const { return globalTransform.ptr(); }
 
+	void ResetTransform();
+
 public:
 
 
-	void PositionToUpdate();
 
 	float3 globalPosition;
 

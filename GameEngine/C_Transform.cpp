@@ -5,6 +5,12 @@ C_Transform::C_Transform(GameObject* gO) : Component(gO)
 {
 	gameObject = gO;
 
+	globalTransform.SetIdentity();
+	localTransform.SetIdentity();
+	localTransform.Decompose(position, rotation, scale);
+	eRotation = rotation.ToEulerXYZ();
+	globalTransformT = globalTransform.Transposed();
+
 }
 
 C_Transform::~C_Transform()
@@ -22,7 +28,7 @@ void C_Transform::TransformToUpdate()
 	localTransform = float4x4::FromTRS(position, rotation, scale);
 
 	if (!tToUpdate.empty()) {
-		for (uint i = 0; i < tToUpdate.size(); i++) {
+		for (size_t i = 0; i < tToUpdate.size(); i++) {
 			if (tToUpdate[i]->gameObject->parent != nullptr) {
 				C_Transform* pTransform = tToUpdate[i]->gameObject->parent->transform;
 
@@ -68,7 +74,17 @@ void C_Transform::InspectorW() {
 
 		}
 
+		if (ImGui::Button("Reset Transform"))
+			ResetTransform();
 	}
+
+}
+
+void C_Transform::ResetTransform()
+{
+	position = eRotation = float3::zero;
+	scale = float3::one;
+	TransformToUpdate();
 
 }
 
@@ -78,7 +94,7 @@ C_Transform* C_Transform::GetDescendingTransforms(C_Transform* node, std::vector
 	transform.push_back(node);
 
 	if (!node->gameObject->children.empty()) {
-		for (uint i = 0; i < node->gameObject->children.size(); i++) {
+		for (size_t i = 0; i < node->gameObject->children.size(); i++) {
 			C_Transform* pTransform = node->gameObject->children[i]->transform;
 				GetDescendingTransforms(pTransform, transform);
 			
