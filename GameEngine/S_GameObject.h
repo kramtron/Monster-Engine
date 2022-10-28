@@ -13,6 +13,8 @@
 using namespace std;
 
 class M_Mesh;
+//class Component;
+class C_Transform;
 
 class GameObject
 {

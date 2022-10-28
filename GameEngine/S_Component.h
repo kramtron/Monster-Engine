@@ -37,15 +37,7 @@ protected:
 
 	bool active = false;
 
-
-
-
-
-
-
-
-
-
+	GameObject* gameObject;
 
 
 
