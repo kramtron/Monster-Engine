@@ -111,9 +111,9 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 void MeshLoader::Renderer()
 {
-	for (int i = 0; i < meshes.size(); i++) {
+	/*for (int i = 0; i < meshes.size(); i++) {
 		meshes[i]->meshRenderer();
-	}
+	} */
 }
 
 void MeshLoader::CleanUp()

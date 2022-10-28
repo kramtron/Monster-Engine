@@ -43,6 +43,7 @@ public:
 
 	void RemoveChild(GameObject* c);
 
+	void RenderM();
 
 
 

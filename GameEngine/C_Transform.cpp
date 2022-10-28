@@ -3,6 +3,7 @@
 
 C_Transform::C_Transform(GameObject* gO) : Component(gO)
 {
+	gameObject = gO;
 
 }
 
@@ -22,14 +23,20 @@ void C_Transform::TransformToUpdate()
 
 	if (!tToUpdate.empty()) {
 		for (uint i = 0; i < tToUpdate.size(); i++) {
-			C_Transform* pTransform = tToUpdate[i]->gameObject->parent->transform;
+			if (tToUpdate[i]->gameObject->parent != nullptr) {
+				C_Transform* pTransform = tToUpdate[i]->gameObject->parent->transform;
 
-			if (pTransform != nullptr) {
-				tToUpdate[i]->globalTransform = pTransform->globalTransform * tToUpdate[i]->localTransform;
+				if (pTransform != nullptr) {
+					tToUpdate[i]->globalTransform = pTransform->globalTransform * tToUpdate[i]->localTransform;
+					tToUpdate[i]->globalTransformT = tToUpdate[i]->globalTransform.Transposed();
 
+
+				}
 			}
 		}
 	}
+
+	tToUpdate.clear();
 
 }
 
@@ -73,7 +80,8 @@ C_Transform* C_Transform::GetDescendingTransforms(C_Transform* node, std::vector
 	if (!node->gameObject->children.empty()) {
 		for (uint i = 0; i < node->gameObject->children.size(); i++) {
 			C_Transform* pTransform = node->gameObject->children[i]->transform;
-			GetDescendingTransforms(pTransform, transform);
+				GetDescendingTransforms(pTransform, transform);
+			
 		}
 	}
 

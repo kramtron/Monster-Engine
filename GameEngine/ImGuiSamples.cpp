@@ -72,10 +72,10 @@ void ImGuiSamples::NewFrame()
 
 	//Pasar esto a una lista??
 	ImMainMenuBar::Update(App,ImH);
+	ImHierarchyWindow::Update(ImH);
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
 	ImInspectorWindow::Update(ImH,ImI);
-	ImHierarchyWindow::Update(ImH);
 
 
 

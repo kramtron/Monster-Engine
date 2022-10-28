@@ -236,6 +236,22 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 
 
+
+	//Algo temporal. Esto va en un meshrender component
+	for (int i = 1; i < ImGuiSamples::ImH->referenceGameObject->size(); i++) {
+
+		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
+
+
+		if (gO->mesh != nullptr && gO->name != "Root") {
+			gO->RenderM();
+		}
+
+		else {
+			LOG("CAN'T RENDER");
+		}
+	}
+	
 	//FrameBuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

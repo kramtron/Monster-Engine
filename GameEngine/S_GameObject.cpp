@@ -132,3 +132,16 @@ void GameObject::RemoveChild(GameObject* c)
 	}
 	c->parent = nullptr;
 }
+
+void GameObject::RenderM()
+{
+
+	C_Transform* transform = this->transform;
+
+	if (transform != nullptr) {
+		glPushMatrix();
+		glMultMatrixf(transform->GetGlobalT());
+	}
+	mesh->meshRenderer();
+
+}

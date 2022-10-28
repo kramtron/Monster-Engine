@@ -28,12 +28,14 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 
 
 	//ImH->referenceGameObject = &App->dummy->gameObjects;
-
-
+	
+	
+	
 	if (ImGui::Begin("Hierarchy")) {
 
 		for (int i = 1; i < ImH->referenceGameObject->size(); i++) {
 			ImH->DrawGameObjectsChilds(ImH->referenceGameObject->at(i));
+			
 		}
 		
 		/*if ((ImGui::IsMouseDown(ImGuiMouseButton_::ImGuiMouseButton_Right && ImGui::IsWindowHovered()) || ImH->popedUp)) {

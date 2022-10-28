@@ -63,13 +63,13 @@ public:
 	static Application* App;
 
 
+	map<uint, GameObject*>* referenceGameObject;
 
 private:
 	GameObject* gameObjectDragging = nullptr;
 	GameObject* gameObjectRightClick = nullptr;
 	ImGuiTreeNodeFlags baseFlags;
 
-	map<uint, GameObject*>* referenceGameObject;
 
 };
 
