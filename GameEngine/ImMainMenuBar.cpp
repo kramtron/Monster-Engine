@@ -9,6 +9,7 @@ ImMainMenuBar::~ImMainMenuBar()
 void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 {
 	GameObject* root = imH->rootGameObject;
+
 	if (ImGui::BeginMainMenuBar()) {
 
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.05f, 1.05f, 1.05f, 1));
@@ -17,13 +18,17 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 
 		if (ImGui::BeginMenu(" File "))
 		{
-			/*if (ImGui::MenuItem("  Git Hub  "))	//Try with 2 typs, MenuItem & Button
-			//if (ImGui::Button("GitHub", ImVec2(60, 20)))
+			
+
+			if (ImGui::MenuItem(" GitHub ")) {
+
 				ShellExecute(0, 0, "https://github.com/kramtron/Monster-Engine", 0, 0, SW_SHOW);
 
-			if (ImGui::MenuItem("  Exit  "))	//Try with 2 typs, MenuItem & Button
-			//if (ImGui::Button("Exit", ImVec2(60, 20)))
-				//quit = true;*/
+			}
+			if (ImGui::MenuItem(" Exit ")) {
+
+
+			}
 
 			ImGui::EndMenu();
 		}

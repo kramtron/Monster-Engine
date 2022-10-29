@@ -21,9 +21,13 @@ PrimitiveTypes Primitive::GetType() const
 
 void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = PrimitiveType::CUBE)
 {
-	ImHierarchyWindow* ImH = new ImHierarchyWindow;
 	
-	if (p == nullptr) p = ImH->rootGameObject;
+	if (p == nullptr) {
+
+		ImHierarchyWindow* ImH = new ImHierarchyWindow;
+
+		p = ImH->rootGameObject;
+	}
 
 	switch (t)
 	{
