@@ -2,6 +2,18 @@
 
 
 
+bool ImMainMenuBar::styleSelectD = false;
+bool ImMainMenuBar::styleSelectL = false;
+bool ImMainMenuBar::styleSelectSD = true;
+bool ImMainMenuBar::styleSelectP = false;
+
+
+int ImMainMenuBar::colorStyle = 3;
+
+float ImMainMenuBar::colorWind[4] = { 0.4f, 0.7f, 0.0f, 1.0f };
+float ImMainMenuBar::colorText[4] = { 0.4f, 0.7f, 0.0f, 1.0f };
+
+
 ImMainMenuBar::~ImMainMenuBar()
 {
 }
@@ -10,11 +22,13 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 {
 	GameObject* root = imH->rootGameObject;
 
+	ThemeStyleChanger();
+
 	if (ImGui::BeginMainMenuBar()) {
 
-		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.05f, 1.05f, 1.05f, 1));
+		/*ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.05f, 1.05f, 1.05f, 1));
 
-		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0.0f, 0.0f, 0.0f, 1));
+		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0.0f, 0.0f, 0.0f, 1));*/
 
 		if (ImGui::BeginMenu(" File "))
 		{
@@ -70,9 +84,109 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 			ImGui::EndMenu();
 		}
 
-		ImGui::PopStyleColor(2);
+		if (ImGui::BeginMenu("Windows")) {
+			
+			if (ImGui::BeginMenu("Theme")) {
+				if (ImGui::MenuItem(" Light ", NULL, &styleSelectL)) {
+
+					colorStyle = 1;
+					styleSelectL = true;
+					styleSelectD = false;
+					styleSelectSD = false;
+					styleSelectP = false;
+
+				}
+
+
+				if (ImGui::MenuItem(" MidNight  ", NULL, &styleSelectSD))
+				{
+					colorStyle = 3;
+					styleSelectL = false;
+					styleSelectD = false;
+					styleSelectSD = true;
+					styleSelectP = false;
+				}
+
+				if (ImGui::MenuItem(" Dark  ", NULL, &styleSelectD))
+				{
+					colorStyle = 2;
+					styleSelectL = false;
+					styleSelectD = true;
+					styleSelectSD = false;
+					styleSelectP = false;
+				}
+				ImGui::EndMenu();
+
+			}
+			ImGui::EndMenu();
+
+		}
+
+		ImGui::PopStyleColor(1);
+		ImGui::PopStyleColor(1);
+		ImGui::PopStyleColor(1);
+		ImGui::PopStyleColor(1);
 
 		ImGui::EndMainMenuBar();
 
 	}
 }
+
+void ImMainMenuBar::ThemeStyleChanger()
+{
+	if (colorStyle == 2)
+	{
+		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0, 0, 0, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+
+
+		ImGui::PushStyleColor(ImGuiCol_MenuBarBg, ImVec4(0, 0, 0, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+
+
+	}
+	else if (colorStyle == 1)
+	{
+		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1, 1, 1, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1.f));
+
+		ImGui::PushStyleColor(ImGuiCol_MenuBarBg, ImVec4(1, 1, 1, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1.f));
+	}
+	else if (colorStyle == 3)
+	{
+		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0.0f, 0.0f, 0.2f, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+
+		ImGui::PushStyleColor(ImGuiCol_MenuBarBg, ImVec4(0.0f, 0.0f, 0.2f, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+	}
+	
+}
+
+
+
+
+/*void ImMainMenuBar::ThemeStyleWind()
+{
+	if (ImMainMenuBar::colorStyle == 2)
+	{
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+	}
+	else if (ImMainMenuBar::colorStyle == 1)
+	{
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.9, 0.9, 0.9, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1.f));
+	}
+	else if (ImMainMenuBar::colorStyle == 3)
+	{
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.3f, 1.0f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
+	}
+	else if (ImMainMenuBar::colorStyle == 4)
+	{
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(colorWind[0], colorWind[1], colorWind[2], colorWind[3]));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(colorText[0], colorText[1], colorText[2], colorText[3]));
+	}
+}*/
