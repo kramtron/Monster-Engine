@@ -102,8 +102,14 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 	}
 
+	
+
+
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_vertices));
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_indices));
+
+
+	
 
 	return our_mesh;
 

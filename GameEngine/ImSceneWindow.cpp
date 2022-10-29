@@ -39,6 +39,15 @@ void ImSceneWindow::Update(Application* App)
 	ImVec2 wsize = ImGui::GetWindowSize();
 	//ImVec2 wsize = ImGui::GetContentRegionAvail();
 
+	/*ImVec2 newSize = wsize;
+
+	newSize.x = (newSize.y / 9.0f) * 16.0f;
+
+	float ofset = (wsize.x - newSize.x) / 2.0f;
+
+	ofset /= newSize.x;*/
+
+
 	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(0, 1), ImVec2(1, 0));
 
 	ImGui::EndChild();

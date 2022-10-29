@@ -1,8 +1,13 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "S_GameObject.h"
 
 #define MAX_KEYS 300
+//#include <experimental/filesystem>
+
+using namespace std;
+//namespace fs = std::experimental::filesystem;
 
 ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -116,9 +121,26 @@ update_status ModuleInput::PreUpdate(float dt)
 		break;
 		case SDL_DROPFILE:
 		{
-			//Arreglar 
+			
+			//GameObject* cube = new GameObject("Cube", nullptr, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+
 
 			//MeshLoader::LoadFile(e.drop.file);
+
+			std::string filePath = e.drop.file;
+			
+
+			//string fileName = filePath.substr(filePath.find_first_of(".") - 1);
+
+			//const char* fileName_char = fileName.c_str();
+
+			//std::string extension = filePath.substr(filePath.find_last_of(".", + 1));
+
+			//Arreglar lo antes posible 
+			if (filePath.find(".fbx"))
+			{
+				GameObject* dropedFile = new GameObject("xxx", nullptr, "first", MeshLoader::LoadFile(e.drop.file));
+			}
 		}
 		}
 	}

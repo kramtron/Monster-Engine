@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -50,6 +50,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(SolutionDir)External_Libraries\ImGui;$(SolutionDir)External_Libraries\SDL\include;$(SolutionDir)External_Libraries\Glew\include;$(SolutionDir)External_Libraries\Assimp\include;$(SolutionDir)External_Libraries\DevIL\include;$(SolutionDir)External_Libraries\MathGeoLib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -70,6 +71,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(SolutionDir)External_Libraries\ImGui;$(SolutionDir)External_Libraries\SDL\include;$(SolutionDir)External_Libraries\Glew\include;$(SolutionDir)External_Libraries\Assimp\include;$(SolutionDir)External_Libraries\MathGeoLib\include;$(SolutionDir)External_Libraries\DevIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,6 +120,14 @@
     <ClInclude Include="External_Libraries\Assimp\include\vector2.h" />
     <ClInclude Include="External_Libraries\Assimp\include\vector3.h" />
     <ClInclude Include="External_Libraries\Assimp\include\version.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\devil_cpp_wrapper.hpp" />
+    <ClInclude Include="External_Libraries\DevIL\include\devil_internal_exports.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\il.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\ilu.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\ilut.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\ilut_config.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\ilu_region.h" />
+    <ClInclude Include="External_Libraries\DevIL\include\il_wrap.h" />
     <ClInclude Include="External_Libraries\Glew\include\eglew.h" />
     <ClInclude Include="External_Libraries\Glew\include\glew.h" />
     <ClInclude Include="External_Libraries\Glew\include\glxew.h" />
@@ -295,6 +305,11 @@
     <None Include="External_Libraries\Assimp\include\quaternion.inl" />
     <None Include="External_Libraries\Assimp\include\vector2.inl" />
     <None Include="External_Libraries\Assimp\include\vector3.inl" />
+    <None Include="External_Libraries\DevIL\include\build-lua" />
+    <None Include="External_Libraries\DevIL\include\build-python" />
+    <None Include="External_Libraries\DevIL\include\config.h.win" />
+    <None Include="External_Libraries\DevIL\include\DevIL.i" />
+    <None Include="External_Libraries\DevIL\include\stamp-h.in" />
     <None Include="External_Libraries\MathGeoLib\include\Geometry\KDTree.inl" />
     <None Include="External_Libraries\MathGeoLib\include\Geometry\QuadTree.inl" />
     <None Include="External_Libraries\MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_AVX.inl" />

@@ -6,6 +6,7 @@
 #include "ImGuiSamples.h"
 #include "S_GameObject.h"
 #include "ImHierarchyWindow.h"
+#include "T_TextureLoader.h"
 
 //Assimp
 #include "cimport.h"
@@ -180,9 +181,20 @@ bool ModuleRenderer3D::Init()
 	glGenTextures(1, &textureColorbuffer);
 	glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+
+
+	/*float color[4] = {0.1,0.1,0.1,0};
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);*/
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	//No se si va aquí 
+	TextureLoader::Init();
+	TextureLoader::Start();
+
 
 	// attach it to currently bound framebuffer object
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
@@ -201,7 +213,9 @@ bool ModuleRenderer3D::Init()
 	
 
 	
+
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
 
 
 	return ret;

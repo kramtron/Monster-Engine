@@ -15,6 +15,10 @@
 using namespace std;
 typedef unsigned int uint;
 
+#define VERTEX_ARG 5
+
+enum class TextureTypes;
+class C_Transform;
 class M_Mesh
 {
 
@@ -24,7 +28,7 @@ public:
 		~M_Mesh();
 		
 
-	void meshRenderer();
+	void meshRenderer(const float* globalT, TextureTypes textureT);
 
 
 public:
@@ -41,5 +45,5 @@ public:
 		uint id_indices = 0;
 
 
-		
+		uint textureID = 0;
 };

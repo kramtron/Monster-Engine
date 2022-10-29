@@ -609,6 +609,30 @@
     <ClInclude Include="External_Libraries\MathGeoLib\include\Time\Clock.h">
       <Filter>Libraries\MathGeoLib</Filter>
     </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\devil_cpp_wrapper.hpp">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\devil_internal_exports.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\il.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\il_wrap.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\ilu.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\ilu_region.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\ilut.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="External_Libraries\DevIL\include\ilut_config.h">
+      <Filter>Libraries\Devl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -659,6 +683,9 @@
     <Filter Include="Libraries\MathGeoLib">
       <UniqueIdentifier>{5a97631c-e34f-4dd9-8f08-5967fe9ccc4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\Devl">
+      <UniqueIdentifier>{24b38a1b-8719-4a07-8f2c-e6223f7cd628}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="External_Libraries\Assimp\include\color4.inl">
@@ -699,6 +726,21 @@
     </None>
     <None Include="External_Libraries\MathGeoLib\include\Math\Matrix.inl">
       <Filter>Libraries\MathGeoLib</Filter>
+    </None>
+    <None Include="External_Libraries\DevIL\include\build-lua">
+      <Filter>Libraries\Devl</Filter>
+    </None>
+    <None Include="External_Libraries\DevIL\include\build-python">
+      <Filter>Libraries\Devl</Filter>
+    </None>
+    <None Include="External_Libraries\DevIL\include\config.h.win">
+      <Filter>Libraries\Devl</Filter>
+    </None>
+    <None Include="External_Libraries\DevIL\include\DevIL.i">
+      <Filter>Libraries\Devl</Filter>
+    </None>
+    <None Include="External_Libraries\DevIL\include\stamp-h.in">
+      <Filter>Libraries\Devl</Filter>
     </None>
   </ItemGroup>
 </Project>

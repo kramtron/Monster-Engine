@@ -6,7 +6,7 @@
 #include "SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
+#include "T_TextureLoader.h"
 
 ModuleDummy::ModuleDummy(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -25,7 +25,7 @@ bool ModuleDummy::Start()
 
 	//MeshLoader::LoadFile("Assets/columna.fbx");
 	GameObject* cube = new GameObject("Cube", nullptr, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
-
+	//TextureLoader::LoadTexture("Assets/Baker_house.png");
 	return ret;
 
 }

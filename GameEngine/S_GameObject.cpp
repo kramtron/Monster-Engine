@@ -1,5 +1,6 @@
 #include "S_GameObject.h"
 #include "ImHierarchyWindow.h"
+#include "T_TextureLoader.h"
 
 Application* GameObject::App = nullptr;
 
@@ -138,10 +139,6 @@ void GameObject::RenderM()
 
 	C_Transform* transform = this->transform;
 
-	if (transform != nullptr) {
-		glPushMatrix();
-		glMultMatrixf(transform->GetGlobalT());
-	}
-	mesh->meshRenderer();
+	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CURRENT);
 
 }

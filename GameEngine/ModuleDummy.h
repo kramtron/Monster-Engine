@@ -9,6 +9,7 @@
 
 #include "R_Mesh.h"
 #include "T_MeshLoader.h"
+#include "T_TextureLoader.h"
 
 #include <map>
 
