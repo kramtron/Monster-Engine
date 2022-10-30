@@ -44,7 +44,7 @@ uint TextureLoader::LoadTexture(const char* filePath)
 
 	//Starting Devil buffers
 
-	uint textureId = 0;
+	uint textureId;
 
 	ilGenImages(1, &textureId);
 	ilBindImage(textureId);
@@ -59,7 +59,6 @@ uint TextureLoader::LoadTexture(const char* filePath)
 	int const type = ilGetInteger(IL_IMAGE_TYPE);
 	int const format = ilGetInteger(IL_IMAGE_FORMAT);
 
-
 	uint imageId = ilutGLBindTexImage();
 	glBindTexture(GL_TEXTURE_2D, imageId);
 
@@ -70,7 +69,9 @@ uint TextureLoader::LoadTexture(const char* filePath)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 
+	//Esto peta :)
 	glTexImage2D(GL_TEXTURE_2D, 0, format, imgWidth, imgHeight, 0, format, type, data);
+
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	//Delete buffer

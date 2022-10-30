@@ -140,6 +140,6 @@ void GameObject::RenderM()
 	//C_Transform* transform = this->transform;
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
 
-	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
+	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::NONE);
 
 }

@@ -1,12 +1,14 @@
 #pragma once
-#include "glew.h"
 #include "Application.h"
 
 
 #include "SDL_opengl.h"
 #include "Primitive.h"
+#include "glew.h"
+
 #include <gl/GL.h>
 #include <gl/GLU.h>
+
 
 #include "ilu.h"
 #include "il.h"

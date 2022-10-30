@@ -43,7 +43,7 @@ void ImConfigWindow::Update(Application* app, float dt)
 			timeDebugAux[0] = timeDebug[timeDebug.size() - 1];
 		}
 
-		ImGui::LabelText("The Seed", "Engine Name:");
+		ImGui::LabelText("Monster", "Engine Name:");
 		ImGui::LabelText("UPC CITM", "Organisation:");
 
 		ImGui::Text("\n");
