@@ -25,7 +25,7 @@ bool ModuleDummy::Start()
 	bool ret = true;
 
 	//MeshLoader::LoadFile("Assets/columna.fbx");
-	GameObject* cube = new GameObject("Cube", nullptr, "first", MeshLoader::LoadFile("Assets/cube.fbx"));
+	GameObject* gO = new GameObject("BakerHouse", nullptr, "first", MeshLoader::LoadFile("Assets/BakerHouse.fbx"));
 	//TextureLoader::LoadTexture("Assets/Baker_house.png");
 	return ret;
 

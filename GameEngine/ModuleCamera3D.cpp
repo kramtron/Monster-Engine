@@ -27,6 +27,8 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 
 	LookAt(Reference);
+
+	newPos=(0, 0, 0);
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -63,7 +65,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 	
 
-	vec3 newPos(0,0,0);
+	
 
 
 	float speed = 3.0f * dt;
@@ -197,7 +199,7 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 		break;
 	}
-
+	
 	
 
 	// Recalculate matrix -------------

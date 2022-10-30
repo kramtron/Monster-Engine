@@ -8,6 +8,7 @@
 
 using namespace std;
 
+#define VERTEX_ARGUMENTS 5
 class GameObject;
 //class M_Mesh;
 

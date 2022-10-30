@@ -2,6 +2,7 @@
 
 
 int ImConfigWindow::fpsLimit = 60;
+
 vector<float> ImConfigWindow::fpsDebug;
 vector<float> ImConfigWindow::fpsDebugAux = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 vector<float> ImConfigWindow::timeDebug;

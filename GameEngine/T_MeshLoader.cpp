@@ -75,9 +75,27 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	//GameObject* our_mesh = new GameObject();
 	
 	our_mesh->num_vertices = importedMesh->mNumVertices;
-	our_mesh->vertices = new float[our_mesh->num_vertices * 3];
+	our_mesh->vertices = new float[our_mesh->num_vertices * 5];
 
 	memcpy(our_mesh->vertices, importedMesh->mVertices, sizeof(float) * our_mesh->num_vertices * 3);
+
+
+
+	for (int v = 0; v < our_mesh->num_vertices; v++) {
+		//vertices
+		our_mesh->vertices[v * VERTEX_ARGUMENTS] = importedMesh->mVertices[v].x;
+		our_mesh->vertices[v * VERTEX_ARGUMENTS + 1] = importedMesh->mVertices[v].y;
+		our_mesh->vertices[v * VERTEX_ARGUMENTS + 2] = importedMesh->mVertices[v].z;
+
+		//uvs
+		our_mesh->vertices[v * VERTEX_ARGUMENTS + 3] = importedMesh->mTextureCoords[0][v].x;
+		our_mesh->vertices[v * VERTEX_ARGUMENTS + 4] = 1 - importedMesh->mTextureCoords[0][v].y;	//TODO: be careful INVERTING UVS
+	}
+
+
+
+
+
 	LOG("new mesh with %d vertices", our_mesh->num_vertices);
 	
 
@@ -94,6 +112,7 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 			}
 			else
 			{
+
 				memcpy(&our_mesh->indices[i * 3], importedMesh->mFaces[i].mIndices, 3 * sizeof(uint));
 				
 				
@@ -108,6 +127,16 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_vertices));
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_indices));
 
+
+	//Bind and fill buffers
+	glBindBuffer(GL_ARRAY_BUFFER, our_mesh->id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * our_mesh->num_vertices * VERTEX_ARGUMENTS, our_mesh->vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, our_mesh->id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * our_mesh->num_indices, our_mesh->indices, GL_STATIC_DRAW);
+
+	//Unbind buffers
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 	
 
@@ -130,8 +159,6 @@ void MeshLoader::CleanUp()
 	}
 	meshes.clear();
 
-	//delete(scene);
-	//delete(meshes);
 
 }
 

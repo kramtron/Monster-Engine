@@ -45,6 +45,7 @@ public:
 
 	bool center = false;
 
+	vec3 newPos;
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;

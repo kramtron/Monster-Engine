@@ -18,6 +18,8 @@ typedef unsigned int uint;
 #define VERTEX_ARG 5
 
 enum class TextureTypes;
+
+class TextureLoader;
 class C_Transform;
 class M_Mesh
 {

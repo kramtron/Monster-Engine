@@ -24,7 +24,7 @@ void M_Mesh::meshRenderer(const float* globalT, TextureTypes textureT)
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		break;
 	case TextureTypes::CHECKERS:
-		//glBindTexture(GL_TEXTURE_2D, Application::GetInstance()->textures->testImageID);
+		glBindTexture(GL_TEXTURE_2D, TextureLoader::LoadTexture("Assets/Baker_house.png"));
 		break;
 	default:
 		glBindTexture(GL_TEXTURE_2D, 0);
@@ -34,10 +34,10 @@ void M_Mesh::meshRenderer(const float* globalT, TextureTypes textureT)
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, indices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, indices, GL_STATIC_DRAW);
 
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * VERTEX_ARG, NULL);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTEX_ARG, (void*)(3 * sizeof(float)));
@@ -46,14 +46,16 @@ void M_Mesh::meshRenderer(const float* globalT, TextureTypes textureT)
 	glPushMatrix();
 	glMultMatrixf(globalT);
 
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
-
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
 
 	glPopMatrix(); // Unbind transform matrix
+
+
+	/*glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, NULL);*/
+
+	
 
 	// Unbind buffers
 	glBindTexture(GL_TEXTURE_2D, 0);
