@@ -21,7 +21,7 @@ public:
 
 	static void Init();
 
-	static void NewFrame();
+	static void NewFrame(float dt);
 
 	static void Render();
 

@@ -105,6 +105,11 @@ update_status ModuleCamera3D::Update(float dt)
 		if (gOpos != nullptr) {
 			LookAt(gOpos->GetPosition());
 			Reference = gOpos->GetPosition();
+
+		}
+		else {
+			Reference = vec3(0.0f, 0.0f, 0.0f);
+
 		}
 		Position -= Reference;
 

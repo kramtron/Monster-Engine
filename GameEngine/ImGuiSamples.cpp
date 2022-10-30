@@ -1,4 +1,6 @@
 #include "ImGuiSamples.h"
+#include "ImConfigWindow.h"
+
 
 Application* ImGuiSamples::App = nullptr;
 ImGuiIO* ImGuiSamples::id = nullptr;
@@ -55,7 +57,7 @@ void ImGuiSamples::Init()
 	//Primitive::ImH = ImH;
 }
 
-void ImGuiSamples::NewFrame()
+void ImGuiSamples::NewFrame(float dt)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
@@ -76,6 +78,7 @@ void ImGuiSamples::NewFrame()
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
 	ImInspectorWindow::Update(ImH,ImI);
+	ImConfigWindow::Update(App, dt);
 
 
 

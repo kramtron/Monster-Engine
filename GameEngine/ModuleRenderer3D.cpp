@@ -271,7 +271,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-	ImGuiSamples::NewFrame();
+	ImGuiSamples::NewFrame(dt);
 
 
 	SDL_GL_SwapWindow(App->window->window);
