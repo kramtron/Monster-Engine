@@ -70,73 +70,10 @@ void ImConfigWindow::Update(Application* app, float dt)
 
 		LOG( "%d", fpsDebug.size(), ConsoleType::MSG);
 
-	}
-
-	ImGui::Separator();
-
-	if (ImGui::CollapsingHeader("Window"))
-	{
-		if (ImGui::RadioButton("FullScreen", isFullScreen))
-		{
-			isFullScreen = !isFullScreen;
-			if (isFullScreen)
-			{
-				GLint m_viewport[4];
-				glGetIntegerv(GL_VIEWPORT, m_viewport);
-				int HWind = (int)GetDesktopWindow();
-				LOGT(ConsoleType::SYSTEM, "FullScreen On");
-				SDL_SetWindowSize(app->window->window, m_viewport[3], m_viewport[2]);
-				SDL_SetWindowFullscreen(app->window->window, SDL_WINDOW_FULLSCREEN);
-			}
-			else
-			{
-				LOGT(ConsoleType::SYSTEM, "FullScreen Off");
-				SDL_SetWindowSize(app->window->window, SCREEN_WIDTH, SCREEN_HEIGHT);
-				SDL_SetWindowFullscreen(app->window->window, !SDL_WINDOW_FULLSCREEN);
-			}
-		}
-
-		if (!isFullScreen)
-		{
-			if (ImGui::RadioButton("Resizable", isRe))
-			{
-				isRe = !isRe;
-				if (isRe)
-				{
-					LOGT(ConsoleType::SYSTEM, "Resize On");
-					SDL_SetWindowResizable(app->window->window, SDL_TRUE);
-
-				}
-				else
-				{
-					LOGT(ConsoleType::SYSTEM, "Resize Off");
-					SDL_SetWindowResizable(app->window->window, SDL_FALSE);
-				}
-			}
-			if (ImGui::RadioButton("Borderless", isBor))
-			{
-				isBor = !isBor;
-				if (isBor)
-				{
-					LOGT(ConsoleType::SYSTEM, "Border On");
-					SDL_SetWindowBordered(app->window->window, SDL_FALSE);
-				}
-				else
-				{
-					LOGT(ConsoleType::SYSTEM, "Border Off");
-					SDL_SetWindowBordered(app->window->window, SDL_TRUE);
-				}
-			}
-		}
-		else
-		{
-			ImGui::BulletText("No Borderless in Full Screen");
-			ImGui::BulletText("No Resizable in Full Screen");
-		}
-
 		ImGui::Text("\n");
-		ImGui::Separator();
-		ImGui::Text("\n");
+
+
+
 		if (isFullScreen)
 		{
 			ImGui::BulletText("Width: ");
@@ -157,7 +94,11 @@ void ImConfigWindow::Update(Application* app, float dt)
 			ImGui::SameLine();
 			ImGui::TextColored({ 255,0,0,255 }, "%d", SDL_GetWindowSurface(app->window->window)->h);
 		}
+		ImGui::Text("\n");
+
 	}
+
+
 
 	ImGui::Separator();
 
@@ -177,23 +118,7 @@ void ImConfigWindow::Update(Application* app, float dt)
 			}
 		}
 
-		ImGui::Text("\n");
-		ImGui::Separator();
-		ImGui::Text("\n");
-
-		ImGui::BulletText("Brightness");
-		ImGui::Text("Min");
-		ImGui::SameLine();
-		if (ImGui::SliderFloat(" Max", &bright, 0.100f, 1.000f))
-		{
-			SDL_SetWindowBrightness(app->window->window, bright);
-			bright_aux = bright * 100;
-			LOGT(ConsoleType::SYSTEM, "Change Brightness to: %0.0f", bright_aux);
-		}
-
-		ImGui::Text("\n");
-		ImGui::Separator();
-		ImGui::Text("\n");
+		
 
 		if (ImGui::Checkbox("Lights", &lights))
 		{
@@ -236,7 +161,19 @@ void ImConfigWindow::Update(Application* app, float dt)
 				LOGT(ConsoleType::SYSTEM, "Cull_Face Off");
 			}
 		}
-
+		if (ImGui::Checkbox("Texture 2D", &text2D))
+		{
+			if (text2D)
+			{
+				glEnable(GL_TEXTURE_2D);
+				LOGT(ConsoleType::SYSTEM, "Texture_2D On");
+			}
+			else
+			{
+				glDisable(GL_TEXTURE_2D);
+				LOGT(ConsoleType::SYSTEM, "Texture_2D Off");
+			}
+		}
 		if (ImGui::Checkbox("Color Material", &colorM))
 		{
 			if (colorM)
@@ -251,19 +188,7 @@ void ImConfigWindow::Update(Application* app, float dt)
 			}
 		}
 
-		if (ImGui::Checkbox("Texture 2D", &text2D))
-		{
-			if (text2D)
-			{
-				glEnable(GL_TEXTURE_2D);
-				LOGT(ConsoleType::SYSTEM, "Texture_2D On");
-			}
-			else
-			{
-				glDisable(GL_TEXTURE_2D);
-				LOGT(ConsoleType::SYSTEM, "Texture_2D Off");
-			}
-		}
+		
 	}
 
 	ImGui::Separator();
