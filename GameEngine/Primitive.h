@@ -7,7 +7,7 @@
 
 
 class GameObject;
-class ImHIerarchyWindow;
+class ImHierarchyWindow;
 
 enum PrimitiveTypes
 {

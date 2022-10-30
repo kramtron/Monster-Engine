@@ -17,6 +17,8 @@ class GameObject;
 
 using namespace std;
 
+//class ImHierarchyWindow;
+
 class ModuleDummy : public Module
 {
 public:

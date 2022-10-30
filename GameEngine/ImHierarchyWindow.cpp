@@ -28,7 +28,7 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 
 
 	//ImH->referenceGameObject = &App->dummy->gameObjects;
-	
+	App->camera->selectedGameObejct = ImH->GetGameObjectSeldcted();
 	
 	
 	if (ImGui::Begin("Hierarchy")) {

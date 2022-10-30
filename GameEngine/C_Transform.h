@@ -1,4 +1,5 @@
 #pragma once
+#include "glmath.h"
 #include "MathGeoLib.h"
 #include "S_Component.h"
 
@@ -32,6 +33,14 @@ public:
 	void InspectorW() override;
 
 	const float* GetGlobalT() const { return globalTransform.ptr(); }
+	const vec3 GetPosition() { 
+		
+		vec3 pos;
+		pos.x = position.x;
+		pos.y = position.y;
+		pos.z = position.z;
+		
+		return pos; };
 
 	void ResetTransform();
 

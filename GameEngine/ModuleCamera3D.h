@@ -3,6 +3,12 @@
 #include "Globals.h"
 #include "glmath.h"
 
+enum StatesOfCam {
+
+	LOOKINGAT,
+	FLYING,
+	NORMAL,
+};
 class ModuleCamera3D : public Module
 {
 public:
@@ -22,6 +28,8 @@ public:
 	void Draw();
 	void StopDraw();
 
+	//void LookAt(const vec3& pos);
+
 
 private:
 
@@ -30,6 +38,10 @@ private:
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
+
+	StatesOfCam stateOfCam=NORMAL;
+	ImHierarchyWindow* ImH;
+	GameObject* selectedGameObejct;
 
 private:
 

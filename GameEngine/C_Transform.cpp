@@ -11,6 +11,8 @@ C_Transform::C_Transform(GameObject* gO) : Component(gO)
 	eRotation = rotation.ToEulerXYZ();
 	globalTransformT = globalTransform.Transposed();
 
+	ResetTransform();
+
 }
 
 C_Transform::~C_Transform()
@@ -79,6 +81,8 @@ void C_Transform::InspectorW() {
 	}
 
 }
+
+
 
 void C_Transform::ResetTransform()
 {
