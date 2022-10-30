@@ -31,7 +31,11 @@ void ImSceneWindow::Update(Application* App)
 		App->dummy->wireFrame = !App->dummy->wireFrame;
 
 	}
+	/*if (ImGui::Button("Center Camera to GO")) {
+		//wireFrame = !wireFrame;
+		App->camera->center = !App->camera->center;
 
+	}*/
 
 	ImGui::EndMenuBar();
 	//ImGui::BeginChild("", ImVec2(SCREEN_WIDTH, SCREEN_HEIGHT));

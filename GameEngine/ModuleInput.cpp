@@ -134,10 +134,10 @@ update_status ModuleInput::PreUpdate(float dt)
 
 			//const char* fileName_char = fileName.c_str();
 
-			//std::string extension = filePath.substr(filePath.find_last_of(".", + 1));
+			std::string extension = filePath.substr(filePath.find_last_of(".", + 1));
 
 			//Arreglar lo antes posible 
-			if (filePath.find(".fbx"))
+			if (extension == "fbx")
 			{
 				GameObject* dropedFile = new GameObject("xxx", nullptr, "first", MeshLoader::LoadFile(e.drop.file));
 			}

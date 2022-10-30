@@ -43,6 +43,8 @@ public:
 	ImHierarchyWindow* ImH;
 	GameObject* selectedGameObejct;
 
+	bool center = false;
+
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;

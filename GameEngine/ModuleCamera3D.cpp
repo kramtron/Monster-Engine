@@ -55,12 +55,12 @@ update_status ModuleCamera3D::Update(float dt)
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
 
-	
+	//Arregalar TODO
 	C_Transform* gOpos=nullptr;
 
-	if(gOpos!=nullptr)
+	if (gOpos != nullptr) {
 		gOpos = (C_Transform*)selectedGameObejct->GetComponent(Component::Type::Transform);
-
+	}
 	
 
 	vec3 newPos(0,0,0);
@@ -76,10 +76,10 @@ update_status ModuleCamera3D::Update(float dt)
 	int dw = -App->input->GetMouseZ(); //wheel
 
 	float Sensitivity = speed / 6.0f;
-
+	
 
 	//Look to selected Object
-	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT || center == true) {
 
 		if (gOpos != nullptr)
 			LookAt(gOpos->GetPosition());
@@ -99,9 +99,13 @@ update_status ModuleCamera3D::Update(float dt)
 
 	switch (stateOfCam) {
 	case LOOKINGAT:
-		if(gOpos!=nullptr)
-		Reference = gOpos->GetPosition();
 
+			
+
+		if (gOpos != nullptr) {
+			LookAt(gOpos->GetPosition());
+			Reference = gOpos->GetPosition();
+		}
 		Position -= Reference;
 
 		if (dx != 0)

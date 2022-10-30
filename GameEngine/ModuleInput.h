@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include <string>
 
 #define MAX_MOUSE_BUTTONS 5
 
