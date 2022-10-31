@@ -2,7 +2,6 @@
 #include "Globals.h"
 #include "Application.h"
 
-const aiScene* scene;
 
 vector<M_Mesh*> M_Mesh::meshes;
 
@@ -33,21 +32,22 @@ void MeshLoader::StopDebugMode()
 
 M_Mesh* MeshLoader::LoadFile(string file_path)
 {
-	 scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
+	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
 
-		if (scene->HasMeshes()) {
+		M_Mesh* our_mesh = new M_Mesh();
+
 			for (uint i = 0; i < scene->mNumMeshes; i++) {
 
-				M_Mesh* our_mesh = new M_Mesh();
 				our_mesh = MeshLoader::LoadMesh(scene->mMeshes[i]);
-				meshes.push_back(our_mesh);
-				return our_mesh;
+				
 
 			}
-		}
+			//Esto fuera o no renderiza si un fbx tiene mas de 1 objeto dentro
+			meshes.push_back(our_mesh);
+			return our_mesh;
 
 		aiReleaseImport(scene);
 	}
