@@ -12,7 +12,7 @@ M_Mesh::~M_Mesh()
 	delete[] indices;
 }
 
-void M_Mesh::meshRenderer(const float* globalT, TextureTypes textureT)
+void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 {
 
 	glEnable(GL_TEXTURE_COORD_ARRAY);
@@ -44,7 +44,7 @@ void M_Mesh::meshRenderer(const float* globalT, TextureTypes textureT)
 
 
 	glPushMatrix();
-	glMultMatrixf(globalT);
+	glMultMatrixf(&globalT);
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "S_GameObject.h"
+#include "glmath.h"
 
 #define MAX_KEYS 300
 //#include <experimental/filesystem>
@@ -130,17 +131,21 @@ update_status ModuleInput::PreUpdate(float dt)
 			std::string filePath = e.drop.file;
 			
 
-			//string fileName = filePath.substr(filePath.find_first_of(".") - 1);
+			string fileName = filePath.substr(filePath.find_first_of(".") - filePath.find_last_of(" / ") );
 
 			//const char* fileName_char = fileName.c_str();
 
-			std::string extension = filePath.substr(filePath.find_last_of(".", + 1));
+			std::string extension = filePath.substr(filePath.find_last_of(".") + 1);
 
-			//Arreglar lo antes posible 
-			if (extension == "fbx")
-			{
-				GameObject* dropedFile = new GameObject("xxx", nullptr, "first", MeshLoader::LoadFile(e.drop.file));
-			}
+
+			//Arreglar lo antes posible //Done
+			//Poner igual con png cuando texture funcione //TODO
+			
+				if (extension == "fbx")
+				{
+					GameObject* dropedFile = new GameObject(fileName, nullptr, "first", MeshLoader::LoadFile(e.drop.file));
+				}
+			
 		}
 		}
 	}

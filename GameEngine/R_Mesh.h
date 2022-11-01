@@ -8,7 +8,7 @@
 #include "Primitive.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-
+#include "glmath.h"
 
 #include <vector>
 
@@ -30,7 +30,7 @@ public:
 		~M_Mesh();
 		
 
-	void meshRenderer(const float* globalT, TextureTypes textureT);
+	void meshRenderer(mat4x4, TextureTypes textureT);
 
 
 public:

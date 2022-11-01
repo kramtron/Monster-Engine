@@ -32,17 +32,17 @@ public:
 
 	void InspectorW() override;
 
-	const float* GetGlobalT() const { return globalTransform.ptr(); }
+	mat4x4 GetGlobalT() const { return transpose(matrix); }
 	const vec3 GetPosition() { 
 		
-		vec3 pos;
-		pos.x = position.x;
-		pos.y = position.y;
-		pos.z = position.z;
 		
-		return pos; };
+		
+		return position; };
 
 	void ResetTransform();
+
+
+
 
 public:
 
@@ -53,7 +53,8 @@ public:
 	float3 parentGlobalPosition;
 	float3 localPosition;
 
-	C_Transform* GetDescendingTransforms(C_Transform* node, std::vector<C_Transform*>&transform);
+	//C_Transform* GetDescendingTransforms(C_Transform* node, std::vector<C_Transform*>&transform);
+
 
 public:
 
@@ -62,14 +63,23 @@ public:
 
 	float4x4 localTransform;
 	float4x4 globalTransform;
+
+
 	float4x4 globalTransformT;
 
+	mat4x4 matrix;
 
-
-	float3 position;
+	/*float3 position;
 	float3 scale;
 	float3 eRotation;
-	Quat rotation;
+	Quat rotation;*/
+
+
+	vec3 position;
+	vec3 rotation;
+	vec3 scale;
+
+	
 
 
 
