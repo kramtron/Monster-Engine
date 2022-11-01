@@ -52,8 +52,8 @@ Here you can find multiple dropdowns:
 
 ### * Inspector
 Show the components of the selected GameObject and a cube to Disable/Enable the GameObject.
-* Trnasform with position, rotarion and scale of the object
-* Mesh of the object
+* Trnasform with position, rotarion and scale of the object.
+* Mesh of the object.
 
 
 ### * Hierarchy
@@ -72,5 +72,5 @@ You can find some headers with some propertis of windows or configuration:
 
 ### * Scene
 
-* A button to activate wireframe mode
-* Draw the render of the scene in this windows
+* A button to activate wireframe mode.
+* Draw the render of the scene.
