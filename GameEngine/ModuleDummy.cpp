@@ -33,13 +33,19 @@ bool ModuleDummy::CleanUp()
 
 	LOGT(ConsoleType::SYSTEM, "cleaning test");
 
+	/*for (uint i = 0; i < gameObjects.size(); i++) {
+		delete gameObjects[i];
+		gameObjects[i] = nullptr;
+	}*/
+
+	gameObjects.clear();
+
 
 	return true;
 }
 
 update_status ModuleDummy::PreUpdate(float dt)
 {
-
 
 	return UPDATE_CONTINUE;
 }

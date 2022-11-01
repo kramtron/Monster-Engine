@@ -40,7 +40,7 @@ public:
 
 public:
 
-	//map<uint, GameObject*> gameObjects;//Llevar esto a una clase Tree Controller
+
 
 	GameObject* rootGO = nullptr;
 
