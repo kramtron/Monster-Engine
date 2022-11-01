@@ -11,6 +11,8 @@ ImHierarchyWindow::ImHierarchyWindow()
 	rootGameObject = new GameObject("Scene", nullptr,"none",nullptr);
 
 	GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first", MeshLoader::LoadFile("Assets/BakerHouse.fbx"));
+	GameObject* gO2 = new GameObject("Sphere", rootGameObject, "first", MeshLoader::LoadFile("Assets/Sphere.fbx"));
+	GameObject* gO3 = new GameObject("Cube", rootGameObject, "first", MeshLoader::LoadFile("Assets/Cube.fbx"));
 
 	referenceGameObject = &App->dummy->gameObjects;
 
