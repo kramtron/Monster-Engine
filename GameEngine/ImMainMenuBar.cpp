@@ -14,6 +14,9 @@ float ImMainMenuBar::colorWind[4] = { 0.4f, 0.7f, 0.0f, 1.0f };
 float ImMainMenuBar::colorText[4] = { 0.4f, 0.7f, 0.0f, 1.0f };
 
 
+bool aboutPU = false;
+
+
 ImMainMenuBar::~ImMainMenuBar()
 {
 }
@@ -26,9 +29,6 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 
 	if (ImGui::BeginMainMenuBar()) {
 
-		/*ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.05f, 1.05f, 1.05f, 1));
-
-		ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0.0f, 0.0f, 0.0f, 1));*/
 
 		if (ImGui::BeginMenu(" File "))
 		{
@@ -39,7 +39,17 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 				ShellExecute(0, 0, "https://github.com/kramtron/Monster-Engine", 0, 0, SW_SHOW);
 
 			}
+
+			if (ImGui::MenuItem(" About ")) {
+
+				
+				aboutPU = !aboutPU;
+
+			}
+
 			if (ImGui::MenuItem(" Exit ")) {
+
+				App->dummy->exit = true;
 
 
 			}
@@ -138,6 +148,21 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 
 		ImGui::EndMainMenuBar();
 
+	}
+
+	if (aboutPU) {
+		if (ImGui::Begin("About", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
+		{
+			ImGui::BulletText("Monster Engine is a \ngame engine developed \nby Gerard J. Ramon Catasus.");
+			ImGui::BulletText("Drag and Drop to \nimport files.");
+			ImGui::BulletText("Camera controls in \nour GitHub.");
+
+			ImGui::Text("");
+
+			ImGui::BulletText("You can finde more in \nthe GitHub");
+
+			ImGui::End();
+		}
 	}
 }
 

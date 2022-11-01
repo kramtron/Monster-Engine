@@ -8,7 +8,9 @@ Application* ImHierarchyWindow::App = nullptr;
 
 ImHierarchyWindow::ImHierarchyWindow()
 {
-	rootGameObject = new GameObject("Root", nullptr,"none",nullptr);
+	rootGameObject = new GameObject("Scene", nullptr,"none",nullptr);
+
+	GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first", MeshLoader::LoadFile("Assets/BakerHouse.fbx"));
 
 	referenceGameObject = &App->dummy->gameObjects;
 
@@ -36,10 +38,10 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 	
 	if (ImGui::Begin("Hierarchy")) {
 
-		for (int i = 1; i < ImH->referenceGameObject->size(); i++) {
-			ImH->DrawGameObjectsChilds(ImH->referenceGameObject->at(i));
-			
-		}
+		//for (int i = 1; i < ImH->referenceGameObject->size(); i++) {
+			//ImH->DrawGameObjectsChilds(ImH->referenceGameObject->at(i));
+			ImH->DrawGameObjectsChilds(ImH->rootGameObject);
+		//}
 		
 	}
 

@@ -50,6 +50,7 @@ public:
 
 	int IDCounter = 0;
 
+	bool exit = false;
 
 private:
 
