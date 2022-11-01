@@ -50,7 +50,7 @@ Here you can find multiple dropdowns:
 * *GameObjects*: a list of basic shapes to use.
 * *Windows*: you can change the therme of the window to **"light"**, **"mid night"** and **"dark"**. 
 
-### * Inspector
+###  Inspector
 Show the components of the selected GameObject and a cube to Disable/Enable the GameObject.
 * Trnasform with position, rotarion and scale of the object.
 * Mesh of the object.
