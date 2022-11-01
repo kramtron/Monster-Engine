@@ -26,16 +26,13 @@ public:
 	void TransformToUpdate();
 
 
-	void RotationToUpdate();
-	void ScaleToUpdate();
-
 
 	void InspectorW() override;
 
 	mat4x4 GetGlobalT() const { return transpose(matrix); }
+
+
 	const vec3 GetPosition() { 
-		
-		
 		
 		return position; };
 

@@ -2,6 +2,7 @@
 
 #include "imgui.h"
 
+#include "ImMainMenuBar.h"
 
 vector<DebugConsole>Console::logs;
 vector<DebugConsole>Console::logsCopy;
@@ -22,6 +23,11 @@ bool Console::showPath = false;
 
 void Console::PrintDebug()
 {
+
+	ImMainMenuBar::ThemeStyleChanger();
+	ImMainMenuBar::ThemeStyleW();
+
+
 	ImGui::Begin("Console", 0, ImGuiWindowFlags_MenuBar);
 	if (ImGui::BeginMenuBar())
 	{
@@ -116,6 +122,9 @@ void Console::PrintDebug()
 	}
 
 	ImGui::End();
+
+	ImGui::PopStyleColor(6);
+
 
 }
 

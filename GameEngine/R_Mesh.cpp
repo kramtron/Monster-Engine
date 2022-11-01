@@ -34,10 +34,8 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 
 
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, indices, GL_STATIC_DRAW);
+
 
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * VERTEX_ARG, NULL);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTEX_ARG, (void*)(3 * sizeof(float)));

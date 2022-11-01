@@ -1,4 +1,5 @@
 #include "ImHierarchyWindow.h"
+#include "ImMainMenuBar.h"
 
 Application* ImHierarchyWindow::App = nullptr;
 
@@ -30,6 +31,8 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 	//ImH->referenceGameObject = &App->dummy->gameObjects;
 	App->camera->selectedGameObejct = ImH->GetGameObjectSeldcted();
 	
+	ImMainMenuBar::ThemeStyleChanger();
+	ImMainMenuBar::ThemeStyleW();
 	
 	if (ImGui::Begin("Hierarchy")) {
 
@@ -38,34 +41,9 @@ void ImHierarchyWindow::Update(ImHierarchyWindow* ImH)
 			
 		}
 		
-		/*if ((ImGui::IsMouseDown(ImGuiMouseButton_::ImGuiMouseButton_Right && ImGui::IsWindowHovered()) || ImH->popedUp)) {
-			ImH->popedUp = true;
-
-			int Shape = 0;
-			std::string shapeName[4] = { "Cube","Sphere","Cylinder","Plane" };
-
-			ImGui::OpenPopup("3D GameObjects");
-			if (ImGui::IsMouseDown(ImGuiMouseButton_::ImGuiMouseButton_Left)  && !ImGui::IsAnyItemHovered()) {
-
-				ImH->popedUp = false;
-			}
-			if (ImGui::BeginPopup("3D GameObjects")) {
-				ImGui::Text("3D GameObject");
-				for (int i = 0; i < 4; i++) {
-					if (ImGui::Selectable(shapeName[i].c_str())) {
-						Shape = i;
-						Primitive p;
-						p.CreatePrimitive(ImH->gameObjectRightClick, (PrimitiveType)i);
-						ImH->popedUp = false;
-						ImH->gameObjectRightClick = nullptr;
-					}
-				}
-				ImGui::EndPopup();
-			}
-		}*/
-
-
 	}
+
+	ImGui::PopStyleColor(6);
 
 	ImGui::End();
 }

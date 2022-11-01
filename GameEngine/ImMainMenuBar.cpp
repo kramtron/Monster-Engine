@@ -49,6 +49,15 @@ void ImMainMenuBar::Update(Application* App, ImHierarchyWindow* imH)
 
 		if (ImGui::BeginMenu(" GameObjects "))
 		{
+
+			if (ImGui::MenuItem(" Emty GameObject  "))
+			{
+
+				Primitive p;
+				p.CreatePrimitive(root, PrimitiveType::EMPTY);
+
+			}
+
 			if (ImGui::MenuItem(" Plane  "))
 			{
 				
@@ -167,26 +176,21 @@ void ImMainMenuBar::ThemeStyleChanger()
 
 
 
-/*void ImMainMenuBar::ThemeStyleWind()
+void ImMainMenuBar::ThemeStyleW()
 {
-	if (ImMainMenuBar::colorStyle == 2)
+	if (colorStyle == 2)
 	{
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
 	}
-	else if (ImMainMenuBar::colorStyle == 1)
+	else if (colorStyle == 1)
 	{
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.9, 0.9, 0.9, 1.0f));
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1.f));
 	}
-	else if (ImMainMenuBar::colorStyle == 3)
+	else if (colorStyle == 3)
 	{
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.3f, 1.0f));
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.f));
 	}
-	else if (ImMainMenuBar::colorStyle == 4)
-	{
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(colorWind[0], colorWind[1], colorWind[2], colorWind[3]));
-		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(colorText[0], colorText[1], colorText[2], colorText[3]));
-	}
-}*/
+}

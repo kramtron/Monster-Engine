@@ -1,4 +1,5 @@
 #include "ImConfigWindow.h"
+#include "ImMainMenuBar.h"
 
 
 int ImConfigWindow::fpsLimit = 60;
@@ -24,6 +25,8 @@ float ImConfigWindow::bright_aux = 0;
 
 void ImConfigWindow::Update(Application* app, float dt)
 {
+	ImMainMenuBar::ThemeStyleChanger();
+	ImMainMenuBar::ThemeStyleW();
 
 	ImGui::Begin("Configuration", 0, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse);
 
@@ -352,6 +355,8 @@ void ImConfigWindow::Update(Application* app, float dt)
 
 
 	ImGui::End();
+
+	ImGui::PopStyleColor(6);
 
 
 }

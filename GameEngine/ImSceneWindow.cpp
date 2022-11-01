@@ -1,4 +1,5 @@
 #include "ImSceneWindow.h"
+#include "ImMainMenuBar.h"
 
 
 
@@ -13,6 +14,9 @@ ImSceneWindow::~ImSceneWindow()
 
 void ImSceneWindow::Update(Application* App)
 {
+	ImMainMenuBar::ThemeStyleChanger();
+	ImMainMenuBar::ThemeStyleW();
+
 
 	ImGui::Begin("SceneTest", 0, ImGuiWindowFlags_MenuBar);
 
@@ -56,4 +60,7 @@ void ImSceneWindow::Update(Application* App)
 
 	//ImGui::EndChild();
 	ImGui::End();
+
+	ImGui::PopStyleColor(6);
+
 }

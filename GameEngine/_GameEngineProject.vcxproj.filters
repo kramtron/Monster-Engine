@@ -199,6 +199,9 @@
     <ClCompile Include="External_Libraries\MathGeoLib\include\Time\Clock.cpp">
       <Filter>Libraries\MathGeoLib</Filter>
     </ClCompile>
+    <ClCompile Include="C_Mesh.cpp">
+      <Filter>Sources\GO_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -632,6 +635,9 @@
     </ClInclude>
     <ClInclude Include="External_Libraries\DevIL\include\ilut_config.h">
       <Filter>Libraries\Devl</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Mesh.h">
+      <Filter>Sources\GO_Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

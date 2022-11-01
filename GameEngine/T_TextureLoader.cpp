@@ -5,6 +5,8 @@
 
 void TextureLoader::ImportTexture(std::string& filePath, uint size, char* buffer)
 {
+
+	//No se usa por el momento
 	uint textureId = 0;
 
 	ilGenImages(1, &textureId);
@@ -50,29 +52,36 @@ uint TextureLoader::LoadTexture(const char* filePath)
 	ilBindImage(textureId);
 
 	
-	ilLoadImage(filePath);
+	
+	
+	//ilLoadImage(filePath);
 
-	BYTE* data = ilGetData();
 	ILuint imgWidth, imgHeight;
+
 	imgWidth = ilGetInteger(IL_IMAGE_WIDTH);
 	imgHeight = ilGetInteger(IL_IMAGE_HEIGHT);
-	int const type = ilGetInteger(IL_IMAGE_TYPE);
-	int const format = ilGetInteger(IL_IMAGE_FORMAT);
+
+
+	BYTE* data = ilGetData();
 
 	uint imageId = ilutGLBindTexImage();
+
+	glGenTextures(1, &imageId);
+
 	glBindTexture(GL_TEXTURE_2D, imageId);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 
 	//Esto peta :)
-	glTexImage2D(GL_TEXTURE_2D, 0, format, imgWidth, imgHeight, 0, format, type, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, imgWidth, imgHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
-	glGenerateMipmap(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 
 	//Delete buffer
 	ilDeleteImages(1, &textureId);
@@ -108,8 +117,8 @@ void TextureLoader::Start()
 		}
 	}
 
-	glEnable(GL_TEXTURE_2D);
-	glActiveTexture(GL_TEXTURE0);
+	/*glEnable(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);*/
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glGenTextures(1, &checkID);
@@ -123,10 +132,12 @@ void TextureLoader::Start()
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, WIDTH, HEIGHT,
 		0, GL_RGBA, GL_UNSIGNED_BYTE, tL->checkImage);
-	glGenerateMipmap(GL_TEXTURE_2D);
+
+
+	/*glGenerateMipmap(GL_TEXTURE_2D);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_2D);*/
 
 
 }

@@ -260,10 +260,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		if (gO->mesh != nullptr && gO->name != "Root") {
 			gO->RenderM();
 		}
-
-		else {
-			LOG("CAN'T RENDER");
-		}
 	}
 	
 	//FrameBuffer

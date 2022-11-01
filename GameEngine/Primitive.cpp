@@ -19,7 +19,7 @@ PrimitiveTypes Primitive::GetType() const
 }
 
 
-void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = PrimitiveType::CUBE)
+void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = PrimitiveType::EMPTY)
 {
 	
 	if (p == nullptr) {
@@ -53,6 +53,12 @@ void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = Primiti
 	case PrimitiveType::CYLINDER:
 	{
 		GameObject* cube4 = new GameObject("Cylinder", p, "cylinder", MeshLoader::LoadFile("Assets/cylinder.fbx"));
+
+		break;
+	}
+	case PrimitiveType::EMPTY:
+	{
+		GameObject* cube4 = new GameObject("Empty", p, "cylinder",nullptr);
 
 		break;
 	}

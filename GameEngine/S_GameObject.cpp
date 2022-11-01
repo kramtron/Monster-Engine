@@ -10,6 +10,10 @@ GameObject::GameObject(std::string name = "default", GameObject* parent = nullpt
 
 	App->dummy->AddGameObject(this);
 	transform = (C_Transform*)AddComponent(Component::Type::Transform);
+
+	if (our_mesh != nullptr) {
+		meshR = (C_Mesh*)AddComponent(Component::Type::Mesh);
+	}
 	if (parent != nullptr) {
 		parent->children.push_back(this);
 	}
@@ -48,6 +52,7 @@ Component* GameObject::AddComponent(Component::Type type)
 	case Component::Type::Material:
 		break;
 	case Component::Type::Mesh:
+		comp = new C_Mesh(this);
 		break;
 	case Component::Type::Light:
 		break;
@@ -140,6 +145,6 @@ void GameObject::RenderM()
 	//C_Transform* transform = this->transform;
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
 
-	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::NONE);
+	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
 
 }

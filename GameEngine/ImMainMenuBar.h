@@ -14,6 +14,7 @@ public:
 	static void Update(Application* App, ImHierarchyWindow* imH);
 
 	static void ThemeStyleChanger();
+	static void ThemeStyleW();
 	
 
 public:

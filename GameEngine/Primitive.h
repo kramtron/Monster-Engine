@@ -25,6 +25,7 @@ enum class PrimitiveType
 	CUBE,
 	SPHERE,
 	CYLINDER,
+	EMPTY,
 };
 
 class Primitive

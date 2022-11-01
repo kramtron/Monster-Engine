@@ -1,4 +1,6 @@
 #include "ImInspectorWindow.h"
+#include "ImMainMenuBar.h"
+
 
 
 bool ImInspectorWindow::isEnable = true;
@@ -17,6 +19,9 @@ void ImInspectorWindow::Update(ImHierarchyWindow* ImH, ImInspectorWindow* ImI)
 
 	ImI->gameObjectSelected = ImH->GetGameObjectSeldcted();
 
+	ImMainMenuBar::ThemeStyleChanger();
+	ImMainMenuBar::ThemeStyleW();
+
 	if (ImGui::Begin("Inspector"), &isEnable) {
 
 		if (ImI->gameObjectSelected) {
@@ -32,6 +37,9 @@ void ImInspectorWindow::Update(ImHierarchyWindow* ImH, ImInspectorWindow* ImI)
 	}
 
 	ImGui::End();
+
+	ImGui::PopStyleColor(6);
+
 }
 
 

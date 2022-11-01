@@ -9,6 +9,7 @@
 
 #include "S_Component.h"
 #include "C_Transform.h"
+#include "C_Mesh.h"
 
 using namespace std;
 
@@ -65,6 +66,7 @@ public:
 	M_Mesh* mesh;
 
 	C_Transform* transform = nullptr;
+	C_Mesh* meshR = nullptr;
 
 };
 
