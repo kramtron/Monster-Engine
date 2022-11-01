@@ -67,7 +67,8 @@ void ImGuiSamples::NewFrame(float dt)
 
 	
 
-
+	if(ImH->gameObjectSelected !=nullptr)
+	App->camera->gOpos = ImH->gameObjectSelected->transform;
 	
 
 

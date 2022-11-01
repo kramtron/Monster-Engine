@@ -3,6 +3,8 @@
 #include "Globals.h"
 #include "glmath.h"
 
+
+class C_Transform;
 enum StatesOfCam {
 
 	LOOKINGAT,
@@ -46,6 +48,9 @@ public:
 	bool center = false;
 
 	vec3 newPos;
+
+	static C_Transform* gOpos;
+
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;

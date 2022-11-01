@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleCamera3D.h"
 #include "imgui.h"
+#include "C_Transform.h"
 
 
 //#include "MathGeoLib.h"//Need here? If this activated error in float3.h
@@ -14,6 +15,9 @@
 
 #include "SDL_opengl.h"
 
+
+
+C_Transform* ModuleCamera3D::gOpos = nullptr;
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -58,11 +62,11 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	//Arregalar TODO
-	C_Transform* gOpos=nullptr;
 
-	if (gOpos != nullptr) {
-		gOpos = (C_Transform*)selectedGameObejct->GetComponent(Component::Type::Transform);
-	}
+
+	
+		
+		
 	
 
 	
