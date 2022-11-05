@@ -52,6 +52,8 @@ public:
 
 	bool exit = false;
 
+
+	uint textureID=0;
 private:
 
 	

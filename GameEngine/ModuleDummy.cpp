@@ -24,6 +24,8 @@ bool ModuleDummy::Start()
 	LOG("Testing");
 	bool ret = true;
 
+	textureID= TextureLoader::LoadTexture("Assets/Baker_house.png");
+
 	return ret;
 
 }

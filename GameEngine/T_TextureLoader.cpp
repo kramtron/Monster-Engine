@@ -54,7 +54,7 @@ uint TextureLoader::LoadTexture(const char* filePath)
 	
 	
 	
-	//ilLoadImage(filePath);
+	ilLoadImage(filePath);
 
 	ILuint imgWidth, imgHeight;
 

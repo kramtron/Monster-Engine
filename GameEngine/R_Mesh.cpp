@@ -24,7 +24,7 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		break;
 	case TextureTypes::CHECKERS:
-		glBindTexture(GL_TEXTURE_2D, TextureLoader::LoadTexture("Assets/Baker_house.png"));
+		glBindTexture(GL_TEXTURE_2D, textureID);
 		break;
 	default:
 		glBindTexture(GL_TEXTURE_2D, 0);

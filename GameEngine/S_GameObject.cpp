@@ -19,6 +19,8 @@ GameObject::GameObject(std::string name = "default", GameObject* parent = nullpt
 	}
 
 	mesh = our_mesh;
+
+	
 }
 
 GameObject::~GameObject()
@@ -144,7 +146,7 @@ void GameObject::RenderM()
 
 	//C_Transform* transform = this->transform;
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
-
-	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::NONE);
+	mesh->textureID = App->dummy->textureID;
+	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
 
 }

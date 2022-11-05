@@ -9,6 +9,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleDummy.h"
+#include "ModuleResources.h"
 
 
 
@@ -21,6 +22,7 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleDummy* dummy;
+	//ModuleResources* resources;
 
 private:
 

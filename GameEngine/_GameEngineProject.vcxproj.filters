@@ -202,6 +202,9 @@
     <ClCompile Include="C_Mesh.cpp">
       <Filter>Sources\GO_Components</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleResources.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -638,6 +641,9 @@
     </ClInclude>
     <ClInclude Include="C_Mesh.h">
       <Filter>Sources\GO_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleResources.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
