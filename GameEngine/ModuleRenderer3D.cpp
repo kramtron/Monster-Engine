@@ -125,6 +125,16 @@ bool ModuleRenderer3D::Init()
 			ret = false;
 		}
 		
+
+		// Blend for transparency
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0.1f);
+
+		// Enable opacity
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 		GLfloat LightModelAmbient[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
 		
@@ -147,9 +157,8 @@ bool ModuleRenderer3D::Init()
 		glEnable(GL_COLOR_MATERIAL);
 		glEnable(GL_TEXTURE_2D);
 
-		// Enable opacity
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		
 	}
 
 	// Projection matrix for
@@ -172,10 +181,12 @@ bool ModuleRenderer3D::Init()
 	MeshLoader::StartDebugMode();
 
 	
-
+	
 	//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+	
 
 	// generate texture
 	glGenTextures(1, &textureColorbuffer);
@@ -183,17 +194,15 @@ bool ModuleRenderer3D::Init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 
 
-	/*float color[4] = {0.1,0.1,0.1,0};
+	float color[4] = {0.1,0.1,0.1,0};
 	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);*/
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	//No se si va aquí 
-	TextureLoader::Init();
-	TextureLoader::Start();
+	
 
 
 	// attach it to currently bound framebuffer object
@@ -216,7 +225,9 @@ bool ModuleRenderer3D::Init()
 
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-
+	//No se si va aquí 
+	TextureLoader::Init();
+	TextureLoader::Start();
 
 	return ret;
 }

@@ -89,7 +89,7 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 		//uvs
 		our_mesh->vertices[v * VERTEX_ARGUMENTS + 3] = importedMesh->mTextureCoords[0][v].x;
-		our_mesh->vertices[v * VERTEX_ARGUMENTS + 4] = 1 - importedMesh->mTextureCoords[0][v].y;	//TODO: be careful INVERTING UVS
+		our_mesh->vertices[v * VERTEX_ARGUMENTS + 4] = importedMesh->mTextureCoords[0][v].y;	
 	}
 
 
@@ -121,8 +121,7 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 	}
 
-	
-
+	glEnableClientState(GL_VERTEX_ARRAY);
 
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_vertices));
 	glGenBuffers(1, (GLuint*)&(our_mesh->id_indices));

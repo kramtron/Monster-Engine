@@ -1,9 +1,9 @@
 #ifndef WRAPPER_H
 #define WRAPPER_H
 
-/*#include <il/il.h>
-#include <il/ilu.h>*/
-#include "DevIL/include/ilut.h"  // Probably only have to #include this one
+#include <il.h>
+#include <ilu.h>
+#include <ilut.h>  // Probably only have to #include this one
 
 #ifdef _MSC_VER
 	#ifndef _IL_WRAP_BUILD_LIB

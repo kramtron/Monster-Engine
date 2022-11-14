@@ -19,17 +19,8 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 	glEnable(GL_TEXTURE_2D);
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	switch (textureT) {
-	case TextureTypes::CURRENT:
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		break;
-	case TextureTypes::CHECKERS:
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		break;
-	default:
-		glBindTexture(GL_TEXTURE_2D, 0);
-		break;
-	}
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
 
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 
@@ -55,8 +46,10 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 
 	
 
-	// Unbind buffers
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	// Unbind buffers
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_COORD_ARRAY);
