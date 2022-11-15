@@ -25,6 +25,6 @@ void C_Mesh::InspectorW()
 		ImGui::TextWrapped("Mesh indices: "); ImGui::SameLine();
 		ImGui::TextColored(ImVec4(255, 255, 0, 255), std::to_string(gameObject->mesh->num_indices).c_str());
 
-
+		ImGui::Checkbox("Render Mesh", &gameObject->renderMesh);
 	}
 }

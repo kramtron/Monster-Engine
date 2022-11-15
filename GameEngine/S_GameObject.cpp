@@ -143,10 +143,12 @@ void GameObject::RemoveChild(GameObject* c)
 
 void GameObject::RenderM()
 {
-
+	
 	//C_Transform* transform = this->transform;
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
 	mesh->textureID = App->dummy->textureID;
-	mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
 
+	if (renderMesh == true) {
+		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
+	}
 }

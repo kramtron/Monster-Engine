@@ -68,5 +68,7 @@ public:
 	C_Transform* transform = nullptr;
 	C_Mesh* meshR = nullptr;
 
+
+	bool renderMesh = true;
 };
 
