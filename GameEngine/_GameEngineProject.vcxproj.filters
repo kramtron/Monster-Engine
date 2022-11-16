@@ -205,6 +205,12 @@
     <ClCompile Include="ModuleResources.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="CameraClass.cpp">
+      <Filter>Sources\Tools\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGameWindow.cpp">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -645,6 +651,12 @@
     <ClInclude Include="ModuleResources.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="CameraClass.h">
+      <Filter>Sources\Tools\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGameWindow.h">
+      <Filter>Sources\Resources\ImguiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -697,6 +709,9 @@
     </Filter>
     <Filter Include="Libraries\Devl">
       <UniqueIdentifier>{24b38a1b-8719-4a07-8f2c-e6223f7cd628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Camera">
+      <UniqueIdentifier>{a545bdc5-4289-488a-a6af-8dfa338388d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

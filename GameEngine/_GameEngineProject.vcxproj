@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CameraClass.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="C_Mesh.h" />
     <ClInclude Include="C_Transform.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ImConfigWindow.h" />
+    <ClInclude Include="ImGameWindow.h" />
     <ClInclude Include="ImGuiSamples.h" />
     <ClInclude Include="ImHierarchyWindow.h" />
     <ClInclude Include="ImInspectorWindow.h" />
@@ -233,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CameraClass.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="C_Mesh.cpp" />
     <ClCompile Include="C_Transform.cpp" />
@@ -277,6 +280,7 @@
     <ClCompile Include="External_Libraries\MathGeoLib\include\Time\Clock.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="ImConfigWindow.cpp" />
+    <ClCompile Include="ImGameWindow.cpp" />
     <ClCompile Include="ImGuiSamples.cpp" />
     <ClCompile Include="ImHierarchyWindow.cpp" />
     <ClCompile Include="ImInspectorWindow.cpp" />
