@@ -80,6 +80,7 @@ void ImGuiSamples::NewFrame(float dt)
 	Console::PrintDebug();
 	ImInspectorWindow::Update(ImH,ImI);
 	ImConfigWindow::Update(App, dt);
+	ImGameWindow::Update(App);
 
 
 

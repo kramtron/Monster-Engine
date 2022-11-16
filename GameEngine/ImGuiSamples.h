@@ -13,6 +13,7 @@
 #include "ImHierarchyWindow.h"
 #include "ImSceneWindow.h"
 #include "ImMainMenuBar.h"
+#include "ImGameWindow.h"
 
 class ImGuiSamples
 {

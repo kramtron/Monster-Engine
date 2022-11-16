@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CamBuffers.h" />
     <ClInclude Include="CameraClass.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="C_Mesh.h" />
@@ -235,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CamBuffers.cpp" />
     <ClCompile Include="CameraClass.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="C_Mesh.cpp" />

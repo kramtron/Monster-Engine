@@ -181,46 +181,47 @@ bool ModuleRenderer3D::Init()
 	MeshLoader::StartDebugMode();
 
 	
-	
-	//Colocar en otro sitio
+	//All this now in CamBuffers Class!
+
+
+	/*//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);*/
 
 	
 
-	// generate texture
+	/*// generate texture
 	glGenTextures(1, &textureColorbuffer);
 	glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);*/
 
 
-	float color[4] = {0.1,0.1,0.1,0};
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+	//float color[4] = {0.1,0.1,0.1,0};
+	/*glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);*/
+
 
 	
 
 
 	// attach it to currently bound framebuffer object
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+	//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
 
-	glGenRenderbuffers(1, &rbo);
+	/*glGenRenderbuffers(1, &rbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCREEN_WIDTH, SCREEN_HEIGHT);
-	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);*/
 
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+	//glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
 
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	/*if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		//App->menus->my_log.AddLog("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
 		LOG("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
-
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);*/
 	
 
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -235,7 +236,7 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-	App->camera->Draw();
+	//App->camera->Draw();
 
 
 	// light 0 on cam pos
@@ -245,7 +246,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 		lights[i].Render();
 
 	//FrameBuffer
-	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
+	//glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return UPDATE_CONTINUE;
@@ -273,10 +274,13 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		}
 	}
 	
-	//FrameBuffer
+	//FrameBuffer Donde 0 poner la scene cam
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+
+	//Add gamecam buffers here
 
 	ImGuiSamples::NewFrame(dt);
 
@@ -298,10 +302,12 @@ bool ModuleRenderer3D::CleanUp()
 
 	ImGuiSamples::CleanUp();
 
-	glDeleteFramebuffers(1, &framebuffer);
+
+	//En camBuffers
+	/*glDeleteFramebuffers(1, &framebuffer);
 	glDeleteTextures(1, &textureColorbuffer);
 	glDeleteRenderbuffers(1, &rbo);
-
+	*/
 	//
 	SDL_GL_DeleteContext(context);
 
