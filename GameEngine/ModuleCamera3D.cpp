@@ -64,14 +64,6 @@ update_status ModuleCamera3D::Update(float dt)
 	//Arregalar TODO
 
 
-	
-		
-		
-	
-
-	
-
-
 	float speed = 3.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 8.0f * dt;

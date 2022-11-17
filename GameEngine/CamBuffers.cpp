@@ -3,6 +3,15 @@
 
 CamBuffers::CamBuffers()
 {
+
+
+	frameBuffer = 0;
+	textureColorBuffer = 0;
+	rbo = 0;
+	width = SCREEN_WIDTH;
+	height = SCREEN_HEIGHT;
+
+
 }
 
 CamBuffers::~CamBuffers()

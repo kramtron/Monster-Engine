@@ -3,6 +3,9 @@
 #include "Globals.h"
 #include "glmath.h"
 
+#include "CameraClass.h"
+
+
 
 class C_Transform;
 enum StatesOfCam {
@@ -41,6 +44,12 @@ public:
 	
 	vec3 X, Y, Z, Position, Reference;
 
+
+
+	float3 x, y, z;
+	float3 pos, ref;
+	float4x4 viewMatrix, viewMatrixInverse, projMatrix;
+
 	StatesOfCam stateOfCam=NORMAL;
 	ImHierarchyWindow* ImH;
 	GameObject* selectedGameObejct;
@@ -50,6 +59,11 @@ public:
 	vec3 newPos;
 
 	static C_Transform* gOpos;
+
+	//Camara de game
+	CameraClass* gameCam=nullptr;
+	//Camara de la escena
+	CameraClass sceneCam;
 
 private:
 
