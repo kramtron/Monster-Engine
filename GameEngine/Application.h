@@ -39,9 +39,17 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+
+	static Application* GetInstance();
+
+
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+
+	static Application* App;
+
+
 };

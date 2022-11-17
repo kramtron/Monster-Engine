@@ -41,7 +41,7 @@ public:
 	CamBuffers camBuffer;
 	float fieldOfView;
 
-
+	Application* app;
 
 };
 

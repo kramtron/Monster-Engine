@@ -1,5 +1,9 @@
 #include "Application.h"
 
+
+Application* Application::App = nullptr;
+
+
 Application::Application()
 {
 	window = new ModuleWindow(this);
@@ -117,6 +121,14 @@ bool Application::CleanUp()
 		item = item->prev;
 	}
 	return ret;
+}
+
+Application* Application::GetInstance()
+{
+	if (App == nullptr) {
+		App = new Application();
+	}
+	return App;
 }
 
 void Application::AddModule(Module* mod)
