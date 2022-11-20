@@ -1,9 +1,9 @@
 #pragma once
 #include "Globals.h"
 #include "MathGeoLib.h"
-#include "CamBuffers.h"
 #include "Application.h"
 
+class CamBuffers;
 
 class CameraClass
 {
@@ -11,6 +11,8 @@ public:
 
 	CameraClass();
 	~CameraClass();
+
+	void CleanUp();
 
 
 	void Look(const float3& Position, const float3& Reference, bool RotateAroundReference = false);
@@ -24,7 +26,7 @@ public:
 	void StartCamBuffer(int width, int height);
 
 
-	void ChangeToGameCamera();
+	void ChangeTogameCameraera();
 
 
 public:
@@ -35,10 +37,10 @@ public:
 
 
 
-	bool gameCamera = false;
+	bool gameCameraera = false;
 
 	Frustum frustumCamera;
-	CamBuffers camBuffer;
+	CamBuffers cameraBuffer;
 	float fieldOfView;
 
 	Application* app;

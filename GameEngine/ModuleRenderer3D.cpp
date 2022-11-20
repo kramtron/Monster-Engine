@@ -256,12 +256,14 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 
-	MeshLoader::Renderer();
+	//MeshLoader::Renderer();
 
 	//clear_color = App->dummy->back_window_color;
 
-
-
+	//FrameBuffer Donde 0 poner la scene cam
+	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->sceneCamera.cameraBuffer.GetFrameBuffer());
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	//Algo temporal. Esto va en un meshrender component
 	for (int i = 1; i < ImGuiSamples::ImH->referenceGameObject->size(); i++) {
@@ -274,13 +276,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		}
 	}
 	
-	//FrameBuffer Donde 0 poner la scene cam
+	
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 
-	//Add gamecam buffers here
+	//Add gameCamera buffers here
 
 	ImGuiSamples::NewFrame(dt);
 
@@ -303,7 +304,7 @@ bool ModuleRenderer3D::CleanUp()
 	ImGuiSamples::CleanUp();
 
 
-	//En camBuffers
+	//En cameraBuffers
 	/*glDeleteFramebuffers(1, &framebuffer);
 	glDeleteTextures(1, &textureColorbuffer);
 	glDeleteRenderbuffers(1, &rbo);
@@ -318,6 +319,8 @@ bool ModuleRenderer3D::CleanUp()
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 	glViewport(0, 0, width, height);
+
+	App->camera->sceneCamera.StartCamBuffer(width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

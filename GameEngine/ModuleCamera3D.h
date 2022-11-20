@@ -3,11 +3,12 @@
 #include "Globals.h"
 #include "glmath.h"
 
-#include "CameraClass.h"
 
 
+class CameraClass;
 
 class C_Transform;
+
 enum StatesOfCam {
 
 	LOOKINGAT,
@@ -46,8 +47,8 @@ public:
 
 
 
-	float3 x, y, z;
-	float3 pos, ref;
+	/*float3 x, y, z;
+	float3 pos, ref;*/
 	float4x4 viewMatrix, viewMatrixInverse, projMatrix;
 
 	StatesOfCam stateOfCam=NORMAL;
@@ -61,9 +62,9 @@ public:
 	static C_Transform* gOpos;
 
 	//Camara de game
-	CameraClass* gameCam=nullptr;
+	CameraClass* gameCamera=nullptr;
 	//Camara de la escena
-	CameraClass sceneCam;
+	CameraClass sceneCamera;
 
 private:
 

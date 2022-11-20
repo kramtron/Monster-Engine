@@ -3,7 +3,7 @@
 #include "ModuleCamera3D.h"
 #include "imgui.h"
 #include "C_Transform.h"
-
+#include "CameraClass.h"
 
 //#include "MathGeoLib.h"//Need here? If this activated error in float3.h
 

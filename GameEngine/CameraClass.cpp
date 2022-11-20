@@ -1,4 +1,5 @@
 #include "CameraClass.h"
+#include "CamBuffers.h"
 
 CameraClass::CameraClass()
 {
@@ -7,6 +8,8 @@ CameraClass::CameraClass()
 	y = float3(0.0f, 1.0f, 0.0f);
 	z = float3(0.0f, 0.0f, 1.0f);
 
+	this->pos = float3(0.0f, 0.0f, 0.0f);
+	this->ref = float3(0.0f, 0.0f, 0.0f);
 
 
 	//Mal orden = No va
@@ -17,8 +20,7 @@ CameraClass::CameraClass()
 	frustumCamera.nearPlaneDistance = 0.01f;
 	frustumCamera.front = z;
 	frustumCamera.up = y;
-	this->pos = float3(0.0f, 0.0f, 0.0f);
-	this->ref = float3(0.0f, 0.0f, 0.0f);
+
 	frustumCamera.pos = this->pos;
 
 
@@ -26,6 +28,14 @@ CameraClass::CameraClass()
 
 CameraClass::~CameraClass()
 {
+}
+
+void CameraClass::CleanUp()
+{
+
+	cameraBuffer.CleanUp();
+	//Something more?
+
 }
 
 void CameraClass::Look(const float3& position, const float3& reference, bool rotateAroundReference)
@@ -46,17 +56,14 @@ void CameraClass::Look(const float3& position, const float3& reference, bool rot
 
 void CameraClass::LookAt(const float3& pos)
 {
-
+	//Why this doesn't work? 
 	frustumCamera.front = (pos - frustumCamera.pos).Normalized();
 	x = Cross(float3(0.0f, 1.0f, 0.0f), frustumCamera.front).Normalized();
 	frustumCamera.up = Cross(frustumCamera.front, x);
 
 }
 
-void CameraClass::Move(const float3& mov)
-{
-	frustumCamera.pos += mov;
-}
+
 
 float* CameraClass::GetViewMatrix()
 {
@@ -74,18 +81,24 @@ float* CameraClass::GetProjMatrix()
 	return &tempMatrixProj.v[0][0];
 }
 
-void CameraClass::StartCamBuffer(int width, int height)
+
+void CameraClass::Move(const float3& mov)
 {
-	camBuffer.StartCamBuffers(width, height);
+	frustumCamera.pos += mov;
 }
 
-void CameraClass::ChangeToGameCamera()
+void CameraClass::ChangeTogameCameraera()
 {
-
+	//Best way to pass app to this function?
 	app = Application::GetInstance();
 
-	if (app->camera->gameCam != nullptr) {
+	if (app->camera->gameCamera != nullptr) {
 
-		//Lista de gamecams?
+		//Lista de gameCameras?
 	}
+}
+
+void CameraClass::StartCamBuffer(int width, int height)
+{
+	cameraBuffer.StartCamBuffers(width, height);
 }
