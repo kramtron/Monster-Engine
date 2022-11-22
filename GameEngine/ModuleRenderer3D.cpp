@@ -183,6 +183,7 @@ bool ModuleRenderer3D::Init()
 	
 	//All this now in CamBuffers Class!
 
+	App->camera->sceneCamera.StartCamBuffer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	/*//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
@@ -223,6 +224,7 @@ bool ModuleRenderer3D::Init()
 		LOG("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);*/
 	
+	//App->camera->sceneCamera.cameraBuffer.StartCamBuffers(SCREEN_WIDTH,SCREEN_HEIGHT);
 
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -246,7 +248,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 		lights[i].Render();
 
 	//FrameBuffer
-	//glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, textureColorbuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return UPDATE_CONTINUE;
@@ -302,7 +304,7 @@ bool ModuleRenderer3D::CleanUp()
 
 
 	ImGuiSamples::CleanUp();
-
+	App->camera->sceneCamera.CleanUp();
 
 	//En cameraBuffers
 	/*glDeleteFramebuffers(1, &framebuffer);
@@ -318,9 +320,10 @@ bool ModuleRenderer3D::CleanUp()
 
 void ModuleRenderer3D::OnResize(int width, int height)
 {
-	glViewport(0, 0, width, height);
 
-	App->camera->sceneCamera.StartCamBuffer(width, height);
+
+
+	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

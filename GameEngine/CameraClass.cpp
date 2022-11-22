@@ -1,5 +1,4 @@
 #include "CameraClass.h"
-#include "CamBuffers.h"
 
 CameraClass::CameraClass()
 {
@@ -87,16 +86,6 @@ void CameraClass::Move(const float3& mov)
 	frustumCamera.pos += mov;
 }
 
-void CameraClass::ChangeTogameCameraera()
-{
-	//Best way to pass app to this function?
-	app = Application::GetInstance();
-
-	if (app->camera->gameCamera != nullptr) {
-
-		//Lista de gameCameras?
-	}
-}
 
 void CameraClass::StartCamBuffer(int width, int height)
 {

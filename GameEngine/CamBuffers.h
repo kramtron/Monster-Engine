@@ -1,8 +1,7 @@
 #pragma once
 
 #include "glew.h"
-#include "Globals.h"
-#include "Application.h"
+//#include "Globals.h"
 
 
 
@@ -36,7 +35,7 @@ public:
 	void SetHeight(int height) { this->height = height; }
 
 
-protected:
+public:
 
 
 	GLuint textureColorBuffer;

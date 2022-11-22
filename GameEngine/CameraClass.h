@@ -1,9 +1,11 @@
 #pragma once
-#include "Globals.h"
+//#include "Globals.h"
 #include "MathGeoLib.h"
-#include "Application.h"
+//#include "Application.h"
+#include "CamBuffers.h"
+//class CamBuffers;
 
-class CamBuffers;
+//class CamBuffers;
 
 class CameraClass
 {
@@ -43,7 +45,7 @@ public:
 	CamBuffers cameraBuffer;
 	float fieldOfView;
 
-	Application* app;
+	//Application* app;
 
 };
 

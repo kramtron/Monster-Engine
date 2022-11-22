@@ -2,10 +2,10 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "CameraClass.h"
 
 
-
-class CameraClass;
+//class CameraClass;
 
 class C_Transform;
 
@@ -62,7 +62,7 @@ public:
 	static C_Transform* gOpos;
 
 	//Camara de game
-	CameraClass* gameCamera=nullptr;
+	CameraClass* gameCamera = nullptr;
 	//Camara de la escena
 	CameraClass sceneCamera;
 

@@ -212,7 +212,7 @@
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClCompile>
     <ClCompile Include="CamBuffers.cpp">
-      <Filter>Sources\Tools\CamBuffers</Filter>
+      <Filter>Sources\Tools\Camera\CamBuffers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -661,7 +661,7 @@
       <Filter>Sources\Resources\ImguiWindows</Filter>
     </ClInclude>
     <ClInclude Include="CamBuffers.h">
-      <Filter>Sources\Tools\CamBuffers</Filter>
+      <Filter>Sources\Tools\Camera\CamBuffers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -719,7 +719,7 @@
     <Filter Include="Sources\Tools\Camera">
       <UniqueIdentifier>{a545bdc5-4289-488a-a6af-8dfa338388d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Tools\CamBuffers">
+    <Filter Include="Sources\Tools\Camera\CamBuffers">
       <UniqueIdentifier>{2ea804b0-76d6-4e9e-9ccb-b64a8e5cdc02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

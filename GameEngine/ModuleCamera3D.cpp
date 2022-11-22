@@ -33,6 +33,8 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	LookAt(Reference);
 
 	newPos=(0, 0, 0);
+
+	//sceneCamera = new CameraClass();
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -102,7 +104,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 		if (gOpos != nullptr) {
 			LookAt(gOpos->GetPosition());
-			Reference = gOpos->GetPosition();
+			sceneCamera.ref = gOpos->GetPosition();
 
 		}
 		else {

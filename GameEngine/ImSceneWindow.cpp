@@ -56,7 +56,7 @@ void ImSceneWindow::Update(Application* App)
 	ofset /= newSize.x;
 
 
-	ImGui::Image((ImTextureID)App->renderer3D->textureColorbuffer, wsize, ImVec2(-ofset, 1), ImVec2(1+ ofset, 0));
+	ImGui::Image((ImTextureID)App->camera->sceneCamera.cameraBuffer.GetTextureBuffer(), wsize, ImVec2(-ofset, 1), ImVec2(1 + ofset, 0));
 
 	//ImGui::EndChild();
 	ImGui::End();

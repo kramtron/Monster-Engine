@@ -1,4 +1,5 @@
 #include "CamBuffers.h"
+#include "Application.h"
 
 
 CamBuffers::CamBuffers()
