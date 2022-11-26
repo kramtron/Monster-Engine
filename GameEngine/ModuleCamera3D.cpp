@@ -21,18 +21,11 @@ C_Transform* ModuleCamera3D::gOpos = nullptr;
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	CalculateViewMatrix();
+	//CalculateViewMatrix();
 
-	X = float3(1.0f, 0.0f, 0.0f);
-	Y = float3(0.0f, 1.0f, 0.0f);
-	Z = float3(0.0f, 0.0f, 1.0f);
+	
 
-	 sceneCamera.pos = float3(0.0f, 0.0f, 5.0f);
-	sceneCamera.ref = float3(0.0f, 0.0f, 0.0f);
-
-	LookAt(sceneCamera.ref);
-
-	newPos = float3(0.0f, 0.0f, 0.0f);
+	//newPos = float3(0.0f, 0.0f, 0.0f);
 
 	//sceneCamera = new CameraClass();
 }
@@ -46,6 +39,7 @@ bool ModuleCamera3D::Start()
 	LOG("Setting up the camera");
 	bool ret = true;
 
+	sceneCamera = new CameraClass();
 	return ret;
 }
 
@@ -53,7 +47,7 @@ bool ModuleCamera3D::Start()
 bool ModuleCamera3D::CleanUp()
 {
 	LOG("Cleaning camera");
-
+	delete sceneCamera;
 	return true;
 }
 
@@ -65,6 +59,8 @@ update_status ModuleCamera3D::Update(float dt)
 
 	//Arregalar TODO
 
+	newPos = float3(0, 0, 0);
+	direction = Quat::identity;
 
 	float speed = 3.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
@@ -77,7 +73,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	float Sensitivity = speed / 6.0f;
 	
-
+	Sensitivity * 10;
 	//Look to selected Object
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT || center == true) {
 
@@ -104,19 +100,18 @@ update_status ModuleCamera3D::Update(float dt)
 
 		if (gOpos != nullptr) {
 			LookAt(gOpos->GetPosition());
-			sceneCamera.ref = gOpos->GetPosition();
+			sceneCamera->ref = gOpos->GetPosition();
 
 		}
 		else {
-			sceneCamera.ref = float3(0.0f, 0.0f, 0.0f);
+			sceneCamera->ref = float3(0.0f, 0.0f, 0.0f);
 
 		}
 		 //sceneCamera.pos -= sceneCamera.ref;
 
 		
-		Quat direction;
 
-		sceneCamera.frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
+		sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
 
 		if (dx != 0)
 		{
@@ -139,53 +134,57 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 
 
-		rmat = sceneCamera.frustumCamera.WorldMatrix();
+		rmat = sceneCamera->frustumCamera.WorldMatrix();
 		rmat.SetRotatePart(direction.Normalized());
-		sceneCamera.frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
+		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
 
-		sceneCamera.frustumCamera.pos = sceneCamera.ref + (sceneCamera.frustumCamera.front * -(float3(sceneCamera.ref - sceneCamera.pos).Length()));
+		sceneCamera->frustumCamera.pos = sceneCamera->ref + (sceneCamera->frustumCamera.front * -(float3(sceneCamera->ref - sceneCamera->frustumCamera.pos).Length()));
 
 		break;
 
 	case FLYING:
-		sceneCamera.ref =  sceneCamera.pos;
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= sceneCamera.frustumCamera.front * speed;
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += sceneCamera.frustumCamera.front * speed;
+		sceneCamera->ref =  sceneCamera->pos;
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= sceneCamera->frustumCamera.front * speed;
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += sceneCamera->frustumCamera.front * speed;
 
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= sceneCamera.frustumCamera.WorldRight() * speed;
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += sceneCamera.frustumCamera.WorldRight() * speed;
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= sceneCamera->frustumCamera.WorldRight() * speed;
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += sceneCamera->frustumCamera.WorldRight() * speed;
 
-		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) sceneCamera.frustumCamera.pos.y += speed;
-		if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) sceneCamera.frustumCamera.pos.y -= speed;
+		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) sceneCamera->frustumCamera.pos.y += speed;
+		if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) sceneCamera->frustumCamera.pos.y -= speed;
 
 		// Mouse motion ----------------
 
+		//Quat direction;
 
-			if (dx != 0)
-			{
-				float DeltaX = (float)dx * Sensitivity*10;
+		sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
 
-				X = rotate(X, DeltaX, float3(0.0f, 1.0f, 0.0f));
-				Y = rotate(Y, DeltaX, float3(0.0f, 1.0f, 0.0f));
-				sceneCamera.z = rotate(sceneCamera.z, DeltaX, float3(0.0f, 1.0f, 0.0f));
-			}
+		if (dx != 0)
+		{
+			float DeltaX = (float)dx * Sensitivity;
 
-			if (dy != 0)
-			{
-				float DeltaY = (float)dy * Sensitivity*10;
+			//I hate quats
+			Quat x = Quat::identity;
+			x.SetFromAxisAngle(float3(0.0f, 1.0f, 0.0f), DeltaX * DEGTORAD);
+			direction = x * direction;
+		}
 
-				Y = rotate(Y, DeltaY, X);
-				sceneCamera.z = rotate(sceneCamera.z, DeltaY, X);
+		if (dy != 0)
+		{
+			float DeltaY = (float)dy * Sensitivity * 10;
 
-				if (Y.y < 0.0f)
-				{
-					sceneCamera.z = float3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-					Y = cross(sceneCamera.z, X);
-				}
+			Quat y = Quat::identity;
+			y.SetFromAxisAngle(float3(0.0f, 1.0f, 0.0f), DeltaY * DEGTORAD);
+			direction = direction * y;
 
-				
-			}
+		}
+
+
+		rmat = sceneCamera->frustumCamera.WorldMatrix();
+		rmat.SetRotatePart(direction.Normalized());
+		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
+			
 
 			break;
 	case NORMAL:
@@ -193,28 +192,29 @@ update_status ModuleCamera3D::Update(float dt)
 		//Wheel click
 		if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT) {
 
-			newPos += X * dx * Sensitivity;
-			newPos -= Y * dy * Sensitivity;
+			/*newPos += X * dx * Sensitivity;
+			newPos -= Y * dy * Sensitivity;*/
 
-			 sceneCamera.pos += newPos;
-			sceneCamera.ref += newPos;
+			//Is WorldRight no worldMat 
+			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.WorldRight() * (speed * dx / 2);
+			sceneCamera->frustumCamera.pos -= sceneCamera->frustumCamera.up * (speed * dy / 2);
+
 		}
 
 		//Wheel Scroll
 		if (dw != 0) {
-			newPos += sceneCamera.z * Sensitivity * dw * 10;
+			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.front * speed * -dw;
 		}
 		break;
 	}
 
-	 sceneCamera.pos += newPos;
-	sceneCamera.ref += newPos;
+	
 
 	
 	
 
 	// Recalculate matrix -------------
-	CalculateViewMatrix();
+	//CalculateViewMatrix();
 
 	return UPDATE_CONTINUE;
 }
@@ -222,48 +222,45 @@ update_status ModuleCamera3D::Update(float dt)
 // -----------------------------------------------------------------
 void ModuleCamera3D::Look(const float3 &position, const float3 &reference, bool RotateAroundsceneCamera)
 {
-	sceneCamera.pos = position;
-	sceneCamera.ref = reference;
+	sceneCamera->frustumCamera.pos = position;
+	sceneCamera->ref = reference;
 
-	sceneCamera.z = normalize(position - reference);
-	sceneCamera.x = normalize(cross(float3(0.0f, 1.0f, 0.0f), Z));
-	sceneCamera.y = cross(sceneCamera.z, sceneCamera.x);
-
-	if(!RotateAroundsceneCamera.ref)
-	{
-		this->sceneCamera.ref = this-> sceneCamera.pos;
-		this-> sceneCamera.pos += Z * 0.05f;
-	}
-
-	CalculateViewMatrix();
+	LookAt(sceneCamera->ref);
 }
 
 // -----------------------------------------------------------------
 void ModuleCamera3D::LookAt( const float3 &Spot)
 {
-	sceneCamera.ref = Spot;
 
-	sceneCamera.z = normalize( sceneCamera.pos - sceneCamera.ref);
-	sceneCamera.x = normalize(cross(float3(0.0f, 1.0f, 0.0f), Z));
-	sceneCamera.y = cross(sceneCamera.z, sceneCamera.x);
+	sceneCamera->ref = Spot;
 
-	CalculateViewMatrix();
+
+	//Voy a cometer crimenes de guerra como esto no funcione
+	sceneCamera->frustumCamera.front = (Spot - sceneCamera->frustumCamera.pos).Normalized();
+	float3 x = Cross(float3(0.0f, 1.0f, 0.0f), sceneCamera->frustumCamera.front).Normalized();
+	sceneCamera->frustumCamera.up = sceneCamera->frustumCamera.front.Cross(x);
+
+	//CalculateViewMatrix();
 }
 
 
 // -----------------------------------------------------------------
 void ModuleCamera3D::Move(const float3 &Movement)
 {
-	 sceneCamera.pos += Movement;
-	sceneCamera.ref += Movement;
+	 sceneCamera->frustumCamera.pos += Movement;
 
-	CalculateViewMatrix();
+	//CalculateViewMatrix();
 }
 
 // -----------------------------------------------------------------
 float* ModuleCamera3D::GetViewMatrix()
 {
-	return &ViewMatrix;
+
+	viewMatrix = sceneCamera->frustumCamera.ViewMatrix();
+
+	//No this no work
+	viewMatrix.Transpose();
+	return ViewMatrix.ptr();
 }
 
 void ModuleCamera3D::Draw()
@@ -289,10 +286,17 @@ void ModuleCamera3D::StopDraw()
 {
 	glDisable(GL_DEPTH_TEST);
 }
+float ModuleCamera3D::GetProjMatrix()
+{
+
+	float4x4 tempMatrixProj = sceneCamera->frustumCamera.ProjectionMatrix();
+	tempMatrixProj.Transpose();
+	return tempMatrixProj.v[0][0];
+}
 
 // -----------------------------------------------------------------
 void ModuleCamera3D::CalculateViewMatrix()
 {
-	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(sceneCamera.x,  sceneCamera.pos), -dot(sceneCamera.y,  sceneCamera.pos), -dot(sceneCamera.z,  sceneCamera.pos), 1.0f);
-	ViewMatrixInverse = inverse(ViewMatrix);
+	//ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(sceneCamera.x,  sceneCamera.pos), -dot(sceneCamera.y,  sceneCamera.pos), -dot(sceneCamera.z,  sceneCamera.pos), 1.0f);
+	//ViewMatrixInverse = inverse(ViewMatrix);
 }

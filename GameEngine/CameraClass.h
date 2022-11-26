@@ -1,11 +1,8 @@
 #pragma once
-//#include "Globals.h"
-#include "MathGeoLib.h"
-//#include "Application.h"
-#include "CamBuffers.h"
-//class CamBuffers;
 
-//class CamBuffers;
+#include "MathGeoLib.h"
+#include "CamBuffers.h"
+
 
 class CameraClass
 {
@@ -16,19 +13,7 @@ public:
 
 	void CleanUp();
 
-
-	void Look(const float3& Position, const float3& Reference, bool RotateAroundReference = false);
-	void LookAt(const float3& toLookAt);
-	void Move(const float3& Movement);
-
-
-	float* GetViewMatrix();
-	float* GetProjMatrix();
-
 	void StartCamBuffer(int width, int height);
-
-
-	void ChangeTogameCameraera();
 
 
 public:
@@ -43,7 +28,7 @@ public:
 
 	Frustum frustumCamera;
 	CamBuffers cameraBuffer;
-	float fieldOfView;
+	float fieldOfView = 60;
 
 	//Application* app;
 

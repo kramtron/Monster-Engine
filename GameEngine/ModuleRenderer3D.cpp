@@ -183,7 +183,7 @@ bool ModuleRenderer3D::Init()
 	
 	//All this now in CamBuffers Class!
 
-	App->camera->sceneCamera.StartCamBuffer(SCREEN_WIDTH, SCREEN_HEIGHT);
+	App->camera->sceneCamera->StartCamBuffer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	/*//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
@@ -263,7 +263,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//clear_color = App->dummy->back_window_color;
 
 	//FrameBuffer Donde 0 poner la scene cam
-	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->sceneCamera.cameraBuffer.GetFrameBuffer());
+	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->sceneCamera->cameraBuffer.GetFrameBuffer());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -304,7 +304,7 @@ bool ModuleRenderer3D::CleanUp()
 
 
 	ImGuiSamples::CleanUp();
-	App->camera->sceneCamera.CleanUp();
+	App->camera->sceneCamera->CleanUp();
 
 	//En cameraBuffers
 	/*glDeleteFramebuffers(1, &framebuffer);

@@ -36,6 +36,7 @@ public:
 
 	//void LookAt(const float3& pos);
 
+	float GetProjMatrix();
 
 private:
 
@@ -64,9 +65,11 @@ public:
 	//Camara de game
 	CameraClass* gameCamera = nullptr;
 	//Camara de la escena
-	CameraClass sceneCamera;
+	CameraClass* sceneCamera;
+
+	Quat direction;
 
 private:
 
-	mat4x4 ViewMatrix, ViewMatrixInverse;
+	float4x4 ViewMatrix, ViewMatrixInverse;
 };
