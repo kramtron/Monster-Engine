@@ -21,7 +21,7 @@ public:
 	ModuleCamera3D(Application* app, bool start_enabled = true);
 	~ModuleCamera3D();
 
-	bool Start();
+	bool Init();
 	update_status Update(float dt);
 	bool CleanUp();
 
@@ -67,7 +67,6 @@ public:
 	//Camara de la escena
 	CameraClass* sceneCamera;
 
-	Quat direction;
 
 private:
 

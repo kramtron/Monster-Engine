@@ -34,7 +34,7 @@ ModuleCamera3D::~ModuleCamera3D()
 {}
 
 // -----------------------------------------------------------------
-bool ModuleCamera3D::Start()
+bool ModuleCamera3D::Init()
 {
 	LOG("Setting up the camera");
 	bool ret = true;
@@ -58,11 +58,13 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	//Arregalar TODO
+	Quat direction = Quat::identity;
+	sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
 
 	newPos = float3(0, 0, 0);
-	direction = Quat::identity;
+	 
 
-	float speed = 3.0f * dt;
+	float speed = 300.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 8.0f * dt;
 
@@ -73,7 +75,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	float Sensitivity = speed / 6.0f;
 	
-	Sensitivity * 10;
+	Sensitivity * 100;
 	//Look to selected Object
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT || center == true) {
 
@@ -100,7 +102,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 		if (gOpos != nullptr) {
 			LookAt(gOpos->GetPosition());
-			sceneCamera->ref = gOpos->GetPosition();
+			//sceneCamera->ref = gOpos->GetPosition();
 
 		}
 		else {
@@ -110,8 +112,6 @@ update_status ModuleCamera3D::Update(float dt)
 		 //sceneCamera.pos -= sceneCamera.ref;
 
 		
-
-		sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
 
 		if (dx != 0)
 		{
@@ -143,7 +143,7 @@ update_status ModuleCamera3D::Update(float dt)
 		break;
 
 	case FLYING:
-		sceneCamera->ref =  sceneCamera->pos;
+		//sceneCamera->ref =  sceneCamera->pos;
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= sceneCamera->frustumCamera.front * speed;
 		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += sceneCamera->frustumCamera.front * speed;
 
@@ -179,6 +179,7 @@ update_status ModuleCamera3D::Update(float dt)
 			direction = direction * y;
 
 		}
+
 
 
 		rmat = sceneCamera->frustumCamera.WorldMatrix();
