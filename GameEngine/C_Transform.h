@@ -32,13 +32,21 @@ public:
 	mat4x4 GetGlobalT() const { return transpose(matrix); }
 
 
-	const vec3 GetPosition() { 
+	/*const vec3 GetPosition() {
 		
-		return position; };
+		return position; };*/
 
 	void ResetTransform();
 
+	const float3 GetPosition() {
 
+		float3 pos;
+		pos.x = position.x;
+		pos.y = position.y;
+		pos.z = position.z;
+
+		return pos;
+	};
 
 
 public:
