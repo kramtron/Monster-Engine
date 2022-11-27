@@ -65,9 +65,10 @@ void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT, float4x4 glob
 
 
 	OBB_ = AABB_;
-	OBB_.Transform(globalT);
+	OBB_.Transform(global);
 	global_AABB.SetNegativeInfinity();
 	global_AABB.Enclose(OBB_);
+
 }
 
 

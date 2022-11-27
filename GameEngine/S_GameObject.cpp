@@ -148,6 +148,10 @@ void GameObject::RenderM()
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
 	mesh->textureID = App->dummy->textureID;
 
+
+
+	
+
 	if (renderMesh == true) {
 		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS,transform->GetGlobal());
 	}
