@@ -21,7 +21,7 @@ void M_Mesh::InitAABB()
 
 }
 
-void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT)
+void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT, float4x4 global)
 {
 
 	glEnable(GL_TEXTURE_COORD_ARRAY);
@@ -42,7 +42,7 @@ void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT)
 
 
 	glPushMatrix();
-	glMultMatrixf(globalT.ptr());
+	glMultMatrixf(global.ptr());
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 

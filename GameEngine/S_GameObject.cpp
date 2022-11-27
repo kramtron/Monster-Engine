@@ -149,7 +149,7 @@ void GameObject::RenderM()
 	mesh->textureID = App->dummy->textureID;
 
 	if (renderMesh == true) {
-		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
+		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS,transform->GetGlobal());
 	}
 
 	if (renderAABB == true) {
