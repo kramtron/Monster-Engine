@@ -57,8 +57,12 @@ public:
 	OBB OBB_;
 	AABB global_AABB;
 
+	float3 tempCorn1[8];
+	float3 tempCorn2[8];
+
 	void InitAABB();
 	void RenderAABB();
+	void DrawAABB_Boxes(float3* x, float3 y);
 
 private:
 	vector<float3> tempVert;
