@@ -88,6 +88,7 @@
     <ClInclude Include="CamBuffers.h" />
     <ClInclude Include="CameraClass.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="C_Camera.h" />
     <ClInclude Include="C_Mesh.h" />
     <ClInclude Include="C_Transform.h" />
     <ClInclude Include="External_Libraries\Assimp\include\ai_assert.h" />
@@ -239,6 +240,7 @@
     <ClCompile Include="CamBuffers.cpp" />
     <ClCompile Include="CameraClass.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="C_Camera.cpp" />
     <ClCompile Include="C_Mesh.cpp" />
     <ClCompile Include="C_Transform.cpp" />
     <ClCompile Include="External_Libraries\ImGui\imgui.cpp" />

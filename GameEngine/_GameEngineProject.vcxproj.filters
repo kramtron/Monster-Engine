@@ -214,6 +214,9 @@
     <ClCompile Include="CamBuffers.cpp">
       <Filter>Sources\Tools\Camera\CamBuffers</Filter>
     </ClCompile>
+    <ClCompile Include="C_Camera.cpp">
+      <Filter>Sources\GO_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -662,6 +665,9 @@
     </ClInclude>
     <ClInclude Include="CamBuffers.h">
       <Filter>Sources\Tools\Camera\CamBuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Camera.h">
+      <Filter>Sources\GO_Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

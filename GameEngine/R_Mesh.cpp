@@ -55,4 +55,17 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 	glDisable(GL_TEXTURE_COORD_ARRAY);
 }
 
+void M_Mesh::InitAABB()
+{
+	for (size_t i = 0; i < num_vertices * VERTEX_ARGUMENTS; i += VERTEX_ARGUMENTS) {
+		tempVert.emplace_back(vertices[i], vertices[i + 1], vertices[i + 2]);
+	}
+	AABB_.SetFrom(&tempVert[0],tempVert.size());
+
+}
+
+void M_Mesh::RenderAABB()
+{
+}
+
 

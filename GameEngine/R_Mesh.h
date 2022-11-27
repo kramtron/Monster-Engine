@@ -8,7 +8,8 @@
 #include "Primitive.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include "glmath.h"
+//#include "glmath.h"
+#include "MathGeoLib.h"
 
 #include <vector>
 
@@ -48,4 +49,17 @@ public:
 
 
 		uint textureID = 0;
+
+public: 
+
+
+	AABB AABB_;
+	OBB OBB_;
+	AABB global_AABB;
+
+	void InitAABB();
+	void RenderAABB();
+
+private:
+	vector<float3> tempVert;
 };
