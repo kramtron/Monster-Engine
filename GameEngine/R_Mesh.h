@@ -31,7 +31,7 @@ public:
 		~M_Mesh();
 		
 
-	void meshRenderer(mat4x4, TextureTypes textureT);
+	void meshRenderer(float4x4, TextureTypes textureT);
 
 
 public:

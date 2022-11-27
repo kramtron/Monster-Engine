@@ -119,6 +119,8 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 			}
 		}
 
+		our_mesh->InitAABB();
+
 	}
 
 	glEnableClientState(GL_VERTEX_ARRAY);

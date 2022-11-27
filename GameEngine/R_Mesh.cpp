@@ -21,7 +21,7 @@ void M_Mesh::InitAABB()
 
 }
 
-void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
+void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT)
 {
 
 	glEnable(GL_TEXTURE_COORD_ARRAY);
@@ -42,7 +42,7 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 
 
 	glPushMatrix();
-	glMultMatrixf(&globalT);
+	glMultMatrixf(globalT.ptr());
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
@@ -62,6 +62,12 @@ void M_Mesh::meshRenderer(mat4x4 globalT, TextureTypes textureT)
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_TEXTURE_COORD_ARRAY);
+
+
+	OBB_ = AABB_;
+	OBB_.Transform(globalT);
+	global_AABB.SetNegativeInfinity();
+	global_AABB.Enclose(OBB_);
 }
 
 

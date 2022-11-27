@@ -151,4 +151,9 @@ void GameObject::RenderM()
 	if (renderMesh == true) {
 		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS);
 	}
+
+	if (renderAABB == true) {
+		mesh->RenderAABB();
+	}
+
 }

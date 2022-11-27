@@ -69,6 +69,8 @@ public:
 	C_Mesh* meshR = nullptr;
 
 
+	bool renderAABB = false;
+
 	bool renderMesh = true;
 };
 
