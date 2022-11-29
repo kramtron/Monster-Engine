@@ -134,11 +134,14 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 
 
-		rmat = sceneCamera->frustumCamera.WorldMatrix();
+
+		/*rmat = sceneCamera->frustumCamera.WorldMatrix();
 		rmat.SetRotatePart(direction.Normalized());
 		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
 
-		sceneCamera->frustumCamera.pos = sceneCamera->ref + (sceneCamera->frustumCamera.front * -(float3(sceneCamera->ref - sceneCamera->frustumCamera.pos).Length()));
+		sceneCamera->frustumCamera.pos = sceneCamera->ref + (sceneCamera->frustumCamera.front * -(float3(sceneCamera->ref - sceneCamera->frustumCamera.pos).Length()));*/	
+
+		//LOG("camera pos: %d", sceneCamera->frustumCamera.pos.x);
 
 		break;
 
@@ -158,7 +161,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 		//Quat direction;
 
-		sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
+		//sceneCamera->frustumCamera.WorldMatrix().Decompose(float3(), direction, float3());
 
 		if (dx != 0)
 		{
@@ -182,9 +185,9 @@ update_status ModuleCamera3D::Update(float dt)
 
 
 
-		rmat = sceneCamera->frustumCamera.WorldMatrix();
+		/*rmat = sceneCamera->frustumCamera.WorldMatrix();
 		rmat.SetRotatePart(direction.Normalized());
-		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
+		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());*/
 			
 
 			break;
@@ -205,13 +208,23 @@ update_status ModuleCamera3D::Update(float dt)
 		//Wheel Scroll
 		if (dw != 0) {
 			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.front * speed * -dw;
+
 		}
+
+		/*rmat = sceneCamera->frustumCamera.WorldMatrix();
+		rmat.SetRotatePart(direction.Normalized());
+		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());*/
+
 		break;
 	}
 
 	
 
-	
+	rmat = sceneCamera->frustumCamera.WorldMatrix();
+	rmat.SetRotatePart(direction.Normalized());
+	sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());
+
+	sceneCamera->frustumCamera.pos = sceneCamera->ref + (sceneCamera->frustumCamera.front * -(float3(sceneCamera->ref - sceneCamera->frustumCamera.pos).Length()));
 	
 
 	// Recalculate matrix -------------
@@ -261,7 +274,7 @@ float* ModuleCamera3D::GetViewMatrix()
 
 	//No this no work
 	viewMatrix.Transpose();
-	return ViewMatrix.ptr();
+	return viewMatrix.ptr();
 }
 
 void ModuleCamera3D::Draw()
@@ -274,8 +287,8 @@ void ModuleCamera3D::Draw()
 
 	glEnable(GL_DEPTH_TEST);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(GetViewMatrix());
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadMatrixf(GetViewMatrix());
 
 	//clear so no update depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -287,12 +300,12 @@ void ModuleCamera3D::StopDraw()
 {
 	glDisable(GL_DEPTH_TEST);
 }
-float ModuleCamera3D::GetProjMatrix()
+float* ModuleCamera3D::GetProjMatrix()
 {
 
 	float4x4 tempMatrixProj = sceneCamera->frustumCamera.ProjectionMatrix();
 	tempMatrixProj.Transpose();
-	return tempMatrixProj.v[0][0];
+	return &tempMatrixProj.v[0][0];
 }
 
 // -----------------------------------------------------------------

@@ -36,7 +36,7 @@ public:
 
 	//void LookAt(const float3& pos);
 
-	float GetProjMatrix();
+	float* GetProjMatrix();
 
 private:
 
@@ -70,5 +70,5 @@ public:
 
 private:
 
-	float4x4 ViewMatrix, ViewMatrixInverse;
+	
 };

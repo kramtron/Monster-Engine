@@ -16,6 +16,10 @@ public:
 	void StartCamBuffer(int width, int height);
 
 
+	float* GetViewMatrix();
+
+	float* GetProjectionMatrix();
+
 public:
 
 	float3 x, y, z;

@@ -12,6 +12,7 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_sdl.h"
 
+#include "CameraClass.h"
 #define MAX_LIGHTS 8
 
 class ModuleRenderer3D : public Module
@@ -27,7 +28,7 @@ public:
 
 	void OnResize(int width, int height);
 
-	
+	void BindCamerBuffers(CameraClass* cc);
 
 public:
 
