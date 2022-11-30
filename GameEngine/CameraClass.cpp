@@ -16,7 +16,7 @@ CameraClass::CameraClass()
 	frustumCamera.verticalFov = DegToRad(fieldOfView);
 	frustumCamera.horizontalFov = 2.0f * atanf(tanf(frustumCamera.verticalFov / 2.0f) * 1.77f);
 	frustumCamera.farPlaneDistance = 600.0f;
-	frustumCamera.nearPlaneDistance = 0.0f;
+	frustumCamera.nearPlaneDistance = 0.01f;
 	frustumCamera.front = z;
 	frustumCamera.up = y;
 
