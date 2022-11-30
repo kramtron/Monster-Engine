@@ -40,6 +40,7 @@ bool ModuleCamera3D::Init()
 	bool ret = true;
 
 	sceneCamera = new CameraClass();
+	sceneCamera->frustumCamera.pos = float3(0.0f, 0.0f, 10.0f);
 	return ret;
 }
 

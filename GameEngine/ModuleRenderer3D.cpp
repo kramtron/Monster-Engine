@@ -313,28 +313,28 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glViewport(0, 0, width, height);
 
-	glMatrixMode(GL_PROJECTION);
+	/*glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
 	glLoadMatrixf(&ProjectionMatrix);
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	glLoadIdentity();*/
 }
 
 void ModuleRenderer3D::BindCamerBuffers(CameraClass* cc)
 {
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-	/*glMatrixMode(GL_PROJECTION);
-	
-	glLoadMatrixf(cc->GetProjectionMatrix());*/
 
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	glLoadMatrixf(cc->GetProjectionMatrix());
+
+
+	/*glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	ProjectionMatrix = perspective(60.0f, (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.125f, 512.0f);
-	glLoadMatrixf(&ProjectionMatrix);
+	glLoadMatrixf(&ProjectionMatrix);*/
 
 
 	glMatrixMode(GL_MODELVIEW);
