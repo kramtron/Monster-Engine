@@ -33,20 +33,12 @@ public:
 	float4x4 GetGlobal() const { return matrix; }
 
 
-	/*const vec3 GetPosition() {
-		
-		return position; };*/
+	
 
 	void ResetTransform();
 
 	const float3 GetPosition() {
-
-		float3 pos;
-		pos.x = position.x;
-		pos.y = position.y;
-		pos.z = position.z;
-
-		return pos;
+		return position;
 	};
 
 

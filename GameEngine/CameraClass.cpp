@@ -1,5 +1,5 @@
 #include "CameraClass.h"
-
+#include "Globals.h"
 CameraClass::CameraClass()
 {
 
@@ -7,7 +7,7 @@ CameraClass::CameraClass()
 	y = float3(0.0f, 1.0f, 0.0f);
 	z = float3(0.0f, 0.0f, 1.0f);
 
-	this->pos = float3(-3.0f, 0.0f, -3.0f);
+	this->pos = float3(0.0f, 0.0f, -10.0f);
 	this->ref = float3(0.0f, 0.0f, 0.0f);
 
 
@@ -22,6 +22,7 @@ CameraClass::CameraClass()
 
 	frustumCamera.pos = this->pos;
 
+	//StartCamBuffer(SCREEN_WIDTH,SCREEN_HEIGHT);
 
 }
 
