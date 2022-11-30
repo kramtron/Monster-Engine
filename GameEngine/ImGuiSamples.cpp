@@ -67,18 +67,24 @@ void ImGuiSamples::NewFrame(float dt)
 
 	
 
-	if(ImH->gameObjectSelected !=nullptr)
-	App->camera->gOpos = ImH->gameObjectSelected->transform;
-	
+	ImMainMenuBar::Update(App, ImH);
+
+
+}
+
+void ImGuiSamples::Render(float dt)
+{
+	if (ImH->gameObjectSelected != nullptr)
+		App->camera->gOpos = ImH->gameObjectSelected->transform;
+
 
 
 
 	//Pasar esto a una lista??
-	ImMainMenuBar::Update(App,ImH);
 	ImHierarchyWindow::Update(ImH);
 	ImSceneWindow::Update(App);
 	Console::PrintDebug();
-	ImInspectorWindow::Update(ImH,ImI);
+	ImInspectorWindow::Update(ImH, ImI);
 	ImConfigWindow::Update(App, dt);
 	ImGameWindow::Update(App);
 
@@ -97,12 +103,6 @@ void ImGuiSamples::NewFrame(float dt)
 		ImGui::RenderPlatformWindowsDefault();
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
-
-}
-
-void ImGuiSamples::Render()
-{
-	
 }
 
 void ImGuiSamples::CleanUp()

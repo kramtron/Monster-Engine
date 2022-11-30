@@ -24,7 +24,7 @@ public:
 
 	static void NewFrame(float dt);
 
-	static void Render();
+	static void Render(float dt);
 
 	static void CleanUp();
 

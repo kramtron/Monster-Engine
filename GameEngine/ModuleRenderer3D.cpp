@@ -250,6 +250,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 		lights[i].Render();
 
 
+	ImGuiSamples::NewFrame(dt);
 
 
 	return UPDATE_CONTINUE;
@@ -273,9 +274,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	ImGuiSamples::NewFrame(dt);
 
-
+	ImGuiSamples::Render(dt);
 	SDL_GL_SwapWindow(App->window->window);
 	
 	return UPDATE_CONTINUE;

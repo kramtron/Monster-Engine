@@ -11,18 +11,17 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	dummy = new ModuleDummy(this);
 	renderer3D = new ModuleRenderer3D(this);
-
-	//resources = new ModuleResources(this);
+	resources = new ModuleResources(this);
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
 	// They will CleanUp() in reverse order
 
 	// Main Modules
 	AddModule(window);
+	AddModule(input);
 	AddModule(camera);
 	AddModule(dummy);
-	AddModule(input);
-	//AddModule(resources);
+	AddModule(resources);
 	// Renderer last!
 	AddModule(renderer3D);
 }

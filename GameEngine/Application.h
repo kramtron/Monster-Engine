@@ -22,8 +22,7 @@ public:
 	ModuleCamera3D* camera;
 	ModuleDummy* dummy;
 	ModuleRenderer3D* renderer3D;
-
-	//ModuleResources* resources;
+	ModuleResources* resources;
 
 private:
 
