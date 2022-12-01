@@ -7,7 +7,7 @@ ModuleResources::ModuleResources(Application* app, bool start_enabled) : Module(
 	//Init physfs
 	PHYSFS_init(nullptr);
 	PHYSFS_mount(".", nullptr, 1);
-	PHYSFS_setWriteDir("Assets");
+	SetNewPath("Assets");
 
 }
 
@@ -22,16 +22,14 @@ ModuleResources::~ModuleResources()
 
 update_status ModuleResources::Update(float dt)
 {
-
-
-	
-
 	ImMainMenuBar::ThemeStyleW();
 	ImMainMenuBar::ThemeStyleChanger();
 
 	ImGui::Begin("Assets", 0, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse);
 
 	PrintFolders();
+
+	Refresh();
 
 	ImGui::End();
 
@@ -66,7 +64,7 @@ void ModuleResources::PathInfo(const char* path)
 	ClearAssetsList();
 
 	AddFolders(path, assets);
-	AddFolders(path, assets);
+	//AddFolders(path, assets);
 
 	PHYSFS_freeList(assets);
 }
@@ -74,7 +72,52 @@ void ModuleResources::PathInfo(const char* path)
 
 void ModuleResources::PrintFolders()
 {
+
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::Button("New Folder")) {
+			CreateFolder(NEW_FOLDER_PATH);
+			refresh = true;
+		}
+
+
+
+		ImGui::EndMenuBar();
+	}
+
+
+	for (int i = 0; i < assetsList.size(); i++) {
+		FileInfo tempFile = assetsList[i];
+
+		ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_FramePadding;
+
+		
+		bool TreeNodeEx = ImGui::TreeNodeEx((void*)(intptr_t)&tempFile, treeNodeFlags, tempFile.name.c_str());
+
+		if (ImGui::IsItemHovered())
+		{
+			
+			if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_::ImGuiMouseButton_Right))
+			{
+				DeleteFolder(tempFile);
+			}
+			
+			else if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_::ImGuiMouseButton_Left))
+			{
+				if (tempFile.folder)
+					SetNewPath(tempFile.path.c_str());
+			}
+			
+
+		}
+
+		if (TreeNodeEx)
+		{
+			ImGui::TreePop();
+		}
 	
+		ImGui::Separator();
+	}
 
 }
 
@@ -91,6 +134,13 @@ void ModuleResources::AddFolders(const char* path, char** assets)
 			assetsList.push_back(tempFileInfo);
 		}
 	}
+}
+
+void ModuleResources::DeleteFolder(FileInfo path)
+{
+	PHYSFS_delete(path.name.c_str());
+	refresh = true;
+
 }
 
 

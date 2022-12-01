@@ -10,6 +10,10 @@
 
 typedef unsigned int uint;
 
+#include <vector>
+
+struct FileInfo;
+
 
 class ModuleResources : public Module
 {
@@ -40,6 +44,10 @@ public:
 
 	void AddFolders(const char* path, char** assets);
 	void AddFiles(const char* path, char** assets);
+
+	void DeleteFolder(FileInfo path);
+
+	
 public:
 
 	void CreateFolder(char* path) {
@@ -47,20 +55,29 @@ public:
 	}
 
 
-	void DeleteFolder(char* path) {
-		PHYSFS_delete(path);
-
+	void SetNewPath(const char* path) {
+		newPath = path;
+		PHYSFS_setWriteDir(path);
+		PathInfo(path);
 	}
 
 	void ClearAssetsList() {
 		assetsList.clear();
 	}
+
+	void Refresh() {
+		if (refresh) {
+			PathInfo(newPath.c_str());
+			refresh = false;
+		}
+	}
 private:
 
 	vector<FileInfo> assetsList;
 
+	string newPath;
 	//const ModuleResources* RequestResource(uint uid) const;
-
+	bool refresh = false;
 
 };
 
