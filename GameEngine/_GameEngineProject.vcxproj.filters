@@ -61,9 +61,6 @@
     <ClCompile Include="ModuleDummy.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="R_Mesh.cpp">
-      <Filter>Sources\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="T_MeshLoader.cpp">
       <Filter>Sources\Tools\MeshLoader</Filter>
     </ClCompile>
@@ -217,6 +214,10 @@
     <ClCompile Include="C_Camera.cpp">
       <Filter>Sources\GO_Components</Filter>
     </ClCompile>
+    <ClCompile Include="R_Mesh.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="T_FileInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -404,9 +405,6 @@
     </ClInclude>
     <ClInclude Include="External_Libraries\Assimp\include\version.h">
       <Filter>Libraries\Assimp</Filter>
-    </ClInclude>
-    <ClInclude Include="R_Mesh.h">
-      <Filter>Sources\Resources</Filter>
     </ClInclude>
     <ClInclude Include="T_MeshLoader.h">
       <Filter>Sources\Tools\MeshLoader</Filter>
@@ -668,6 +666,12 @@
     </ClInclude>
     <ClInclude Include="C_Camera.h">
       <Filter>Sources\GO_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="R_Mesh.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="T_FileInfo.h">
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

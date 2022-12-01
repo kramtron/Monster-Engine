@@ -31,7 +31,7 @@ update_status ModuleResources::Update(float dt)
 
 	ImGui::Begin("Assets", 0, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse);
 
-	PrintFolders((char*)pathName.c_str());
+	PrintFolders();
 
 	ImGui::End();
 
@@ -59,12 +59,38 @@ bool ModuleResources::CleanUp()
 }
 
 
-
-void ModuleResources::PrintFolders(char* path)
+void ModuleResources::PathInfo(const char* path)
 {
-	char** path1 = PHYSFS_enumerateFiles(path);
-	char** path2;
+	char** assets = PHYSFS_enumerateFiles(path);
+
+	ClearAssetsList();
+
+	AddFolders(path, assets);
+	AddFolders(path, assets);
+
+	PHYSFS_freeList(assets);
+}
 
 
+void ModuleResources::PrintFolders()
+{
+	
 
 }
+
+
+
+void ModuleResources::AddFolders(const char* path, char** assets)
+{
+
+	for (int i = 0; assets[i] != NULL; i++) {
+		string tempPath = path;
+		tempPath.append("/").append(assets[i]);
+		FileInfo tempFileInfo(tempPath);
+		if (!tempFileInfo.folder) {
+			assetsList.push_back(tempFileInfo);
+		}
+	}
+}
+
+

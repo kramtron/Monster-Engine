@@ -3,9 +3,9 @@
 #include "Globals.h"
 #include "ImMainMenuBar.h"
 #include "physfs.h"
-
+#include "T_FileInfo.h"
 #define NEW_FOLDER_PATH "Default_New_Folder/"
-
+#define PATH_NAME "Assets"
 #pragma comment( lib, "External_Libraries/PhysFS/libx86/physfs.lib" )
 
 typedef unsigned int uint;
@@ -33,8 +33,13 @@ public:
 
 
 	
-	void PrintFolders(char* path);
+	void PrintFolders();
 
+	void PathInfo(const char* path);
+
+
+	void AddFolders(const char* path, char** assets);
+	void AddFiles(const char* path, char** assets);
 public:
 
 	void CreateFolder(char* path) {
@@ -47,8 +52,12 @@ public:
 
 	}
 
+	void ClearAssetsList() {
+		assetsList.clear();
+	}
 private:
-	string pathName = "Assets";
+
+	vector<FileInfo> assetsList;
 
 	//const ModuleResources* RequestResource(uint uid) const;
 
