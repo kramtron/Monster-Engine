@@ -77,7 +77,6 @@ void ModuleResources::PrintFolders()
 	{
 		if (ImGui::Button("New Folder")) {
 			CreateFolder(NEW_FOLDER_PATH);
-			refresh = true;
 		}
 
 

@@ -52,6 +52,8 @@ public:
 
 	void CreateFolder(char* path) {
 		PHYSFS_mkdir(path);
+		refresh = true;
+
 	}
 
 
