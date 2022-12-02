@@ -4,15 +4,16 @@
 
 
 
-struct FileInfo {
+struct File {
 
 public:
-	FileInfo(string path);
+	File(string path);
 
 
 public:
 
 	string path, name, extension;
 	bool folder;
+	bool selected = false;
 
 };

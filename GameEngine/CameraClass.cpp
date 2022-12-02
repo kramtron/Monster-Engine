@@ -13,7 +13,7 @@ CameraClass::CameraClass()
 
 	//Mal orden = No va
 	frustumCamera.type = FrustumType::PerspectiveFrustum;
-	frustumCamera.verticalFov = DegToRad(fieldOfView);
+	frustumCamera.verticalFov = DegToRad(60.0);
 	frustumCamera.horizontalFov = 2.0f * atanf(tanf(frustumCamera.verticalFov / 2.0f) * 1.77f);
 	frustumCamera.farPlaneDistance = 600.0f;
 	frustumCamera.nearPlaneDistance = 0.01f;
@@ -44,18 +44,17 @@ void CameraClass::StartCamBuffer(int width, int height)
 	cameraBuffer.StartCamBuffers(width, height);
 }
 
-float* CameraClass::GetViewMatrix()
+float4x4 CameraClass::GetViewMatrix()
 {
 	viewMatrix = frustumCamera.ViewMatrix();
 
 	//No this no work
 	viewMatrix.Transpose();
-	return viewMatrix.ptr();
+	return viewMatrix;
 }
 
-float* CameraClass::GetProjectionMatrix()
+float4x4 CameraClass::GetProjectionMatrix()
 {
-	projMatrix = frustumCamera.ProjectionMatrix();
-	projMatrix.Transpose();
-	return projMatrix.ptr();
+	projMatrix = frustumCamera.ProjectionMatrix().Transposed();
+	return projMatrix;
 }

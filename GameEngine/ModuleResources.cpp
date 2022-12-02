@@ -76,7 +76,27 @@ void ModuleResources::PrintFolders()
 	if (ImGui::BeginMenuBar())
 	{
 		if (ImGui::Button("New Folder")) {
+
 			CreateFolder(NEW_FOLDER_PATH);
+
+			/*if (folderCounter == 0) {
+				CreateFolder(NEW_FOLDER_PATH);
+				folderCounter++;
+
+			}
+			else {
+				char* tempPath = NEW_FOLDER_PATH;
+				char* tempPath2 = tempPath + (folderCounter);
+				CreateFolder();
+				folderCounter++;
+
+			}*/
+
+
+		}
+		ImGui::Separator();
+		if (ImGui::Button("<--")) {
+			GoBackPath();
 		}
 
 
@@ -86,7 +106,7 @@ void ModuleResources::PrintFolders()
 
 
 	for (int i = 0; i < assetsList.size(); i++) {
-		FileInfo tempFile = assetsList[i];
+		File tempFile = assetsList[i];
 
 		ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_FramePadding;
 
@@ -128,18 +148,22 @@ void ModuleResources::AddFolders(const char* path, char** assets)
 	for (int i = 0; assets[i] != NULL; i++) {
 		string tempPath = path;
 		tempPath.append("/").append(assets[i]);
-		FileInfo tempFileInfo(tempPath);
-		if (!tempFileInfo.folder) {
-			assetsList.push_back(tempFileInfo);
-		}
+		File tempFile(tempPath);
+		assetsList.push_back(tempFile);
+		
 	}
 }
 
-void ModuleResources::DeleteFolder(FileInfo path)
+void ModuleResources::DeleteFolder(File path)
 {
 	PHYSFS_delete(path.name.c_str());
 	refresh = true;
 
+}
+
+void ModuleResources::GoBackPath()
+{
+	SetNewPath(PATH_NAME);
 }
 
 

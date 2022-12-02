@@ -217,7 +217,9 @@
     <ClCompile Include="R_Mesh.cpp">
       <Filter>Sources\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="T_FileInfo.cpp" />
+    <ClCompile Include="T_FileInfo.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">

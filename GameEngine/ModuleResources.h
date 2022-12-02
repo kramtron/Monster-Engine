@@ -4,7 +4,7 @@
 #include "ImMainMenuBar.h"
 #include "physfs.h"
 #include "T_FileInfo.h"
-#define NEW_FOLDER_PATH "Default_New_Folder/"
+#define NEW_FOLDER_PATH "Folder/"
 #define PATH_NAME "Assets"
 #pragma comment( lib, "External_Libraries/PhysFS/libx86/physfs.lib" )
 
@@ -12,7 +12,7 @@ typedef unsigned int uint;
 
 #include <vector>
 
-struct FileInfo;
+struct File;
 
 
 class ModuleResources : public Module
@@ -45,12 +45,14 @@ public:
 	void AddFolders(const char* path, char** assets);
 	void AddFiles(const char* path, char** assets);
 
-	void DeleteFolder(FileInfo path);
+	void DeleteFolder(File path);
 
+	void GoBackPath();
 	
 public:
 
 	void CreateFolder(char* path) {
+		
 		PHYSFS_mkdir(path);
 		refresh = true;
 
@@ -75,11 +77,12 @@ public:
 	}
 private:
 
-	vector<FileInfo> assetsList;
+	vector<File> assetsList;
 
 	string newPath;
 	//const ModuleResources* RequestResource(uint uid) const;
 	bool refresh = false;
+	int folderCounter = 0;
 
 };
 

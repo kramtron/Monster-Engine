@@ -29,7 +29,7 @@ public:
 
 	void InspectorW() override;
 
-	float4x4 GetGlobalT() const { return matrix.Transposed(); }
+	float4x4 GetGlobalT() const { return matrix; }
 	float4x4 GetGlobal() const { return matrix; }
 
 

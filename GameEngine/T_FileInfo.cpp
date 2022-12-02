@@ -1,6 +1,6 @@
 #include "T_FileInfo.h"
 
-FileInfo::FileInfo(string path)
+File::File(string path)
 {
 	//Copy the path
 	this->path = path;

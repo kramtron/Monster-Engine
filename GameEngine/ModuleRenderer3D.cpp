@@ -326,9 +326,9 @@ void ModuleRenderer3D::BindCamerBuffers(CameraClass* cc)
 {
 
 
-	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glLoadMatrixf(cc->GetProjectionMatrix());
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)cc->GetProjectionMatrix().ptr());
 
 
 	/*glMatrixMode(GL_PROJECTION);
@@ -338,7 +338,7 @@ void ModuleRenderer3D::BindCamerBuffers(CameraClass* cc)
 
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(cc->GetViewMatrix());
+	glLoadMatrixf((GLfloat*)cc->GetViewMatrix().ptr());
 	glBindFramebuffer(GL_FRAMEBUFFER, cc->cameraBuffer.GetFrameBuffer());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

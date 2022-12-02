@@ -16,9 +16,9 @@ public:
 	void StartCamBuffer(int width, int height);
 
 
-	float* GetViewMatrix();
+	float4x4 GetViewMatrix();
 
-	float* GetProjectionMatrix();
+	float4x4 GetProjectionMatrix();
 
 public:
 
