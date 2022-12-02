@@ -40,8 +40,10 @@ bool ModuleCamera3D::Init()
 	bool ret = true;
 
 	sceneCamera = new CameraClass();
-	sceneCamera->frustumCamera.pos = float3(0.0f, 0.0f, 10.0f);
+	sceneCamera->frustumCamera.pos = float3(0.0f, 5.0f, 10.0f);
+	LookAt(float3(0.0f,0.0f,0.0f));
 	return ret;
+
 }
 
 // -----------------------------------------------------------------
@@ -208,9 +210,6 @@ update_status ModuleCamera3D::Update(float dt)
 
 		}
 
-		/*rmat = sceneCamera->frustumCamera.WorldMatrix();
-		rmat.SetRotatePart(direction.Normalized());
-		sceneCamera->frustumCamera.SetWorldMatrix(rmat.Float3x4Part());*/
 
 		break;
 	}

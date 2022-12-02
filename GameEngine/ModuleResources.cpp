@@ -76,21 +76,21 @@ void ModuleResources::PrintFolders()
 	if (ImGui::BeginMenuBar())
 	{
 		if (ImGui::Button("New Folder")) {
+			
 
-			CreateFolder(NEW_FOLDER_PATH);
-
-			/*if (folderCounter == 0) {
+			if (folderCounter == 0) {
 				CreateFolder(NEW_FOLDER_PATH);
 				folderCounter++;
 
 			}
 			else {
-				char* tempPath = NEW_FOLDER_PATH;
-				char* tempPath2 = tempPath + (folderCounter);
-				CreateFolder();
+				string tempString = NEW_FOLDER_PATH2;
+				tempString = tempString + (" ") + std::to_string(folderCounter) + ("/");
+				const char* tempChar = tempString.c_str();
+				CreateFolder(tempChar);
 				folderCounter++;
 
-			}*/
+			}
 
 
 		}
@@ -157,6 +157,7 @@ void ModuleResources::AddFolders(const char* path, char** assets)
 void ModuleResources::DeleteFolder(File path)
 {
 	PHYSFS_delete(path.name.c_str());
+	//folderCounter--;
 	refresh = true;
 
 }

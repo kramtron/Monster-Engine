@@ -5,6 +5,7 @@
 #include "physfs.h"
 #include "T_FileInfo.h"
 #define NEW_FOLDER_PATH "Folder/"
+#define NEW_FOLDER_PATH2 "Folder"
 #define PATH_NAME "Assets"
 #pragma comment( lib, "External_Libraries/PhysFS/libx86/physfs.lib" )
 
@@ -51,7 +52,7 @@ public:
 	
 public:
 
-	void CreateFolder(char* path) {
+	void CreateFolder(const char* path) {
 		
 		PHYSFS_mkdir(path);
 		refresh = true;
