@@ -64,9 +64,9 @@ update_status ModuleCamera3D::Update(float dt)
 	newPos = float3(0, 0, 0);
 	 
 
-	float speed = 300.0f * dt;
+	float speed = 30.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = 8.0f * dt;
+		speed = 45.0f * dt;
 
 	//Mouse scrolls
 	int dx = -App->input->GetMouseXMotion();

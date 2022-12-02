@@ -26,7 +26,7 @@ void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT, float4x4 glob
 
 	OBB_ = AABB_;
 	//Why don't work with transposed?
-	OBB_.Transform(global);
+	OBB_.Transform(globalT);
 	global_AABB.SetNegativeInfinity();
 	global_AABB.Enclose(OBB_);
 
