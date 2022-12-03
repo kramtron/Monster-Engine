@@ -14,11 +14,13 @@ ImHierarchyWindow::ImHierarchyWindow()
 	MeshLoader::LoadFile("Assets/BakerHouse.fbx",gO);
 	//gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
 	
-	/*GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
-	gO4->meshes = MeshLoader::LoadFile("Assets/street2.FBX", gO4);
-	gO4->meshR = (C_Mesh*)gO4->AddComponent(Component::Type::Mesh);
+	GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
+	MeshLoader::LoadFile("Assets/street2.FBX", gO4);
+	gO4->transform->rotation = float3(-90.0f,0.0f,0.0f);
+	gO4->transform->TransformToUpdate();
+	
 
-	GameObject* gO2 = new GameObject("Sphere", rootGameObject, "first");
+	/*GameObject* gO2 = new GameObject("Sphere", rootGameObject, "first");
 	gO2->meshes = MeshLoader::LoadFile("Assets/Sphere.fbx", gO2);
 	gO2->meshR = (C_Mesh*)gO2->AddComponent(Component::Type::Mesh);
 

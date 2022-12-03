@@ -30,6 +30,8 @@ public:
 
 	void BindCamerBuffers(CameraClass* cc);
 
+	void RenderMeshes();
+
 public:
 
 	Light lights[MAX_LIGHTS];

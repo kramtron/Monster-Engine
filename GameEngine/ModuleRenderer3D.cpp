@@ -184,7 +184,7 @@ bool ModuleRenderer3D::Init()
 	//All this now in CamBuffers Class!
 
 	App->camera->sceneCamera->StartCamBuffer(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	App->camera->gameCamera->StartCamBuffer(SCREEN_WIDTH, SCREEN_HEIGHT);
 	/*//Colocar en otro sitio
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);*/
@@ -242,7 +242,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	BindCamerBuffers(App->camera->sceneCamera);
 
-	//BindCamerBuffers(App->camera->sceneCamera);
 
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
@@ -261,17 +260,21 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 
 
-	//Algo temporal. Esto va en un meshrender component
-	for (int i = 1; i < ImGuiSamples::ImH->referenceGameObject->size(); i++) {
-
-		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
 
 
-		if (gO->mesh != nullptr && gO->name != "Root") {
-			gO->RenderM();
-		}
+	RenderMeshes();
+	if (App->camera->gameCamera != nullptr) {
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
+		BindCamerBuffers(App->camera->gameCamera);
+		RenderMeshes();
+
 	}
-	
+
+
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 
@@ -309,17 +312,8 @@ bool ModuleRenderer3D::CleanUp()
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 
-
-
 	glViewport(0, 0, width, height);
 
-	/*glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
-	glLoadMatrixf(&ProjectionMatrix);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();*/
 }
 
 void ModuleRenderer3D::BindCamerBuffers(CameraClass* cc)
@@ -343,6 +337,21 @@ void ModuleRenderer3D::BindCamerBuffers(CameraClass* cc)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
+}
+
+void ModuleRenderer3D::RenderMeshes()
+{
+
+	//Algo temporal. Esto va en un meshrender component
+	for (int i = 1; i < ImGuiSamples::ImH->referenceGameObject->size(); i++) {
+
+		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
+
+
+		if (gO->mesh != nullptr && gO->name != "Root") {
+			gO->RenderM();
+		}
+	}
 }
 
 

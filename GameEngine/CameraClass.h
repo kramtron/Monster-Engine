@@ -20,6 +20,8 @@ public:
 
 	float4x4 GetProjectionMatrix();
 
+	void LookAt(const float3& Spot);
+
 public:
 
 	float3 x, y, z;

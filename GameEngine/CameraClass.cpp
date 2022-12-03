@@ -58,3 +58,16 @@ float4x4 CameraClass::GetProjectionMatrix()
 	projMatrix = frustumCamera.ProjectionMatrix().Transposed();
 	return projMatrix;
 }
+
+void CameraClass::LookAt(const float3& Spot)
+{
+
+	ref = Spot;
+
+
+	//Voy a cometer crimenes de guerra como esto no funcione
+	frustumCamera.front = (Spot -frustumCamera.pos).Normalized();
+	float3 x = float3(0.0f, 1.0f, 0.0f).Cross(frustumCamera.front).Normalized();
+	frustumCamera.up = frustumCamera.front.Cross(x);
+
+}
