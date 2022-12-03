@@ -1,5 +1,6 @@
 #include "CameraClass.h"
 #include "Globals.h"
+#include "R_mesh.h"
 CameraClass::CameraClass()
 {
 
@@ -70,4 +71,35 @@ void CameraClass::LookAt(const float3& Spot)
 	float3 x = float3(0.0f, 1.0f, 0.0f).Cross(frustumCamera.front).Normalized();
 	frustumCamera.up = frustumCamera.front.Cross(x);
 
+}
+
+bool CameraClass::FrustumChecker(M_Mesh* mesh)
+{
+
+	float3 tempPoints[8];
+	Plane tempFrustumPlanes[6];
+
+
+	mesh->global_AABB.GetCornerPoints(tempPoints);
+	frustumCamera.GetPlanes(tempFrustumPlanes);
+
+	for (size_t i = 0; i < 6; i++)
+	{
+		int tempInt = 0;
+
+		for (size_t j = 0; j < 8; j++)
+		{
+			if (tempFrustumPlanes[i].IsOnPositiveSide(tempPoints[j]))
+				tempInt++;
+		}
+
+		if (tempInt == 8) {
+			return false;
+		}
+	}
+
+	return true;
+
+
+	return false;
 }

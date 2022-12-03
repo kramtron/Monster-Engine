@@ -269,6 +269,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 
 		BindCamerBuffers(App->camera->gameCamera);
+
 		RenderMeshes();
 
 	}
@@ -347,6 +348,7 @@ void ModuleRenderer3D::RenderMeshes()
 
 		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
 
+		if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;
 
 		if (gO->mesh != nullptr && gO->name != "Root") {
 			gO->RenderM();

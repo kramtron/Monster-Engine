@@ -3,7 +3,7 @@
 #include "MathGeoLib.h"
 #include "CamBuffers.h"
 
-
+class M_Mesh;
 class CameraClass
 {
 public:
@@ -38,5 +38,6 @@ public:
 
 	//Application* app;
 
+	bool FrustumChecker(M_Mesh* mesh);
 };
 

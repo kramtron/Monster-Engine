@@ -147,6 +147,7 @@ void GameObject::RenderM()
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
 
 	if (mesh != nullptr) {
+
 		mesh->textureID = App->dummy->textureID;
 		float4x4 tempMat;
 		if (renderMesh == true) {
