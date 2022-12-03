@@ -34,31 +34,37 @@ void Primitive::CreatePrimitive(GameObject* p=nullptr, PrimitiveType t = Primiti
 	case PrimitiveType::CUBE:
 	{
 
-		GameObject* cube = new GameObject("Cube", p, "cube", MeshLoader::LoadFile("Assets/cube.fbx"));
+		GameObject* cube = new GameObject("Cube", p, "cube");
+		MeshLoader::LoadFile("Assets/cube.fbx", cube);
+		//cube->meshR = (C_Mesh*)cube->AddComponent(Component::Type::Mesh);
 		break;
 
 	}
 	case PrimitiveType::PLANE:
 	{
-		GameObject* cube2 = new GameObject("Plane", p, "plane", MeshLoader::LoadFile("Assets/plane.fbx"));
-
+		GameObject* plane = new GameObject("Plane", p, "plane");
+		MeshLoader::LoadFile("Assets/plane.fbx", plane);
+		
 		break;
 	}
 	case PrimitiveType::SPHERE:
 	{
-		GameObject* cube3 = new GameObject("Sphere", p, "sphere", MeshLoader::LoadFile("Assets/sphere.fbx"));
+		GameObject* sphere = new GameObject("Sphere", p, "sphere");
+		MeshLoader::LoadFile("Assets/sphere.fbx", sphere);
+		
 
 		break;
 	}
 	case PrimitiveType::CYLINDER:
 	{
-		GameObject* cube4 = new GameObject("Cylinder", p, "cylinder", MeshLoader::LoadFile("Assets/cylinder.fbx"));
-
+		GameObject* cylinder = new GameObject("Cylinder", p, "cylinder");
+		MeshLoader::LoadFile("Assets/cylinder.fbx",cylinder);
+		
 		break;
 	}
 	case PrimitiveType::EMPTY:
 	{
-		GameObject* cube4 = new GameObject("Empty", p, "cylinder",nullptr);
+		GameObject* cube4 = new GameObject("Empty", p, "cylinder");
 
 		break;
 	}

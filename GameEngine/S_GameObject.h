@@ -22,7 +22,7 @@ class GameObject
 
 public:
 
-	GameObject(std::string name, GameObject* parent, string tag, M_Mesh* our_mesh);
+	GameObject(std::string name, GameObject* parent, string tag);
 	~GameObject();
 
 
@@ -63,7 +63,8 @@ public:
 
 	static Application* App;
 
-	M_Mesh* mesh;
+	//vector<M_Mesh*> meshes;
+	M_Mesh* mesh=nullptr;
 
 	C_Transform* transform = nullptr;
 	C_Mesh* meshR = nullptr;

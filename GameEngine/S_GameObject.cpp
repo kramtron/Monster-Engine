@@ -5,22 +5,21 @@
 Application* GameObject::App = nullptr;
 
 
-GameObject::GameObject(std::string name = "default", GameObject* parent = nullptr, std::string tag = "default", M_Mesh* our_mesh = nullptr) : name(name), tag(tag)
+GameObject::GameObject(std::string name = "default", GameObject* parent = nullptr, std::string tag = "default" ) : name(name), tag(tag)
 {
 
 	App->dummy->AddGameObject(this);
 	transform = (C_Transform*)AddComponent(Component::Type::Transform);
 
-	if (our_mesh != nullptr) {
-		meshR = (C_Mesh*)AddComponent(Component::Type::Mesh);
-	}
-	if (parent != nullptr) {
-		parent->children.push_back(this);
-	}
-
-	mesh = our_mesh;
+	
 
 	
+	if (parent != nullptr) {
+		parent->children.push_back(this);
+		this->parent = parent;
+	}
+
+
 }
 
 GameObject::~GameObject()
@@ -146,18 +145,20 @@ void GameObject::RenderM()
 	
 	//C_Transform* transform = this->transform;
 	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
-	mesh->textureID = App->dummy->textureID;
 
+	if (mesh != nullptr) {
+		mesh->textureID = App->dummy->textureID;
+		float4x4 tempMat;
+		if (renderMesh == true) {
+			if (this->parent == nullptr) tempMat = transform->GetLocal();
+			else {
+				tempMat = parent->transform->GetGlobal()* transform->GetLocal();
+			}
+			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
+		}
 
-
-	
-
-	if (renderMesh == true) {
-		mesh->meshRenderer(transform->GetGlobalT(), TextureTypes::CHECKERS,transform->GetGlobal());
+		if (renderAABB == true) {
+			mesh->RenderAABB();
+		}
 	}
-
-	if (renderAABB == true) {
-		mesh->RenderAABB();
-	}
-
 }

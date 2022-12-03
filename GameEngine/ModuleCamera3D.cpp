@@ -66,9 +66,9 @@ update_status ModuleCamera3D::Update(float dt)
 	newPos = float3(0, 0, 0);
 	 
 
-	float speed = 30.0f * dt;
+	float speed = 60.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = 45.0f * dt;
+		speed = 120.0f * dt;
 
 	//Mouse scrolls
 	int dx = -App->input->GetMouseXMotion();
@@ -199,8 +199,8 @@ update_status ModuleCamera3D::Update(float dt)
 			newPos -= Y * dy * Sensitivity;*/
 
 			//Is WorldRight no worldMat 
-			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.WorldRight() * (speed * dx / 2);
-			sceneCamera->frustumCamera.pos -= sceneCamera->frustumCamera.up * (speed * dy / 2);
+			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.WorldRight() * (speed/2 * dx / 2);
+			sceneCamera->frustumCamera.pos -= sceneCamera->frustumCamera.up * (speed/2 * dy / 2);
 
 		}
 
@@ -209,7 +209,6 @@ update_status ModuleCamera3D::Update(float dt)
 			sceneCamera->frustumCamera.pos += sceneCamera->frustumCamera.front * speed * -dw;
 
 		}
-
 
 		break;
 	}

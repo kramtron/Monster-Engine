@@ -51,7 +51,7 @@ void C_Transform::TransformToUpdate()
 
 
 	//Parche temporal deebria ser mas limpio
-
+	//Gracais video de Yt sin tu no funciona esto
 	float rx = rotation.x * DEGTORAD;
 	float ry = rotation.y * DEGTORAD;
 	float rz = rotation.z * DEGTORAD;
@@ -64,7 +64,6 @@ void C_Transform::TransformToUpdate()
 	matrix[0][2] = -sin(ry);
 	matrix[1][2] = cos(ry) * sin(rx);
 	matrix[2][2] = cos(ry) * cos(rx) * scale.z;
-
 	matrix[3][0] = position.x;
 	matrix[3][1] = position.y;
 	matrix[3][2] = position.z;

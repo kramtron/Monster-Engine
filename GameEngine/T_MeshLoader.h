@@ -22,7 +22,7 @@ public:
 	static void StopDebugMode();
 	
 	static M_Mesh* LoadMesh(aiMesh* importedMesh);
-	static M_Mesh* LoadFile(string file_path);
+	static M_Mesh* LoadFile(string file_path, GameObject* parent);
 
 	static void Renderer();
 	static void CleanUp();

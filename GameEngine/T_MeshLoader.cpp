@@ -30,23 +30,29 @@ void MeshLoader::StopDebugMode()
 }
 
 
-M_Mesh* MeshLoader::LoadFile(string file_path)
+M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 {
 	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
 
-		M_Mesh* our_mesh = new M_Mesh();
-
+		//vector<M_Mesh*> our_mesh;
+		M_Mesh* our_mesh;
+		
 			for (uint i = 0; i < scene->mNumMeshes; i++) {
 
 				our_mesh = MeshLoader::LoadMesh(scene->mMeshes[i]);
+
+				//our_mesh[i] = new M_Mesh();
+				GameObject* gO = new GameObject("Mesh" + to_string(i), parent, "none");
+				gO->mesh = our_mesh;
+				gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
 				
 
 			}
 			//Esto fuera o no renderiza si un fbx tiene mas de 1 objeto dentro
-			meshes.push_back(our_mesh);
+			//meshes.push_back(our_mesh);
 			return our_mesh;
 
 		aiReleaseImport(scene);
@@ -56,8 +62,6 @@ M_Mesh* MeshLoader::LoadFile(string file_path)
 	}
 
 	
-
-	return nullptr;
 }
 
 
@@ -66,9 +70,7 @@ M_Mesh* MeshLoader::LoadFile(string file_path)
 M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 {
 
-	uint my_id = 0;
-	uint my_indices = 0;
-	
+
 
 	M_Mesh* our_mesh = new M_Mesh();
 
@@ -88,7 +90,8 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 		our_mesh->vertices[v * VERTEX_ARGUMENTS + 2] = importedMesh->mVertices[v].z;
 
 		//uvs
-		our_mesh->vertices[v * VERTEX_ARGUMENTS + 3] = importedMesh->mTextureCoords[0][v].x;
+		if (importedMesh->mTextureCoords[0] == nullptr) continue;
+ 		our_mesh->vertices[v * VERTEX_ARGUMENTS + 3] = importedMesh->mTextureCoords[0][v].x;
 		our_mesh->vertices[v * VERTEX_ARGUMENTS + 4] = importedMesh->mTextureCoords[0][v].y;	
 	}
 

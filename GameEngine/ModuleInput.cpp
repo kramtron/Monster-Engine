@@ -141,9 +141,14 @@ update_status ModuleInput::PreUpdate(float dt)
 			//Arreglar lo antes posible //Done
 			//Poner igual con png cuando texture funcione //TODO
 			
-				if (extension == "fbx")
+				if (extension == "fbx" || extension == "FBX")
 				{
-					GameObject* dropedFile = new GameObject(fileName, nullptr, "first", MeshLoader::LoadFile(e.drop.file));
+					GameObject* dropedFile = new GameObject(fileName, nullptr, "first");
+
+					 MeshLoader::LoadFile(e.drop.file, dropedFile);
+
+					
+
 				}
 			
 		}
