@@ -47,4 +47,6 @@ public:
 	
 
 	const char* file_path;
+private: 
+	bool firstDone = false;
 };

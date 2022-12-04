@@ -348,12 +348,16 @@ void ModuleRenderer3D::RenderMeshes()
 
 		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
 
-		if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;
+		gO->UpdateAABB();
+
+			if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;
 
 		if (gO->mesh != nullptr && gO->name != "Root") {
 			gO->RenderM();
 		}
 	}
+
+
 }
 
 

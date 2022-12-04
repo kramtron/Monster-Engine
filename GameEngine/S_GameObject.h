@@ -46,7 +46,7 @@ public:
 
 	void RenderM();
 
-
+	void UpdateAABB();
 
 public:
 	

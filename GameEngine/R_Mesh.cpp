@@ -24,11 +24,11 @@ void M_Mesh::InitAABB()
 void M_Mesh::meshRenderer(float4x4 globalT, TextureTypes textureT, float4x4 global)
 {
 
-	OBB_ = AABB_;
+	/*OBB_ = AABB_;
 	//Why don't work with transposed?
 	OBB_.Transform(globalT);
 	global_AABB.SetNegativeInfinity();
-	global_AABB.Enclose(OBB_);
+	global_AABB.Enclose(OBB_);*/
 
 	glEnable(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_TEXTURE_2D);

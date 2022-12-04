@@ -163,3 +163,19 @@ void GameObject::RenderM()
 		}
 	}
 }
+
+void GameObject::UpdateAABB()
+{
+
+	float4x4 tempMat;
+
+	if (this->parent == nullptr) tempMat = transform->GetLocal();
+	else {
+		tempMat = parent->transform->GetGlobal() * transform->GetLocal();
+	}
+	mesh->OBB_ = mesh->AABB_;
+	//Why don't work with transposed?
+	mesh->OBB_.Transform(tempMat);
+	mesh->global_AABB.SetNegativeInfinity();
+	mesh->global_AABB.Enclose(mesh->OBB_);
+}
