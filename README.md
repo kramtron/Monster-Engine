@@ -91,6 +91,6 @@ You can find some headers with some propertis of windows or configuration:
 
 ### Camera
 
-* The chamber has been completely remodeled. It now has a frustum culling system!
+* The camera has been completely remodeled. It now has a frustum culling system!
 * In addition to that, its internal functioning has been modified to make it more optimal and use fewer resources.
 * Finally, problems with its movement have also been fixed and now it has a perfect movement
