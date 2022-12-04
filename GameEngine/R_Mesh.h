@@ -11,8 +11,8 @@
 //#include "glmath.h"
 #include "MathGeoLib.h"
 
-#include <vector>
 
+#include <vector>
 using namespace std;
 typedef unsigned int uint;
 
@@ -22,6 +22,7 @@ enum class TextureTypes;
 
 class TextureLoader;
 class C_Transform;
+
 class M_Mesh
 {
 

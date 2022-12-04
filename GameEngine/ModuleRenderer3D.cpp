@@ -261,6 +261,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 
 	RenderMeshes();
+
+
 	if (App->camera->gameCamera != nullptr) {
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -346,9 +348,9 @@ void ModuleRenderer3D::RenderMeshes()
 
 		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
 
-		/*gO->UpdateAABB();
+		//gO->UpdateAABB();
 
-			if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;*/
+			//if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;
 
 		if (gO->mesh != nullptr && gO->name != "Root") {
 			gO->RenderM();

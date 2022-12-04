@@ -101,5 +101,5 @@ bool CameraClass::FrustumChecker(M_Mesh* mesh)
 	return true;
 
 
-	return false;
+	
 }
