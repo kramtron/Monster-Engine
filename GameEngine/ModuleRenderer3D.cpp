@@ -348,9 +348,9 @@ void ModuleRenderer3D::RenderMeshes()
 
 		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
 
-		gO->UpdateAABB();
+		/*gO->UpdateAABB();
 
-			if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;
+			if (App->camera->sceneCamera->FrustumChecker(gO->mesh)) continue;*/
 
 		if (gO->mesh != nullptr && gO->name != "Root") {
 			gO->RenderM();

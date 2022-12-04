@@ -10,16 +10,26 @@ ImHierarchyWindow::ImHierarchyWindow()
 {
 	rootGameObject = new GameObject("Scene", nullptr,"none");
 
-	GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
-	MeshLoader::LoadFile("Assets/BakerHouse.fbx",gO);
-	//gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
-	
-	GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
-	MeshLoader::LoadFile("Assets/street2.FBX", gO4);
-	gO4->transform->rotation = float3(-90.0f,0.0f,0.0f);
-	gO4->transform->TransformToUpdate();
 	
 
+
+
+
+	GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
+	MeshLoader::LoadFile("Assets/street/scene.DAE", gO4);
+	gO4->transform->rotation = float3(0.0f,0.0f,0.0f);
+	gO4->transform->TransformToUpdate();
+	
+	GameObject* gO5 = new GameObject("Main Camera", rootGameObject, "first");
+	gO5->AddComponent(Component::Type::Camera);
+
+	GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
+	MeshLoader::LoadFile("Assets/BakerHouse.fbx", gO);
+	/*gO->children[0]->transform->ResetTransform();
+	gO->children[1]->transform->ResetTransform();*/
+
+	//gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
+	//gO->children[0]->transform->ResetTransform();
 	/*GameObject* gO2 = new GameObject("Sphere", rootGameObject, "first");
 	gO2->meshes = MeshLoader::LoadFile("Assets/Sphere.fbx", gO2);
 	gO2->meshR = (C_Mesh*)gO2->AddComponent(Component::Type::Mesh);

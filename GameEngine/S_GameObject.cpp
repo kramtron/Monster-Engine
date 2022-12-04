@@ -1,7 +1,7 @@
 #include "S_GameObject.h"
 #include "ImHierarchyWindow.h"
 #include "T_TextureLoader.h"
-
+#include "C_Camera.h"
 Application* GameObject::App = nullptr;
 
 
@@ -56,6 +56,9 @@ Component* GameObject::AddComponent(Component::Type type)
 		comp = new C_Mesh(this);
 		break;
 	case Component::Type::Light:
+		break;
+	case Component::Type::Camera:
+		comp = new C_Camera(this,App);
 		break;
 	}
 
@@ -148,7 +151,7 @@ void GameObject::RenderM()
 
 	if (mesh != nullptr) {
 
-		mesh->textureID = App->dummy->textureID;
+		mesh->textureID;//= App->dummy->textureID;
 		float4x4 tempMat;
 		if (renderMesh == true) {
 			if (this->parent == nullptr) tempMat = transform->GetLocal();
@@ -171,7 +174,7 @@ void GameObject::UpdateAABB()
 
 	if (this->parent == nullptr) tempMat = transform->GetLocal();
 	else {
-		tempMat = parent->transform->GetGlobal() * transform->GetLocal();
+		tempMat = transform->GetLocal() * parent->transform->GetGlobal();
 	}
 	mesh->OBB_ = mesh->AABB_;
 	//Why don't work with transposed?

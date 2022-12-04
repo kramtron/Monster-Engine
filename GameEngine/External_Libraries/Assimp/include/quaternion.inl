@@ -185,14 +185,14 @@ inline aiVector3t<TReal> aiQuaterniont<TReal>::GetEuler() const
 	{
 		//euler.y = 2 * std::atan2(x, w);
 		euler.y = 2 * std::atan2(x, w);
-		euler.x = PI / 2;
+		euler.x = 3.14 / 2;
 		euler.z = 0;
 	}
 	else if (test < -0.499)
 	{
 		//euler.y = -(2 * std::atan2(x, w));
 		euler.y = -(2 * std::atan2(x, w));
-		euler.x = -(PI / 2);
+		euler.x = -(3.14 / 2);
 		euler.z = 0;
 	}
 	else

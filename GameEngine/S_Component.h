@@ -12,6 +12,7 @@ public:
 		Mesh,
 		Material,
 		Light,
+		Camera,
 		None,
 
 	};

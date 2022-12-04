@@ -5,12 +5,13 @@
 #include "imgui_impl_sdl.h"
 
 #include "CameraClass.h"
+#include "Application.h"
 
 class GameObject;
 class C_Camera : public Component
 {
 public:
-	C_Camera(GameObject* gO);
+	C_Camera(GameObject* gO, Application* app);
 	~C_Camera();
 
 
@@ -18,7 +19,7 @@ public:
 
 public:
 
-
+	Application* App;
 	GameObject* gameObjectX;
 
 	//Camara de game

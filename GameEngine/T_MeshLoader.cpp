@@ -1,6 +1,7 @@
 #include "T_MeshLoader.h"
 #include "Globals.h"
 #include "Application.h"
+#include "T_FileInfo.h"
 
 
 vector<M_Mesh*> M_Mesh::meshes;
@@ -32,7 +33,8 @@ void MeshLoader::StopDebugMode()
 
 M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 {
-	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
+	uint flags = aiProcess_FlipUVs | aiProcess_Triangulate;
+	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality | flags);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
@@ -40,7 +42,7 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 		//vector<M_Mesh*> our_mesh;
 		M_Mesh* our_mesh;
 		
-			for (uint i = 0; i < scene->mNumMeshes; i++) {
+			/*for (uint i = 0; i < scene->mNumMeshes; i++) {
 
 				our_mesh = MeshLoader::LoadMesh(scene->mMeshes[i]);
 
@@ -50,7 +52,21 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 				gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
 				
 
-			}
+			}*/
+
+
+			aiMatrix4x4 matrix;
+			aiIdentityMatrix4(&matrix);
+			//our_mesh = MeshLoader::LoadMesh(scene->mRootNode);
+			our_mesh = MeshLoader::LoadMeshNode(scene,scene->mRootNode,parent,file_path.c_str(),matrix);
+
+			/*GameObject* gO = new GameObject("Mesh", parent, "none");
+			gO->mesh = our_mesh;
+			gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);*/
+
+
+
+
 			//Esto fuera o no renderiza si un fbx tiene mas de 1 objeto dentro
 			//meshes.push_back(our_mesh);
 			return our_mesh;
@@ -64,6 +80,27 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 	
 }
 
+string MeshLoader::ImportTexture(const aiScene* scene, uint mesh_index, const char* file_path)
+{
+	if (scene->HasMaterials() && scene->mMaterials[scene->mMeshes[mesh_index]->mMaterialIndex]->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+		
+		aiString texture_path;
+		scene->mMaterials[scene->mMeshes[mesh_index]->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &texture_path);
+		scene->mMaterials[scene->mMeshes[mesh_index]->mMaterialIndex]->mProperties[0];
+		File Path1(file_path);
+		File texturePath(texture_path.C_Str());
+
+		string finalPath = Path1.path;
+		uint assetPos = finalPath.find("Assets/");
+		finalPath = finalPath.substr(assetPos, finalPath.find_last_of("/") - assetPos);
+		finalPath.append("/").append(texturePath.name);
+
+		return finalPath;
+	}
+
+	return "";
+}
+
 
 
 
@@ -71,7 +108,7 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 {
 
 
-
+	
 	M_Mesh* our_mesh = new M_Mesh();
 
 	//GameObject* our_mesh = new GameObject();
@@ -80,7 +117,6 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	our_mesh->vertices = new float[our_mesh->num_vertices * 5];
 
 	memcpy(our_mesh->vertices, importedMesh->mVertices, sizeof(float) * our_mesh->num_vertices * 3);
-
 
 
 	for (int v = 0; v < our_mesh->num_vertices; v++) {
@@ -146,6 +182,68 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 	return our_mesh;
 
+}
+
+M_Mesh* MeshLoader::LoadMeshNode(const aiScene* scene, aiNode* node, GameObject* parent, const char* file_path, aiMatrix4x4 transform)
+{
+
+	if (node->mNumMeshes == 0 && node->mNumChildren == 0) return nullptr;
+
+	
+
+	GameObject* gO = new GameObject(node->mName.C_Str(), parent, "none");
+
+
+	aiMatrix4x4 tempMat = transform * node->mTransformation;
+	aiVector3D position, scale, rotation;
+	aiQuaternion qrot;
+	tempMat.Decompose(scale, qrot, position);
+	rotation = qrot.GetEuler();
+
+	gO->transform->scale = float3(scale.x, scale.y, scale.z);
+	gO->transform->rotation = (float3(rotation.x * RADTODEG, rotation.y * RADTODEG, rotation.z * RADTODEG));
+	gO->transform->position = (float3(position.x, position.y, position.z));
+	//gO->transform->ResetTransform();
+
+	gO->transform->TransformToUpdate();
+
+
+	if (node->mNumMeshes != 0)
+	{
+	
+		string texturePath = "";
+
+		for (int i = 0; i < node->mNumMeshes; i++) {
+		
+
+			M_Mesh* our_mesh = LoadMesh(scene->mMeshes[node->mMeshes[i]]);
+
+			gO->mesh = our_mesh;
+			gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
+			
+
+		
+			if (our_mesh == nullptr) {
+				LOG( "WARNING, loading scene %s, a mesh has no faces.", file_path);
+				continue;
+			}
+
+			if (texturePath == "") texturePath = ImportTexture(scene, node->mMeshes[i], file_path);
+
+			
+			/*if (texturePath != "") {
+
+				gO->mesh->textureID = TextureLoader::LoadTexture(texturePath.c_str());
+			}*/
+		}
+
+		
+	}
+
+	for (int i = 0; i < node->mNumChildren; i++) {
+		LoadMeshNode(scene, node->mChildren[i],gO, file_path,tempMat);
+	}
+	return nullptr;
 }
 
 void MeshLoader::Renderer()
