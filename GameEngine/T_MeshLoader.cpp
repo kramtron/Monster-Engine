@@ -2,7 +2,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "T_FileInfo.h"
-
+#include "ModuleRenderer3D.h"
 
 vector<M_Mesh*> M_Mesh::meshes;
 
@@ -68,7 +68,6 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 
 
 			//Esto fuera o no renderiza si un fbx tiene mas de 1 objeto dentro
-			//meshes.push_back(our_mesh);
 			return our_mesh;
 
 		aiReleaseImport(scene);
@@ -179,7 +178,10 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	
+	meshes.push_back(our_mesh);
 
+	
+	
 	return our_mesh;
 
 }
@@ -217,7 +219,7 @@ M_Mesh* MeshLoader::LoadMeshNode(const aiScene* scene, aiNode* node, GameObject*
 		
 
 			M_Mesh* our_mesh = LoadMesh(scene->mMeshes[node->mMeshes[i]]);
-
+			our_mesh->myGO = gO;
 			gO->mesh = our_mesh;
 			gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
 			

@@ -22,7 +22,7 @@ enum class TextureTypes;
 
 class TextureLoader;
 class C_Transform;
-
+class GameObject;
 class M_Mesh
 {
 
@@ -64,6 +64,8 @@ public:
 	void InitAABB();
 	void RenderAABB();
 	void DrawAABB_Boxes(float3* x, float3 y);
+
+	GameObject* myGO;
 
 private:
 	vector<float3> tempVert;

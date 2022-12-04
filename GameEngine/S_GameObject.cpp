@@ -161,9 +161,9 @@ void GameObject::RenderM()
 			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 		}
 
-		if (renderAABB == true) {
+		//if (renderAABB == true) {
 			mesh->RenderAABB();
-		}
+		
 	}
 }
 

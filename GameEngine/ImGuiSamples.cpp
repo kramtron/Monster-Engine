@@ -82,9 +82,9 @@ void ImGuiSamples::Render(float dt)
 
 	//Pasar esto a una lista??
 	ImHierarchyWindow::Update(ImH);
-	ImSceneWindow::Update(App);
 	Console::PrintDebug();
 	ImInspectorWindow::Update(ImH, ImI);
+	ImSceneWindow::Update(App,ImH);
 	ImConfigWindow::Update(App, dt);
 	ImGameWindow::Update(App);
 

@@ -236,6 +236,12 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
+
+	M_Mesh* tempMesh;
+
+	rMeshes = tempMesh->meshes;
+
+	//LOG("Num meshes test %d", tempMesh->meshes.size());
 	App->camera->Draw();
 
 	BindCamerBuffers(App->camera->sceneCamera);
