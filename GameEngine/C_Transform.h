@@ -37,7 +37,7 @@ public:
 	float4x4 GetLocal() const { return matrix; }
 
 
-	
+	void FlipChildrenRotation(GameObject* gO);
 
 	void ResetTransform();
 

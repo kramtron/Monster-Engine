@@ -33,8 +33,8 @@ void MeshLoader::StopDebugMode()
 
 M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 {
-	uint flags = aiProcess_FlipUVs | aiProcess_Triangulate;
-	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality | flags);
+	
+	const aiScene* scene = aiImportFile(file_path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality | aiProcess_Triangulate);
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
@@ -194,7 +194,7 @@ M_Mesh* MeshLoader::LoadMeshNode(const aiScene* scene, aiNode* node, GameObject*
 	GameObject* gO = new GameObject(node->mName.C_Str(), parent, "none");
 
 
-	aiMatrix4x4 tempMat = transform * node->mTransformation;
+	aiMatrix4x4 tempMat = node->mTransformation;
 	aiVector3D position, scale, rotation;
 	aiQuaternion qrot;
 	tempMat.Decompose(scale, qrot, position);
@@ -202,7 +202,7 @@ M_Mesh* MeshLoader::LoadMeshNode(const aiScene* scene, aiNode* node, GameObject*
 
 	gO->transform->scale = float3(scale.x, scale.y, scale.z);
 	gO->transform->rotation = (float3(rotation.x * RADTODEG, rotation.y * RADTODEG, rotation.z * RADTODEG));
-	gO->transform->position = (float3(position.x, position.y, position.z));
+	gO->transform->position = (float3(position.x,  position.z, position.y));
 	//gO->transform->ResetTransform();
 
 	gO->transform->TransformToUpdate();
@@ -231,10 +231,10 @@ M_Mesh* MeshLoader::LoadMeshNode(const aiScene* scene, aiNode* node, GameObject*
 			if (texturePath == "") texturePath = ImportTexture(scene, node->mMeshes[i], file_path);
 
 			
-			/*if (texturePath != "") {
+			if (texturePath != "") {
 
 				gO->mesh->textureID = TextureLoader::LoadTexture(texturePath.c_str());
-			}*/
+			}
 		}
 
 		

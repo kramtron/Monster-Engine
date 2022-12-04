@@ -228,9 +228,7 @@ bool ModuleRenderer3D::Init()
 
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	//No se si va aquí 
-	TextureLoader::Init();
-	TextureLoader::Start();
+
 
 	return ret;
 }

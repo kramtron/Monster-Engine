@@ -111,6 +111,19 @@ void C_Transform::InspectorW() {
 
 
 
+void C_Transform::FlipChildrenRotation(GameObject* gO)
+{
+
+
+	rotation = (float3(-90.0f, rotation.z, rotation.y));
+
+	for (int i = 0; i < gO->children.size(); i++) {
+		gO->children[i]->transform->FlipChildrenRotation(gO->children[i]);
+	}
+
+
+}
+
 void C_Transform::ResetTransform()
 {
 
