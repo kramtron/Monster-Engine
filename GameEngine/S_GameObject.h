@@ -45,6 +45,7 @@ public:
 	void RemoveChild(GameObject* c);
 
 	void RenderM();
+	void RenderGameM();
 
 	void UpdateAABB();
 

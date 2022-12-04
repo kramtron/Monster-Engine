@@ -29,6 +29,10 @@ void C_Camera::InspectorW()
 	
 	
 	App->camera->gameCamera->frustumCamera.pos = gameObjectX->transform->position;
+
+	float4x4 tempMat = gameObjectX->transform->GetGlobal();
+	App->camera->gameCamera->frustumCamera.up = tempMat.RotatePart().Col(1).Normalized();
+	App->camera->gameCamera->frustumCamera.front = tempMat.RotatePart().Col(2).Normalized();
 	
 
 }

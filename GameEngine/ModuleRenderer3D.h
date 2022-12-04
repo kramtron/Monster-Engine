@@ -31,6 +31,7 @@ public:
 	void BindCamerBuffers(CameraClass* cc);
 
 	void RenderMeshes();
+	void RenderGameMeshes();
 
 public:
 

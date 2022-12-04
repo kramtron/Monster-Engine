@@ -161,9 +161,30 @@ void GameObject::RenderM()
 			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 		}
 
-		//if (renderAABB == true) {
+		if (renderAABB == true) {
 			mesh->RenderAABB();
-		
+		}
+	}
+}
+
+void GameObject::RenderGameM()
+{
+
+	//C_Transform* transform = this->transform;
+	C_Transform* transform = (C_Transform*)GetComponent(Component::Type::Transform);
+
+	if (mesh != nullptr) {
+
+		mesh->textureID;//= App->dummy->textureID;
+		float4x4 tempMat;
+		if (renderMesh == true) {
+			if (this->parent == nullptr) tempMat = transform->GetLocal();
+			else {
+				tempMat = parent->transform->GetGlobal() * transform->GetLocal();
+			}
+			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
+		}
+
 	}
 }
 

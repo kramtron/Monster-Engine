@@ -25,7 +25,13 @@ void ImSceneWindow::Update(Application* App, ImHierarchyWindow* ImH)
 	ImGui::BeginMenuBar();
 	//ImGui::SameLine(0, -50);
 
-	if (ImGui::Button("Play")) {
+	if (ImGui::Button(">")) {
+		//Play mode
+	}
+	if (ImGui::Button("||")) {
+		//Play mode
+	}
+	if (ImGui::Button("[]")) {
 		//Play mode
 	}
 	//ImGui::SameLine(ImGui::GetWindowWidth() - 95.0f);
