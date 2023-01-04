@@ -232,6 +232,7 @@
     <ClInclude Include="S_Component.h" />
     <ClInclude Include="S_GameObject.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="T_AnimationLoader.h" />
     <ClInclude Include="T_FileInfo.h" />
     <ClInclude Include="T_MeshLoader.h" />
     <ClInclude Include="T_TextureLoader.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="S_Component.cpp" />
     <ClCompile Include="S_GameObject.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="T_AnimationLoader.cpp" />
     <ClCompile Include="T_FileInfo.cpp" />
     <ClCompile Include="T_MeshLoader.cpp" />
     <ClCompile Include="T_TextureLoader.cpp" />

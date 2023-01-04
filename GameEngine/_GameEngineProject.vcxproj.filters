@@ -220,6 +220,9 @@
     <ClCompile Include="T_FileInfo.cpp">
       <Filter>Sources\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="T_AnimationLoader.cpp">
+      <Filter>Sources\Tools\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -675,6 +678,9 @@
     <ClInclude Include="T_FileInfo.h">
       <Filter>Sources\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="T_AnimationLoader.h">
+      <Filter>Sources\Tools\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">
@@ -733,6 +739,9 @@
     </Filter>
     <Filter Include="Sources\Tools\Camera\CamBuffers">
       <UniqueIdentifier>{2ea804b0-76d6-4e9e-9ccb-b64a8e5cdc02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Animation">
+      <UniqueIdentifier>{1063b854-c240-4bce-a26f-2e8b1f4df18c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

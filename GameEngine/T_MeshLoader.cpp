@@ -38,36 +38,24 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
+		std::vector<ResourceAnimation*> animationsOnModelUIDs;
 
-		//vector<M_Mesh*> our_mesh;
+
 		M_Mesh* our_mesh;
 		
-			/*for (uint i = 0; i < scene->mNumMeshes; i++) {
+		if (scene->HasAnimations()) {
 
-				our_mesh = MeshLoader::LoadMesh(scene->mMeshes[i]);
+			for (unsigned int i = 0; i < scene->mNumAnimations; i++) {
 
-				//our_mesh[i] = new M_Mesh();
-				GameObject* gO = new GameObject("Mesh" + to_string(i), parent, "none");
-				gO->mesh = our_mesh;
-				gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
-				
+				aiAnimation* animation = scene->mAnimations[i];
+				//Caragr en lista 
+			}
 
-			}*/
-
-
+		}
 			aiMatrix4x4 matrix;
 			aiIdentityMatrix4(&matrix);
 			//our_mesh = MeshLoader::LoadMesh(scene->mRootNode);
 			our_mesh = MeshLoader::LoadMeshNode(scene,scene->mRootNode,parent,file_path.c_str(),matrix);
-
-			/*GameObject* gO = new GameObject("Mesh", parent, "none");
-			gO->mesh = our_mesh;
-			gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);*/
-
-
-
-
-			//Esto fuera o no renderiza si un fbx tiene mas de 1 objeto dentro
 			return our_mesh;
 
 		aiReleaseImport(scene);
