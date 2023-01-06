@@ -42,33 +42,36 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 	if (scene != nullptr && scene->HasMeshes()) {
 
 		std::vector<T_AnimationLoader*> animationList;
-		T_AnimationLoader tempA;
+		T_AnimationLoader* tempA;
 
 		M_Mesh* our_mesh;
 		
-		if (scene->HasAnimations()) {
+		/*if (scene->HasAnimations()) {
 
 			for (unsigned int i = 0; i < scene->mNumAnimations; i++) {
 
 				aiAnimation* animation = scene->mAnimations[i];
 				//Caragr en lista 
-				animationList.push_back(tempA.LoadAnimation(animation) );
+				animationList.push_back(tempA->LoadAnimation(animation) );
 			}
 
-		}
+		}*/
 
 			aiMatrix4x4 matrix;
 			aiIdentityMatrix4(&matrix);
 			//our_mesh = MeshLoader::LoadMesh(scene->mRootNode);
 			our_mesh = MeshLoader::LoadMeshNode(scene,scene->mRootNode,parent,file_path.c_str(),matrix);
+
+			//Here add the animation to the game object
 			return our_mesh;
 
 		aiReleaseImport(scene);
+		delete tempA;
+
 	}
 	else {
 		LOG("Error loading scene %s", file_path);
 	}
-
 	
 }
 

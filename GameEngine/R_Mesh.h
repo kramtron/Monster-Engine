@@ -68,7 +68,7 @@ public:
 	GameObject* myGO;
 
 
-	bool hasSkeleton = false;
+	/*bool hasSkeleton = false;
 
 	uint bones_count = 0;
 	int* bones = nullptr;
@@ -76,9 +76,9 @@ public:
 	uint weights_count = 0;
 	float* boneWeights = nullptr;
 
-	std::map<std::string, uint> bonesMap;
-	std::vector<float4x4> bonesTransforms;
-	std::vector<float4x4> bonesOffsets;
+	map<std::string, uint> bonesMap;
+	vector<float4x4> bonesTransforms;
+	vector<float4x4> bonesOffsets;*/
 
 
 private:

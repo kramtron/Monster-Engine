@@ -114,10 +114,10 @@ T_AnimationLoader* T_AnimationLoader::LoadAnimation(aiAnimation* importedAnimati
 
 
 
-	char* buffer;
+	/*char* buffer;
 	uint size = animation->SaveCustomFormat(animation, &buffer);
 
-	RELEASE_ARRAY(buffer);
+	RELEASE_ARRAY(buffer);*/
 
 
 
