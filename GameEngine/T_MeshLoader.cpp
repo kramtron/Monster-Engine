@@ -3,6 +3,9 @@
 #include "Application.h"
 #include "T_FileInfo.h"
 #include "ModuleRenderer3D.h"
+#include "T_AnimationLoader.h"
+
+
 
 vector<M_Mesh*> M_Mesh::meshes;
 
@@ -38,8 +41,8 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 
 	if (scene != nullptr && scene->HasMeshes()) {
 
-		std::vector<ResourceAnimation*> animationsOnModelUIDs;
-
+		std::vector<T_AnimationLoader*> animationList;
+		T_AnimationLoader tempA;
 
 		M_Mesh* our_mesh;
 		
@@ -49,9 +52,11 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 
 				aiAnimation* animation = scene->mAnimations[i];
 				//Caragr en lista 
+				animationList.push_back(tempA.LoadAnimation(animation) );
 			}
 
 		}
+
 			aiMatrix4x4 matrix;
 			aiIdentityMatrix4(&matrix);
 			//our_mesh = MeshLoader::LoadMesh(scene->mRootNode);

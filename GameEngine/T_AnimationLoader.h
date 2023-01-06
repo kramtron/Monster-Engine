@@ -1,8 +1,14 @@
 #pragma once
 
 
+
+#include "Globals.h"
 #include "MathGeoLib.h"
 
+
+#include "cimport.h"
+#include "scene.h"
+#include "postprocess.h"
 
 
 #include  <vector>
@@ -37,12 +43,18 @@ struct BoneInfo {
 
 class T_AnimationLoader
 {
+public:
 	T_AnimationLoader();
 	
 
 
+	T_AnimationLoader* LoadAnimation(aiAnimation* importedAnimation);
 
 	uint SaveCustomFormat(T_AnimationLoader* animation, char** buffer);
+	uint GetBonesSize(const BoneInfo& channel);
+	void SaveBones(const BoneInfo& channel, char** cursor);
+	void SaveBoneKey(const std::map<double, float3>& map, char** cursor);
+	void SaveBoneKey(const std::map<double, Quat>& map, char** cursor);
 
 	std::string animationName;
 	float duration;
