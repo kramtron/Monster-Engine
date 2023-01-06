@@ -45,7 +45,7 @@ class T_AnimationLoader
 {
 public:
 	T_AnimationLoader();
-	
+	~T_AnimationLoader();
 
 
 	T_AnimationLoader* LoadAnimation(aiAnimation* importedAnimation);

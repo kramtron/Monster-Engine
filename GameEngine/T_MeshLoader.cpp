@@ -46,7 +46,7 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 
 		M_Mesh* our_mesh;
 		
-		/*if (scene->HasAnimations()) {
+		if (scene->HasAnimations()) {
 
 			for (unsigned int i = 0; i < scene->mNumAnimations; i++) {
 
@@ -55,7 +55,7 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 				animationList.push_back(tempA->LoadAnimation(animation) );
 			}
 
-		}*/
+		}
 
 			aiMatrix4x4 matrix;
 			aiIdentityMatrix4(&matrix);

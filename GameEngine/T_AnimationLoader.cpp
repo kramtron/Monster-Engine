@@ -58,6 +58,14 @@ std::map<double, float3>::const_iterator BoneInfo::GetNextScaleKey(double curren
 
 
 
+T_AnimationLoader::T_AnimationLoader()
+{
+}
+
+T_AnimationLoader::~T_AnimationLoader()
+{
+}
+
 T_AnimationLoader* T_AnimationLoader::LoadAnimation(aiAnimation* importedAnimation)
 {
 	
@@ -71,7 +79,7 @@ T_AnimationLoader* T_AnimationLoader::LoadAnimation(aiAnimation* importedAnimati
 
 
 
-	T_AnimationLoader* animation{};
+	T_AnimationLoader* animation= new T_AnimationLoader();
 
 	animation->ticksPerSecond = importedAnimation->mTicksPerSecond;
 	animation->duration = importedAnimation->mDuration;
