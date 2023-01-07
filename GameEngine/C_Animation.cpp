@@ -190,17 +190,89 @@ void C_Animation::UpdateMeshAnimation(GameObject* gameObject)
 {
 
 
-	C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(gameObject->GetComponent(Component::Type::MeshRenderer));
-	if (mesh != nullptr)
+
+
+}
+
+float3 C_Animation::GetChannelPosition(const BoneInfo& channel, float currentKey, float3 defaultPos) const
+{
+	if (channel.positionKeys.size() > 0)
 	{
-		mesh->DuplicateMeshintoAnimable();
-		mesh->MoveVerticesnNormals();
+		std::map<double, float3>::const_iterator previous = channel.GetPrevPosKey(currentKey);
+		std::map<double, float3>::const_iterator next = channel.GetNextPosKey(currentKey);
+
+		if (channel.positionKeys.begin()->first == -1) {
+			return defaultPos;
+		}
+
+		// Check Blending Ratio between Keys
+		if (previous == next) {
+			defaultPos = previous->second;
+		}
+		else
+		{
+			float ratio = (currentKey - previous->first) / (next->first - previous->first);
+			defaultPos = previous->second.Lerp(next->second, ratio);
+		}
 	}
 
-	// eudald: Necessary?
-	for (uint i = 0; i < gameObject->children.size(); i++)
-		UpdateMeshAnimation(gameObject->children[i]);
+	return defaultPos;
+}
 
+float3 C_Animation::GetChannelRotation(const BoneInfo& channel, float currentKey, float3 defaultRotation) const
+{
+	//float3 rotation = defaultRotation;
 
+	if (channel.rotationKeys.size() > 0)
+	{
+		std::map<double, float3>::const_iterator previous = channel.GetPrevRotKey(currentKey);
+		std::map<double, float3>::const_iterator next = channel.GetNextRotKey(currentKey);
 
+		if (channel.rotationKeys.begin()->first == -1) return defaultRotation;
+
+		if (next == channel.rotationKeys.end())
+			next = previous;
+
+		//If both keys are the same, no need to blend
+		if (previous == next)
+			defaultRotation = previous->second;
+		else //blend between both keys
+		{
+			//0 to 1
+			float ratio = (currentKey - previous->first) / (next->first - previous->first);
+			defaultRotation = previous->second.Lerp(next->second, ratio);
+
+			//// Linearly interpolate the rotation angles
+			//rotation.x = Lerp(previous->second.x, next->second.x, ratio);
+			//rotation.y = Lerp(previous->second.y, next->second.y, ratio);
+			//rotation.z = Lerp(previous->second.z, next->second.z, ratio);
+		}
+	}
+	return defaultRotation;
+
+}
+
+float3 C_Animation::GetChannelScale(const BoneInfo& channel, float currentKey, float3 defaultScale) const
+{
+	if (channel.scaleKeys.size() > 0)
+	{
+		std::map<double, float3>::const_iterator previous = channel.GetPrevScaleKey(currentKey);
+		std::map<double, float3>::const_iterator next = channel.GetPrevScaleKey(currentKey);
+
+		if (channel.scaleKeys.begin()->first == -1) {
+			return defaultScale;
+		}
+
+		// Check Blending Ratio between Keys
+		if (previous == next)
+		{
+			defaultScale = previous->second;
+		}
+		else
+		{
+			float ratio = (currentKey - previous->first) / (next->first - previous->first);
+			defaultScale = previous->second.Lerp(next->second, ratio);
+		}
+	}
+	return defaultScale;
 }

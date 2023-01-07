@@ -74,9 +74,9 @@ public:
 	void UpdateChannelsTransform(const T_AnimationLoader* settings, const T_AnimationLoader* blend, float blendRatio);
 	void UpdateMeshAnimation(GameObject* gameObject);
 
-	float3 GetChannelPosition(const BoneInfo& channel, float currentKey, float3 default) const;
-	float3 GetChannelRotation(const BoneInfo& channel, float currentKey, float3 default) const;
-	float3 GetChannelScale(const BoneInfo& channel, float currentKey, float3 default) const;
+	float3 GetChannelPosition(const BoneInfo& channel, float currentKey, float3 defaultPos) const;
+	float3 GetChannelRotation(const BoneInfo& channel, float currentKey, float3 defaultRotation) const;
+	float3 GetChannelScale(const BoneInfo& channel, float currentKey, float3 defaultScale) const;
 
 
 

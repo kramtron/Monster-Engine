@@ -24,7 +24,7 @@ struct BoneInfo {
 
 	//Time & Value
 	std::map<double, float3> positionKeys;
-	std::map<double, Quat> rotationKeys;
+	std::map<double, float3> rotationKeys;
 	std::map<double, float3> scaleKeys;
 
 	//bool HasPosKey() const;
@@ -32,8 +32,8 @@ struct BoneInfo {
 	std::map<double, float3>::const_iterator GetNextPosKey(double currentKey) const;
 
 	//bool HasRotKey() const;
-	std::map<double, Quat>::const_iterator GetPrevRotKey(double currentKey) const;
-	std::map<double, Quat>::const_iterator GetNextRotKey(double currentKey) const;
+	std::map<double, float3>::const_iterator GetPrevRotKey(double currentKey) const;
+	std::map<double, float3>::const_iterator GetNextRotKey(double currentKey) const;
 
 	//bool HasScaleKey() const;
 	std::map<double, float3>::const_iterator GetPrevScaleKey(double currentKey) const;
