@@ -1,6 +1,7 @@
 #include "C_Animation.h"
 #include "T_AnimationLoader.h"
 #include "S_GameObject.h"
+#include "C_Transform.h"
 C_Animation::C_Animation(GameObject* gO) : Component(gO)
 {
 
@@ -135,6 +136,71 @@ void C_Animation::Update(float dt)
 		//DrawBones(bones[0]);
 
 	}
+
+
+}
+
+void C_Animation::UpdateChannelsTransform(const T_AnimationLoader* settings, const T_AnimationLoader* blend, float blendRatio)
+{
+
+	uint currentFrame = currentTimeAnimation;
+
+	uint prevBlendFrame = 0;
+	if (blend != nullptr)
+	{
+		prevBlendFrame = blend->ticksPerSecond * prevAnimTime;
+	}
+	
+	std::map<std::string, GameObject*>::iterator boneIt;
+	for (boneIt = boneMapping.begin(); boneIt != boneMapping.end(); ++boneIt)
+	{
+		C_Transform* transform = dynamic_cast<C_Transform*>(boneIt->second->GetComponent(Component::Type::Transform));
+
+		if (settings->bones.find(boneIt->first.c_str()) == settings->bones.end()) continue;
+
+		const BoneInfo& channel = settings->bones.find(boneIt->first.c_str())->second;
+
+		float3 position = GetChannelPosition(channel, currentFrame, transform->position);
+		float3 rotation = GetChannelRotation(channel, currentFrame, transform->rotation);
+		float3 scale = GetChannelScale(channel, currentFrame, transform->scale);
+
+
+		if (blend != nullptr)
+		{
+			const BoneInfo& blendChannel = blend->bones.find(boneIt->first.c_str())->second;
+
+			position = float3::Lerp(GetChannelPosition(blendChannel, prevBlendFrame, transform->position), position, blendRatio);
+			rotation = float3::Lerp(GetChannelRotation(blendChannel, prevBlendFrame, transform->rotation), rotation, blendRatio);
+			scale = float3::Lerp(GetChannelScale(blendChannel, prevBlendFrame, transform->scale), scale, blendRatio);
+		}
+
+
+		transform->position = position;
+		transform->rotation = rotation * RADTODEG;
+		transform->scale = scale;
+		transform->TransformToUpdate();
+	}
+
+
+
+
+}
+
+void C_Animation::UpdateMeshAnimation(GameObject* gameObject)
+{
+
+
+	C_MeshRenderer* mesh = dynamic_cast<C_MeshRenderer*>(gameObject->GetComponent(Component::Type::MeshRenderer));
+	if (mesh != nullptr)
+	{
+		mesh->DuplicateMeshintoAnimable();
+		mesh->MoveVerticesnNormals();
+	}
+
+	// eudald: Necessary?
+	for (uint i = 0; i < gameObject->children.size(); i++)
+		UpdateMeshAnimation(gameObject->children[i]);
+
 
 
 }

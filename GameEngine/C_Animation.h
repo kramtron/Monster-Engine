@@ -75,7 +75,7 @@ public:
 	void UpdateMeshAnimation(GameObject* gameObject);
 
 	float3 GetChannelPosition(const BoneInfo& channel, float currentKey, float3 default) const;
-	Quat GetChannelRotation(const BoneInfo& channel, float currentKey, Quat default) const;
+	float3 GetChannelRotation(const BoneInfo& channel, float currentKey, float3 default) const;
 	float3 GetChannelScale(const BoneInfo& channel, float currentKey, float3 default) const;
 
 
