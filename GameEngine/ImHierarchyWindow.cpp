@@ -42,6 +42,11 @@ ImHierarchyWindow::ImHierarchyWindow()
 	gO->children[0]->children[1]->transform->ResetTransform();
 
 
+	GameObject* gO2 = new GameObject("Animation", rootGameObject, "first");
+	MeshLoader::LoadFile("Assets/AnimationSamples/simpleAnimation.fbx",gO2);
+	gO->children[0]->animation = (C_Animation*)gO2->children[0]->AddComponent(Component::Type::Animation);
+	
+
 	//gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);
 	//gO->children[0]->transform->ResetTransform();
 	/*GameObject* gO2 = new GameObject("Sphere", rootGameObject, "first");

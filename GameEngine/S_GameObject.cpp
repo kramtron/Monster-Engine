@@ -2,6 +2,7 @@
 #include "ImHierarchyWindow.h"
 #include "T_TextureLoader.h"
 #include "C_Camera.h"
+#include "C_Animation.h"
 Application* GameObject::App = nullptr;
 
 
@@ -59,6 +60,9 @@ Component* GameObject::AddComponent(Component::Type type)
 		break;
 	case Component::Type::Camera:
 		comp = new C_Camera(this,App);
+		break;
+	case Component::Type::Animation:
+		comp = new C_Animation(this);
 		break;
 	}
 
@@ -202,4 +206,11 @@ void GameObject::UpdateAABB()
 	mesh->OBB_.Transform(tempMat);
 	mesh->global_AABB.SetNegativeInfinity();
 	mesh->global_AABB.Enclose(mesh->OBB_);
+}
+
+void GameObject::CollectChilds(std::vector<GameObject*>& vector)
+{
+	vector.push_back(this);
+	for (uint i = 0; i < children.size(); i++)
+		children[i]->CollectChilds(vector);
 }

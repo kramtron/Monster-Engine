@@ -42,7 +42,7 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 	if (scene != nullptr && scene->HasMeshes()) {
 
 		std::vector<T_AnimationLoader*> animationList;
-		T_AnimationLoader* tempA;
+		T_AnimationLoader* tempA = new T_AnimationLoader();
 
 		M_Mesh* our_mesh;
 		
@@ -63,6 +63,8 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 			our_mesh = MeshLoader::LoadMeshNode(scene,scene->mRootNode,parent,file_path.c_str(),matrix);
 
 			//Here add the animation to the game object
+			parent->children[0]->animations = animationList;
+
 			return our_mesh;
 
 		aiReleaseImport(scene);

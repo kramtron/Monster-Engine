@@ -223,6 +223,7 @@
     <ClCompile Include="T_AnimationLoader.cpp">
       <Filter>Sources\Tools\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="C_Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -681,6 +682,7 @@
     <ClInclude Include="T_AnimationLoader.h">
       <Filter>Sources\Tools\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="C_Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modules">

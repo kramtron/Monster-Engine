@@ -88,6 +88,7 @@
     <ClInclude Include="CamBuffers.h" />
     <ClInclude Include="CameraClass.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="C_Animation.h" />
     <ClInclude Include="C_Camera.h" />
     <ClInclude Include="C_Mesh.h" />
     <ClInclude Include="C_Transform.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="CamBuffers.cpp" />
     <ClCompile Include="CameraClass.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="C_Animation.cpp" />
     <ClCompile Include="C_Camera.cpp" />
     <ClCompile Include="C_Mesh.cpp" />
     <ClCompile Include="C_Transform.cpp" />

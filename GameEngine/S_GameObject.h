@@ -10,12 +10,14 @@
 #include "S_Component.h"
 #include "C_Transform.h"
 #include "C_Mesh.h"
+#include "T_AnimationLoader.h"
 
 using namespace std;
 
 class M_Mesh;
 //class Component;
 class C_Transform;
+class C_Animation;
 
 class GameObject
 {
@@ -49,6 +51,8 @@ public:
 
 	void UpdateAABB();
 
+	void CollectChilds(std::vector<GameObject*>& vector);
+
 public:
 	
 	vector<GameObject*> children;
@@ -65,11 +69,13 @@ public:
 	static Application* App;
 
 	//vector<M_Mesh*> meshes;
-	M_Mesh* mesh=nullptr;
+	M_Mesh* mesh = nullptr;
 
 	C_Transform* transform = nullptr;
 	C_Mesh* meshR = nullptr;
+	C_Animation* animation = nullptr;
 
+	vector<T_AnimationLoader*> animations;
 
 	bool renderAABB = false;
 

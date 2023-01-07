@@ -13,6 +13,7 @@ public:
 		Material,
 		Light,
 		Camera,
+		Animation,
 		None,
 
 	};
