@@ -158,6 +158,9 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 		our_mesh->InitAABB();
 
 	}
+	if (importedMesh->HasBones()) {
+		//our_mesh
+	}
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 

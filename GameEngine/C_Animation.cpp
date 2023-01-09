@@ -38,10 +38,24 @@ void C_Animation::InspectorW()
 
 void C_Animation::LinkChannelBones(GameObject* gameObject)
 {
+	for (int i = 0; i < gameObject->children.size(); i++) {
+		if (_anim->bones.find(gameObject->children[i]->name) != _anim->bones.end()) {
+			rootBone = gameObject->children[i];
+			channelsLinked = true;
+			StoreBoneMapping(gameObject);
+		}
+		LinkChannelBones(gameObject->children[i]);
+	}
+
 }
 
 void C_Animation::StoreBoneMapping(GameObject* gameObject)
 {
+	boneMapping[gameObject->name] = gameObject;
+	for (int i = 0; i < gameObject->children.size(); i++)
+	{
+		StoreBoneMapping(gameObject->children[i]);
+	}
 }
 
 void C_Animation::Start()

@@ -11,7 +11,7 @@
 //#include "glmath.h"
 #include "MathGeoLib.h"
 
-
+#include <map>
 #include <vector>
 using namespace std;
 typedef unsigned int uint;
@@ -68,7 +68,7 @@ public:
 	GameObject* myGO;
 
 
-	/*bool hasSkeleton = false;
+	bool hasSkeleton = false;
 
 	uint bones_count = 0;
 	int* bones = nullptr;
@@ -78,7 +78,7 @@ public:
 
 	map<std::string, uint> bonesMap;
 	vector<float4x4> bonesTransforms;
-	vector<float4x4> bonesOffsets;*/
+	vector<float4x4> bonesOffsets;
 
 
 private:
