@@ -32,6 +32,9 @@ public:
 
 	static GameObject* gameObjectReturned;
 
+
+	static void LoadBones(const aiMesh* importedMesh, M_Mesh* ourMesh);
+
 private:
 
 	

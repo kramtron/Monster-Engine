@@ -159,7 +159,8 @@ M_Mesh* MeshLoader::LoadMesh(aiMesh* importedMesh)
 
 	}
 	if (importedMesh->HasBones()) {
-		//our_mesh
+		our_mesh->hasSkeleton = true;
+		LoadBones(importedMesh, our_mesh);
 	}
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -263,6 +264,62 @@ void MeshLoader::CleanUp()
 		meshes[i] = nullptr;
 	}
 	meshes.clear();
+
+
+}
+
+void MeshLoader::LoadBones(const aiMesh* importedMesh, M_Mesh* ourMesh)
+{
+
+	ourMesh->bonesTransforms.resize(importedMesh->mNumBones);
+
+	ourMesh->bones_count = importedMesh->mNumVertices * 4;
+	ourMesh->bones = new int[ourMesh->bones_count];
+	for (int i = 0; i < ourMesh->bones_count; i++)
+	{
+		ourMesh->bones[i] = -1;
+	}
+
+	//Set the weights array each 4
+	ourMesh->weights_count = importedMesh->mNumVertices * 4;
+	ourMesh->boneWeights = new float[ourMesh->weights_count];
+	for (int i = 0; i < ourMesh->weights_count; i++)
+	{
+		ourMesh->boneWeights[i] = 0.f;
+	}
+
+
+
+	for (int boneIndex = 0; boneIndex < importedMesh->mNumBones; boneIndex++)
+	{
+		aiBone* bone = importedMesh->mBones[boneIndex];
+		ourMesh->bonesMap[bone->mName.C_Str()] = boneIndex;
+
+	
+		float4x4 offset = float4x4(bone->mOffsetMatrix.a1, bone->mOffsetMatrix.a2, bone->mOffsetMatrix.a3, bone->mOffsetMatrix.a4,
+			bone->mOffsetMatrix.b1, bone->mOffsetMatrix.b2, bone->mOffsetMatrix.b3, bone->mOffsetMatrix.b4,
+			bone->mOffsetMatrix.c1, bone->mOffsetMatrix.c2, bone->mOffsetMatrix.c3, bone->mOffsetMatrix.c4,
+			bone->mOffsetMatrix.d1, bone->mOffsetMatrix.d2, bone->mOffsetMatrix.d3, bone->mOffsetMatrix.d4);
+
+		ourMesh->bonesOffsets.push_back(offset);
+
+	
+		for (int i = 0; i < bone->mNumWeights; ++i)
+		{
+			uint index = bone->mWeights[i].mVertexId;
+			
+			for (int j = 0; j < 4; ++j)
+			{
+				if (ourMesh->bones[index * 4 + j] == -1)
+				{
+					ourMesh->bones[index * 4 + j] = boneIndex;
+					ourMesh->boneWeights[index * 4 + j] = bone->mWeights[i].mWeight;
+					break;
+				}
+			}
+		}
+
+	}
 
 
 }

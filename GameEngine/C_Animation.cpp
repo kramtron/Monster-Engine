@@ -27,13 +27,45 @@ void C_Animation::InspectorW()
 
 	}
 
+}
+
+void C_Animation::DuplicateMeshintoAnimable()
+{
+
+	bool duplicateMesh = false;
+
+	if (_animableMesh == nullptr)
+	{
+		duplicateMesh = true;
+		_animableMesh = new M_Mesh;
+		//Get the current mesh
+		M_Mesh* our_mesh = gameObject->mesh;
 
 
 
+		_animableMesh->num_indices = our_mesh->num_indices;
+		_animableMesh->num_vertices = our_mesh->num_vertices;
+		
+		_animableMesh->indices = new uint[our_mesh->num_indices];
+		_animableMesh->vertices = new float[our_mesh->num_vertices * 3];
 
 
+		memcpy(_animableMesh->indices,our_mesh->indices, our_mesh->num_indices * sizeof(uint));
 
 
+	}
+
+
+	memset(_animableMesh->vertices, 0, _animableMesh->num_vertices * sizeof(float) * 3);
+
+	if (duplicateMesh) {
+		//_animableMesh->RegenerateBuffers(true); 
+
+	}
+}
+
+void C_Animation::MoveVerticesnNormals()
+{
 }
 
 void C_Animation::LinkChannelBones(GameObject* gameObject)
@@ -202,9 +234,13 @@ void C_Animation::UpdateChannelsTransform(const T_AnimationLoader* settings, con
 
 void C_Animation::UpdateMeshAnimation(GameObject* gameObject)
 {
+	
 
-
-
+	if (gameObject->mesh != nullptr)
+	{
+		DuplicateMeshintoAnimable();
+		MoveVerticesnNormals();
+	}
 
 }
 

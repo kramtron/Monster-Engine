@@ -12,7 +12,7 @@
 using namespace std;
 
 struct BoneInfo;
-
+class M_Mesh;
 class T_AnimationLoader;
 class C_Animation : public Component
 {
@@ -60,7 +60,12 @@ public:
 	map<string, GameObject*> boneMapping;
 
 
+	M_Mesh* _animableMesh = nullptr;
 
+
+
+	void DuplicateMeshintoAnimable();
+	void MoveVerticesnNormals();
 
 	void LinkChannelBones(GameObject* gameObject);
 	void StoreBoneMapping(GameObject* gameObject);

@@ -53,6 +53,9 @@ public:
 
 	void CollectChilds(std::vector<GameObject*>& vector);
 
+
+
+
 public:
 	
 	vector<GameObject*> children;

@@ -214,3 +214,4 @@ void GameObject::CollectChilds(std::vector<GameObject*>& vector)
 	for (uint i = 0; i < children.size(); i++)
 		children[i]->CollectChilds(vector);
 }
+
