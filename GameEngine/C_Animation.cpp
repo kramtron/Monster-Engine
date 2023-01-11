@@ -60,7 +60,7 @@ void C_Animation::DuplicateMeshintoAnimable()
 
 	if (duplicateMesh) {
 		//_animableMesh->RegenerateBuffers(true); 
-
+		//TODUWU
 	}
 }
 
