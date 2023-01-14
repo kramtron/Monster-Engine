@@ -16,35 +16,35 @@ ImHierarchyWindow::ImHierarchyWindow()
 	rootGameObject = new GameObject("Scene", nullptr,"none");
 
 
-	GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
-	MeshLoader::LoadFile("Assets/street/scene.DAE", gO4);
-	//gO4->transform->rotation = float3(-90.0f,0.0f,0.0f);
-	//gO4->transform->TransformToUpdate();
-	
-	 
+	//GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
+	//MeshLoader::LoadFile("Assets/street/scene.DAE", gO4);
+	////gO4->transform->rotation = float3(-90.0f,0.0f,0.0f);
+	////gO4->transform->TransformToUpdate();
+	//
+	// 
 
-	for (size_t i = 0; i < gO4->children[0]->children[0]->children.size(); i++) {
+	//for (size_t i = 0; i < gO4->children[0]->children[0]->children.size(); i++) {
 
-		gO4->children[0]->children[0]->children[i]->transform->rotation = float3(-90.0f, 0.0f, 0.0f);
-		gO4->children[0]->children[0]->children[i]->transform->TransformToUpdate();
+	//	gO4->children[0]->children[0]->children[i]->transform->rotation = float3(-90.0f, 0.0f, 0.0f);
+	//	gO4->children[0]->children[0]->children[i]->transform->TransformToUpdate();
 
-	}
-	
+	//}
+	//
 
 
 
-	GameObject* gO5 = new GameObject("Main Camera", rootGameObject, "first");
-	gO5->AddComponent(Component::Type::Camera);
+	//GameObject* gO5 = new GameObject("Main Camera", rootGameObject, "first");
+	//gO5->AddComponent(Component::Type::Camera);
 
-	GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
-	MeshLoader::LoadFile("Assets/BakerHouse.fbx", gO);
-	gO->children[0]->children[0]->transform->ResetTransform();
-	gO->children[0]->children[1]->transform->ResetTransform();
+	//GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
+	//MeshLoader::LoadFile("Assets/BakerHouse.fbx", gO);
+	//gO->children[0]->children[0]->transform->ResetTransform();
+	//gO->children[0]->children[1]->transform->ResetTransform();
 
 
 	GameObject* gO2 = new GameObject("Animation", rootGameObject, "first");
 	MeshLoader::LoadFile("Assets/AnimationSamples/simpleAnimation.fbx",gO2);
-	gO->children[0]->animation = (C_Animation*)gO2->children[0]->AddComponent(Component::Type::Animation);
+	//gO->children[0]->animation = (C_Animation*)gO2->children[0]->AddComponent(Component::Type::Animation);
 	
 
 	//gO->meshR = (C_Mesh*)gO->AddComponent(Component::Type::Mesh);

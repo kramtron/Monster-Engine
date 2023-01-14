@@ -6,7 +6,7 @@ C_Animation::C_Animation(GameObject* gO) : Component(gO)
 {
 
 	gameObject = gO;
-	animations_List = gO->animations;
+	/*animations_List = gO->animations;*/
 }
 
 C_Animation::~C_Animation()
@@ -23,7 +23,7 @@ void C_Animation::InspectorW()
 		
 		ImGui::TextWrapped("Ticks per second: "); ImGui::SameLine();
 
-		ImGui::TextColored(ImVec4(255, 255, 0, 255), std::to_string(gameObject->animations[0]->ticksPerSecond).c_str());
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), std::to_string(animations_List[0]->ticksPerSecond).c_str());
 
 	}
 
@@ -34,7 +34,7 @@ void C_Animation::DuplicateMeshintoAnimable()
 
 	bool duplicateMesh = false;
 
-	if (_animableMesh == nullptr)
+	if (_animableMesh == nullptr && gameObject->mesh != nullptr)
 	{
 		duplicateMesh = true;
 		_animableMesh = new M_Mesh;
@@ -52,11 +52,11 @@ void C_Animation::DuplicateMeshintoAnimable()
 
 		memcpy(_animableMesh->indices,our_mesh->indices, our_mesh->num_indices * sizeof(uint));
 
+		memset(_animableMesh->vertices, 0, _animableMesh->num_vertices * sizeof(float) * 3);
 
 	}
 
 
-	memset(_animableMesh->vertices, 0, _animableMesh->num_vertices * sizeof(float) * 3);
 
 	if (duplicateMesh) {
 		//_animableMesh->RegenerateBuffers(true); 
@@ -84,9 +84,36 @@ void C_Animation::MoveVerticesnNormals()
 		if (bone != nullptr) {
 
 			float4x4 Delta = CalculateDeltaMatrix(dynamic_cast<C_Transform*>(bone->GetComponent(Component::Type::Transform))->GetGlobal(), dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::Type::Transform))->GetGlobal().Inverted());
-
+			Delta = Delta * our_mesh->bonesOffsets[it->second];
+			boneTransforms[it->second] = Delta;
 		}
 	}
+
+	
+	for (uint v = 0; v < our_mesh->num_vertices; ++v) {
+
+
+		for (uint b = 0; b < 4; ++b) {
+
+
+			int bone_ID = our_mesh->bones[v * 4 + b];
+			float boneWeight = our_mesh->boneWeights[v * 4 + b];
+
+
+			if (bone_ID == -1) continue;
+
+			float3 Inc = boneTransforms[bone_ID].TransformPos(float3(&our_mesh->vertices[v * 3]));
+
+			_animableMesh->vertices[v * 3] += Inc.x * boneWeight;
+			_animableMesh->vertices[v * 3 + 1] += Inc.y * boneWeight;
+			_animableMesh->vertices[v * 3 + 2] += Inc.z * boneWeight;
+
+
+		}
+
+	}
+
+	RegenerateBuffers(_animableMesh);
 }
 
 void C_Animation::RegenerateBuffers(M_Mesh* _animableMesh)
@@ -168,7 +195,7 @@ float4x4 C_Animation::CalculateDeltaMatrix(float4x4 globalMat, float4x4 invertMa
 
 void C_Animation::Start()
 {
-	rootBone = gameObject->children[1]->children[0];
+	rootBone = gameObject->parent->children[1];
 
 	if (rootBone == nullptr) return;
 
@@ -210,6 +237,7 @@ void C_Animation::Update(float dt)
 			time = 0.f;
 			currentAnimation = animations_List[2];
 		}*/
+		
 
 		float blendRatio = 0.0f;
 		if (blendTimeDuration > 0.0f)
@@ -250,9 +278,9 @@ void C_Animation::Update(float dt)
 				return;
 			}
 		}
-
+		LOG("sdfkjhda");
 		UpdateChannelsTransform(currentAnimation, blendRatio > 0.0f ? prevAnimation : nullptr, blendRatio);
-		UpdateMeshAnimation(gameObject->children[0]);
+		UpdateMeshAnimation(gameObject);
 		std::vector<GameObject*> bones;
 		rootBone->CollectChilds(bones);
 		//DrawBones(bones[0]);
@@ -401,4 +429,39 @@ float3 C_Animation::GetChannelScale(const BoneInfo& channel, float currentKey, f
 		}
 	}
 	return defaultScale;
+}
+
+void C_Animation::SetResource(T_AnimationLoader* re_anim)
+{
+	if (_anim != nullptr) {
+		_anim = re_anim;
+
+		SetAnimation(_anim);
+	}
+
+}
+
+void C_Animation::SetAnimation(T_AnimationLoader* anim)
+{
+
+	_anim = anim;
+	_anim->animationName = "Idle";
+	_anim->initTimeAnim = 0;
+	_anim->duration = 46;
+	animations_List.push_back(_anim);
+
+	T_AnimationLoader* run = new T_AnimationLoader(*_anim);
+	run->animationName = "Run";
+	run->initTimeAnim = 50;
+	run->duration = 72;
+	animations_List.push_back(run);
+
+
+	T_AnimationLoader* attack = new T_AnimationLoader(*_anim);
+	attack->animationName = "Attack";
+	attack->initTimeAnim = 73;
+	attack->duration = 120;
+	attack->loopable = false;
+	animations_List.push_back(attack);
+
 }

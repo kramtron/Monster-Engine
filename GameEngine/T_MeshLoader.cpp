@@ -63,7 +63,8 @@ M_Mesh* MeshLoader::LoadFile(string file_path, GameObject* parent = nullptr)
 			our_mesh = MeshLoader::LoadMeshNode(scene,scene->mRootNode,parent,file_path.c_str(),matrix);
 
 			//Here add the animation to the game object
-			parent->children[0]->animations = animationList;
+			//parent->children[0]->animations = animationList;
+			T_AnimationLoader::SetAnimationOnGameObjectRoot(scene->mAnimations, animationList, parent->children[0]->children[0]);
 
 			return our_mesh;
 

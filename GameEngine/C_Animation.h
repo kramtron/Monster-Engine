@@ -87,6 +87,9 @@ public:
 	float3 GetChannelRotation(const BoneInfo& channel, float currentKey, float3 defaultRotation) const;
 	float3 GetChannelScale(const BoneInfo& channel, float currentKey, float3 defaultScale) const;
 
+	void SetResource(T_AnimationLoader* re_anim);
+
+	void SetAnimation(T_AnimationLoader* anim);
 
 
 };

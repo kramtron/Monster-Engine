@@ -18,6 +18,8 @@
 
 typedef unsigned int uint;
 
+
+class GameObject;
 struct BoneInfo {
 
 	std::string name;
@@ -65,6 +67,7 @@ public:
 
 	std::map<std::string, BoneInfo> bones;
 
+	static void SetAnimationOnGameObjectRoot(aiAnimation** animArray, std::vector<T_AnimationLoader*>& _sceneAnimations, GameObject* gmRoot);
 
 };
 

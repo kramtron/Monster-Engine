@@ -7,7 +7,7 @@
 #include "S_GameObject.h"
 #include "ImHierarchyWindow.h"
 #include "T_TextureLoader.h"
-
+#include "C_Animation.h"
 //Assimp
 #include "cimport.h"
 #include "scene.h"
@@ -262,6 +262,18 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+
+
+	for (int i = 1; i < ImGuiSamples::ImH->referenceGameObject->size(); i++) {
+
+		GameObject* gO = ImGuiSamples::ImH->referenceGameObject->at(i);
+
+		//gO->GetComponent(Component::Type::Animation)->Update(dt);
+		if (gO->animation != nullptr ) {
+			gO->animation->Update(dt);
+		}
+	}
+
 
 
 

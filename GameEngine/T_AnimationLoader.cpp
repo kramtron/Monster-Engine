@@ -1,7 +1,7 @@
 #include "T_AnimationLoader.h"
+#include "S_GameObject.h"
 
-
-
+#include "C_Animation.h"
 
 
 
@@ -71,14 +71,6 @@ T_AnimationLoader* T_AnimationLoader::LoadAnimation(aiAnimation* importedAnimati
 	
 	uint UID = 0;
 
-	
-	
-	/*std::string file = ANIMATIONS_PATH;
-	file += std::to_string(UID);
-	file += ".anim";*/
-
-
-
 	T_AnimationLoader* animation= new T_AnimationLoader();
 
 	animation->ticksPerSecond = importedAnimation->mTicksPerSecond;
@@ -139,10 +131,10 @@ T_AnimationLoader* T_AnimationLoader::LoadAnimation(aiAnimation* importedAnimati
 
 
 
-	/*char* buffer;
+	char* buffer;
 	uint size = animation->SaveCustomFormat(animation, &buffer);
 
-	RELEASE_ARRAY(buffer);*/
+	RELEASE_ARRAY(buffer);
 
 
 
@@ -258,5 +250,23 @@ void T_AnimationLoader::SaveBoneKey(const std::map<double, Quat>& map, char** cu
 		memcpy(*cursor, &it->second, sizeof(float) * 4);
 		*cursor += sizeof(float) * 4;
 	}
+}
+
+void T_AnimationLoader::SetAnimationOnGameObjectRoot(aiAnimation** animArray, std::vector<T_AnimationLoader*>& _sceneAnimations, GameObject* gmRoot)
+{
+
+	for (int i = 0; i < _sceneAnimations.size(); i++)
+	{
+		aiAnimation* importedAnim = animArray[i];
+
+		if (importedAnim->mDuration != 0)
+		{
+			gmRoot->animation = (C_Animation*)gmRoot->AddComponent(Component::Type::Animation);
+			C_Animation* animator = dynamic_cast<C_Animation*>(gmRoot->GetComponent(Component::Type::Animation));
+			animator->SetResource(_sceneAnimations[i]);
+		}
+	}
+
+
 }
 
