@@ -159,8 +159,18 @@ void GameObject::RenderM()
 		float4x4 tempMat;
 		if (renderMesh == true) {
 			if (this->parent == nullptr) tempMat = transform->GetLocal();
-			else {
+			else if(parent!= nullptr && parent->parent==nullptr) {
 				tempMat = parent->transform->GetGlobal()* transform->GetLocal();
+			}
+			else if (parent != nullptr && parent->parent != nullptr && parent->parent->parent == nullptr) {
+
+				tempMat = parent->parent->transform->GetGlobal() * transform->GetLocal();
+
+			}
+			else if (parent != nullptr && parent->parent != nullptr && parent->parent->parent!=nullptr) {
+
+				tempMat = parent->parent->parent->transform->GetGlobal() * transform->GetLocal();
+
 			}
 			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 		}
@@ -183,8 +193,18 @@ void GameObject::RenderGameM()
 		float4x4 tempMat;
 		if (renderMesh == true) {
 			if (this->parent == nullptr) tempMat = transform->GetLocal();
-			else {
+			else if (parent != nullptr && parent->parent == nullptr) {
 				tempMat = parent->transform->GetGlobal() * transform->GetLocal();
+			}
+			else if (parent != nullptr && parent->parent != nullptr && parent->parent->parent == nullptr) {
+
+				tempMat = parent->parent->transform->GetGlobal() * transform->GetLocal();
+
+			}
+			else if (parent != nullptr && parent->parent != nullptr && parent->parent->parent != nullptr) {
+
+				tempMat = parent->parent->parent->transform->GetGlobal() * transform->GetLocal();
+
 			}
 			mesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 		}
