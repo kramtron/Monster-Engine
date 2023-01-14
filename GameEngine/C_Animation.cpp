@@ -61,11 +61,56 @@ void C_Animation::DuplicateMeshintoAnimable()
 	if (duplicateMesh) {
 		//_animableMesh->RegenerateBuffers(true); 
 		//TODUWU
+		RegenerateBuffers(_animableMesh);
 	}
 }
 
 void C_Animation::MoveVerticesnNormals()
 {
+
+	M_Mesh* our_mesh = gameObject->mesh;
+
+	std::map<std::string, GameObject*> bonesMap;
+	GetBoneMapping(bonesMap);
+
+	std::vector<float4x4> boneTransforms;
+	boneTransforms.resize(our_mesh->bonesOffsets.size());
+
+
+	for (std::map<std::string, uint>::iterator it = our_mesh->bonesMap.begin(); it != our_mesh->bonesMap.end(); ++it)
+	{
+		GameObject* bone = bonesMap[it->first];
+
+		if (bone != nullptr) {
+
+			float4x4 Delta = CalculateDeltaMatrix(dynamic_cast<C_Transform*>(bone->GetComponent(Component::Type::Transform))->GetGlobal(), dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::Type::Transform))->GetGlobal().Inverted());
+
+		}
+	}
+}
+
+void C_Animation::RegenerateBuffers(M_Mesh* _animableMesh)
+{
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	//Vertex
+	glGenBuffers(1, (GLuint*)&(_animableMesh->id_vertices));
+
+
+	//Index
+	glGenBuffers(1, (GLuint*)&(_animableMesh->id_indices));
+
+
+	//Bind and fill buffers
+	glBindBuffer(GL_ARRAY_BUFFER, _animableMesh->id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _animableMesh->num_vertices * VERTEX_ARGUMENTS, _animableMesh->vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _animableMesh->id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * _animableMesh->num_indices, _animableMesh->indices, GL_STATIC_DRAW);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 }
 
 void C_Animation::LinkChannelBones(GameObject* gameObject)
@@ -88,6 +133,37 @@ void C_Animation::StoreBoneMapping(GameObject* gameObject)
 	{
 		StoreBoneMapping(gameObject->children[i]);
 	}
+}
+
+void C_Animation::GetBoneMapping(std::map<std::string, GameObject*>& boneMapping)
+{
+
+	boneMapping.clear();
+	std::vector<GameObject*> gameObjects;
+	rootBone->CollectChilds(gameObjects);
+
+	for (uint i = 0; i < gameObjects.size(); ++i)
+	{
+		boneMapping[gameObjects[i]->name] = gameObjects[i];
+	}
+
+
+}
+
+float4x4 C_Animation::CalculateDeltaMatrix(float4x4 globalMat, float4x4 invertMat)
+{
+	float3 position;
+	Quat rotation;
+	float3 scale;
+
+
+	float4x4 mat = globalMat;
+	mat.Decompose(position, rotation, scale);
+	mat = dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::Type::Transform))->GetGlobal().Inverted() * mat;
+	mat.Decompose(position, rotation, scale);
+
+	return mat;
+
 }
 
 void C_Animation::Start()

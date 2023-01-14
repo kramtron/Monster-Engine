@@ -66,9 +66,13 @@ public:
 
 	void DuplicateMeshintoAnimable();
 	void MoveVerticesnNormals();
+	static void RegenerateBuffers(M_Mesh* _animableMesh);
 
 	void LinkChannelBones(GameObject* gameObject);
 	void StoreBoneMapping(GameObject* gameObject);
+	void GetBoneMapping(std::map<std::string, GameObject*>& boneMapping);
+	float4x4 CalculateDeltaMatrix(float4x4 globalMat, float4x4 invertMat);
+
 
 	void Start();
 	void Update(float dt);
