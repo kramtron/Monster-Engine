@@ -84,8 +84,6 @@ void C_Animation::MoveVerticesnNormals()
 		if (bone != nullptr) {
 
 			float4x4 Delta = CalculateDeltaMatrix(dynamic_cast<C_Transform*>(bone->GetComponent(Component::Type::Transform))->GetGlobal(), dynamic_cast<C_Transform*>(gameObject->GetComponent(Component::Type::Transform))->GetGlobal().Inverted());
-			Delta = Delta * our_mesh->bonesOffsets[it->second];
-			boneTransforms[it->second] = Delta;
 
 		}
 	}
