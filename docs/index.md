@@ -13,5 +13,11 @@ I'm a Game design and development studient specialized in Level Design.
 
 # Main Core Sub-System
 
+The engine have all the basic things that a game engine needs.
+GameObjects, Inspector with all the information that u can modificate, Console, Files Assets, Cameras.
+
+## Last assigment
+
+
 # Video
 &emsp; -&emsp;*[Monster Engine Video Link](https://youtu.be/H7VTYdYVAKU)*
