@@ -29,6 +29,7 @@ Unfortunately there is a problem when it comes to regenerating the buffers that 
 
 
 ![Anim1](https://user-images.githubusercontent.com/79161206/212544852-25aaca12-b6e2-4ad9-8f77-c817c4ceee09.png)
+![Bones](https://user-images.githubusercontent.com/79161206/212545716-e06a7d4a-0c2c-4f6f-8366-58aadbe419bc.png)
 
 
 # Video
