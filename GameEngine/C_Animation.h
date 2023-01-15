@@ -91,6 +91,6 @@ public:
 
 	void SetAnimation(T_AnimationLoader* anim);
 
-	void DrawBones(GameObject* gameObject);
+
 };
 

@@ -198,7 +198,7 @@ float4x4 C_Animation::CalculateDeltaMatrix(float4x4 globalMat, float4x4 invertMa
 
 void C_Animation::Start()
 {
-	rootBone = gameObject->parent->children[1]->children[0];
+	rootBone = gameObject->parent->children[1];
 
 	if (rootBone == nullptr) return;
 
@@ -305,10 +305,8 @@ void C_Animation::UpdateChannelsTransform(const T_AnimationLoader* settings, con
 	}
 	
 	std::map<std::string, GameObject*>::iterator boneIt;
-	int pass=0;
 	for (boneIt = boneMapping.begin(); boneIt != boneMapping.end(); ++boneIt)
 	{
-		LOG("Pass %d", pass++);
 		C_Transform* transform = dynamic_cast<C_Transform*>(boneIt->second->GetComponent(Component::Type::Transform));
 
 		if (settings->bones.find(boneIt->first.c_str()) == settings->bones.end()) continue;
@@ -380,7 +378,7 @@ float3 C_Animation::GetChannelPosition(const BoneInfo& channel, float currentKey
 
 float3 C_Animation::GetChannelRotation(const BoneInfo& channel, float currentKey, float3 defaultRotation) const
 {
-	float3 rotation = defaultRotation;
+	//float3 rotation = defaultRotation;
 
 	if (channel.rotationKeys.size() > 0)
 	{
@@ -398,7 +396,7 @@ float3 C_Animation::GetChannelRotation(const BoneInfo& channel, float currentKey
 		else //blend between both keys
 		{
 			//0 to 1
-		float ratio = (currentKey - previous->first) / (next->first - previous->first);
+			float ratio = (currentKey - previous->first) / (next->first - previous->first);
 			defaultRotation = previous->second.Lerp(next->second, ratio);
 
 			//// Linearly interpolate the rotation angles
@@ -408,10 +406,6 @@ float3 C_Animation::GetChannelRotation(const BoneInfo& channel, float currentKey
 		}
 	}
 	return defaultRotation;
-
-
-	
-
 
 }
 
@@ -472,37 +466,5 @@ void C_Animation::SetAnimation(T_AnimationLoader* anim)
 	attack->duration = 120;
 	attack->loopable = false;
 	animations_List.push_back(attack);
-
-}
-
-void C_Animation::DrawBones(GameObject* gameObject)
-{
-
-	glColor3f(1.f, 0.f, 0.f);
-	glLineWidth(4.f);
-	glBegin(GL_LINES);
-
-	//Draw lines
-	std::map<std::string, GameObject*>::iterator bones;
-	float3 position;
-	Quat rotation;
-	float3 scale;
-
-	if (gameObject->parent != nullptr) {
-		gameObject->parent->transform->globalTransform.Decompose(position, rotation, scale);
-		glVertex3f(position.x, position.y, position.z);
-	}
-	gameObject->transform->globalTransform.Decompose(position, rotation, scale);
-	glVertex3f(position.x, position.y, position.z);
-	//LOG(LogType::L_NORMAL, "Name: %s  %f,%f,%f",bones->first.c_str(), position.x, position.y, position.z);
-	if (gameObject->children.size() > 0) {
-		for (uint i = 0; i < gameObject->children.size(); i++)
-		{
-			DrawBones(gameObject->children[i]);
-		}
-	}
-	glEnd();
-	glLineWidth(1.f);
-	glColor3f(1.f, 1.f, 1.f);
 
 }

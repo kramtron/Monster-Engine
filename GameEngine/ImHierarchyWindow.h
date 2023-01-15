@@ -32,8 +32,7 @@ public:
 	uint DrawGameObject(GameObject* gO);
 
 
-	void ResetChilds(GameObject* gO);
-	void RotateChilds(GameObject* gO);
+
 	//Colocar lo de aqui en un modulo aparte GameObjectTree module or class?
 
 
