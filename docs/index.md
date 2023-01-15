@@ -10,9 +10,8 @@ Thank you for your attention.
 
 The wole engine has fully made by Gerard Josep Ramon Catasus, since the first step to the last step. 
 I'm a Game design and development studient specialized in Level Design.  
-
-![](https://github.com/kramtron/Monster-Engine/blob/main/img/MeJoke.jpg)
-
+![72-727819_lee-sin-cartoon-muay-thai-hd-png-download](https://user-images.githubusercontent.com/79161206/212544699-305503ba-b765-445f-bf07-d993aac854f7.png)
+Gerard Josep Ramon Catasus
 # Main Core Sub-System
 
 The engine have all the basic things that a game engine needs.
@@ -20,8 +19,10 @@ GameObjects, Inspector with all the information that u can modificate, Console, 
 
 ## Last assigment
 
+![Anim1](https://user-images.githubusercontent.com/79161206/212544852-25aaca12-b6e2-4ad9-8f77-c817c4ceee09.png)
+
 
 # Video
 &emsp; -&emsp;*[Monster Engine Video Link](https://youtu.be/H7VTYdYVAKU)*
 
-![72-727819_lee-sin-cartoon-muay-thai-hd-png-download](https://user-images.githubusercontent.com/79161206/212544699-305503ba-b765-445f-bf07-d993aac854f7.png)
+
