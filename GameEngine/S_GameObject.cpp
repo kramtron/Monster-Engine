@@ -162,8 +162,7 @@ void GameObject::RenderM()
 			else {
 				tempMat = parent->transform->GetGlobal()* transform->GetLocal();
 			}
-
-			if (animation != nullptr && animation->_animableMesh != nullptr) {
+			if (animation->_animableMesh != nullptr) {
 				animation->_animableMesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 			}
 			else {
@@ -192,8 +191,7 @@ void GameObject::RenderGameM()
 			else {
 				tempMat = parent->transform->GetGlobal() * transform->GetLocal();
 			}
-			if (animation != nullptr && animation->_animableMesh != nullptr) {
-
+			if (animation->_animableMesh != nullptr) {
 				animation->_animableMesh->meshRenderer(tempMat.Transposed(), TextureTypes::CHECKERS, tempMat);
 			}
 			else {

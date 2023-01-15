@@ -61,7 +61,7 @@ void C_Animation::DuplicateMeshintoAnimable()
 	if (duplicateMesh) {
 		//_animableMesh->RegenerateBuffers(true); 
 		//TODUWU
-		RegenerateBuffers(_animableMesh,true);
+		RegenerateBuffers(_animableMesh);
 	}
 }
 
@@ -116,30 +116,27 @@ void C_Animation::MoveVerticesnNormals()
 	RegenerateBuffers(_animableMesh);
 }
 
-void C_Animation::RegenerateBuffers(M_Mesh* _animableMesh, bool init)
+void C_Animation::RegenerateBuffers(M_Mesh* _animableMesh)
 {
 
-	if (init) {
+	glEnableClientState(GL_VERTEX_ARRAY);
 
-		//Vertex
-		glGenBuffers(1, (GLuint*)&(_animableMesh->id_vertices));
-
-
-		//Index
-		glGenBuffers(1, (GLuint*)&(_animableMesh->id_indices));
+	//Vertex
+	glGenBuffers(1, (GLuint*)&(_animableMesh->id_vertices));
 
 
-		//Bind and fill buffers
+	//Index
+	glGenBuffers(1, (GLuint*)&(_animableMesh->id_indices));
 
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _animableMesh->id_indices);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * _animableMesh->num_indices, _animableMesh->indices, GL_STATIC_DRAW);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-
+	//Bind and fill buffers
 	glBindBuffer(GL_ARRAY_BUFFER, _animableMesh->id_vertices);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _animableMesh->num_vertices * 3, &_animableMesh->vertices[0], GL_DYNAMIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _animableMesh->num_vertices * VERTEX_ARGUMENTS, _animableMesh->vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _animableMesh->id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * _animableMesh->num_indices, _animableMesh->indices, GL_STATIC_DRAW);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 }
 

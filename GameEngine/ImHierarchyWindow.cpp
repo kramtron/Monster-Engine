@@ -33,13 +33,13 @@ ImHierarchyWindow::ImHierarchyWindow()
 
 
 
-	GameObject* gO5 = new GameObject("Main Camera", rootGameObject, "first");
-	gO5->AddComponent(Component::Type::Camera);
+	//GameObject* gO5 = new GameObject("Main Camera", rootGameObject, "first");
+	//gO5->AddComponent(Component::Type::Camera);
 
-	/*GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
-	MeshLoader::LoadFile("Assets/BakerHouse.fbx", gO);
-	gO->children[0]->children[0]->transform->ResetTransform();
-	gO->children[0]->children[1]->transform->ResetTransform();*/
+	//GameObject* gO = new GameObject("BakerHouse", rootGameObject, "first");
+	//MeshLoader::LoadFile("Assets/BakerHouse.fbx", gO);
+	//gO->children[0]->children[0]->transform->ResetTransform();
+	//gO->children[0]->children[1]->transform->ResetTransform();
 
 
 	GameObject* gO2 = new GameObject("Animation", rootGameObject, "first");

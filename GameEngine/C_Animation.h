@@ -66,7 +66,7 @@ public:
 
 	void DuplicateMeshintoAnimable();
 	void MoveVerticesnNormals();
-	static void RegenerateBuffers(M_Mesh* _animableMesh, bool init= false);
+	static void RegenerateBuffers(M_Mesh* _animableMesh);
 
 	void LinkChannelBones(GameObject* gameObject);
 	void StoreBoneMapping(GameObject* gameObject);
