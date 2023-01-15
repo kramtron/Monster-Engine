@@ -11,7 +11,7 @@ Thank you for your attention.
 The wole engine has fully made by Gerard Josep Ramon Catasus, since the first step to the last step. 
 I'm a Game design and development studient specialized in Level Design.  
 
-![](https://github.com/kramtron/Monster-Engine/blob/main/img/MeJoke.jpg)
+![Me](https://github.com/kramtron/Monster-Engine/blob/main/img/MeJoke.jpg)
 
 # Main Core Sub-System
 
