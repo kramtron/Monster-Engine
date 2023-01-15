@@ -270,7 +270,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 		//gO->GetComponent(Component::Type::Animation)->Update(dt);
 		if (gO->animation != nullptr ) {
-			gO->animation->Update(dt);
+			//gO->animation->Update(dt);
 		}
 	}
 

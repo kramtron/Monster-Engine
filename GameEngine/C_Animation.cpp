@@ -25,6 +25,20 @@ void C_Animation::InspectorW()
 
 		ImGui::TextColored(ImVec4(255, 255, 0, 255), std::to_string(animations_List[0]->ticksPerSecond).c_str());
 
+		ImGui::Spacing();
+
+		ImGui::Text("Idle Animation");
+		ImGui::InputInt("##Idle Start Frame", (int*)&animations_List[0]->initTimeAnim, 1, 1);
+		ImGui::InputFloat("##Idle End Frame", &animations_List[0]->duration, 1, 1);
+
+		ImGui::Text("Run Animation");
+		ImGui::InputInt("##Run Start Frame", (int*)&animations_List[1]->initTimeAnim, 1, 1);
+		ImGui::InputFloat("##Run End Frame", &animations_List[1]->duration, 1, 1);
+
+		ImGui::Text("Attack Animation");
+		ImGui::InputInt("##Attack Start Frame", (int*)&animations_List[2]->initTimeAnim, 1, 1);
+		ImGui::InputFloat("##Attack End Frame", &animations_List[2]->duration, 1, 1);
+
 	}
 
 }
