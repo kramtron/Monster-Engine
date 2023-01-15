@@ -16,7 +16,7 @@ ImHierarchyWindow::ImHierarchyWindow()
 	rootGameObject = new GameObject("Scene", nullptr,"none");
 
 
-	/*GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
+	GameObject* gO4 = new GameObject("Street", rootGameObject, "first");
 	MeshLoader::LoadFile("Assets/street/scene.DAE", gO4);
 	gO4->transform->rotation = float3(-90.0f,0.0f,0.0f);
 	gO4->transform->TransformToUpdate();
@@ -28,7 +28,7 @@ ImHierarchyWindow::ImHierarchyWindow()
 		gO4->children[0]->children[0]->children[i]->transform->rotation = float3(-90.0f, 0.0f, 0.0f);
 		gO4->children[0]->children[0]->children[i]->transform->TransformToUpdate();
 
-	}*/
+	}
 	
 
 
