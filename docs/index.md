@@ -10,7 +10,7 @@ Thank you for your attention.
 
 The wole engine has fully made by Gerard Josep Ramon Catasus, since the first step to the last step. 
 I'm a Game design and development studient specialized in Level Design.  
-![72-727819_lee-sin-cartoon-muay-thai-hd-png-download](https://user-images.githubusercontent.com/79161206/212544699-305503ba-b765-445f-bf07-d993aac854f7.png)
+
 Gerard Josep Ramon Catasus
 # Main Core Sub-System
 
