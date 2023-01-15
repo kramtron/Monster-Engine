@@ -11,7 +11,10 @@ Thank you for your attention.
 The wole engine has fully made by Gerard Josep Ramon Catasus, since the first step to the last step. 
 I'm a Game design and development studient specialized in Level Design.  
 
-Gerard Josep Ramon Catasus
+
+
+&emsp; -&emsp;*[Gerard Josep Ramon Catasus LinkedIn](https://www.linkedin.com/in/gerard-ram%C3%B3n-293020227/)*
+
 # Main Core Sub-System
 
 The engine have all the basic things that a game engine needs.
